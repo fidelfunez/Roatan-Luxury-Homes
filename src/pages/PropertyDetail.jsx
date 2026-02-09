@@ -3,6 +3,7 @@ import { useParams, Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { ChevronLeft, ChevronRight, MapPin, DollarSign, BedDouble, Bath, CarFront, Maximize, CalendarDays, Clock, Home, CheckCircle, Info, Mail, Heart, Phone, Share2, Download, Eye, Star, TrendingUp } from 'lucide-react';
+import SEO from '@/components/SEO';
 import { getPropertyById } from '@/lib/supabaseUtils';
 
 const PropertyDetail = () => {
@@ -78,6 +79,8 @@ const PropertyDetail = () => {
   }
   
   const propertyImages = property.images && property.images.length > 0 ? property.images : (property.image ? [property.image] : ['https://images.unsplash.com/photo-1582407947304-fd86f028f716?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8cmVhbCUyMGVzdGF0ZXxlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=800&q=60']);
+  const metaDescription = property.description ? (property.description.length > 160 ? property.description.slice(0, 157) + '...' : property.description) : `${property.title} - ${property.location || 'Roatán'}. ${property.price ? `$${Number(property.price).toLocaleString()}` : ''}`;
+  const ogImage = propertyImages[0] && propertyImages[0].startsWith('http') ? propertyImages[0] : (typeof window !== 'undefined' ? `${window.location.origin}${propertyImages[0]?.startsWith('/') ? propertyImages[0] : '/' + propertyImages[0]}` : propertyImages[0]);
 
   const nextImage = () => {
     setCurrentImageIndex((prevIndex) => (prevIndex + 1) % propertyImages.length);
@@ -98,6 +101,21 @@ const PropertyDetail = () => {
 
   return (
     <div className="container mx-auto px-4 py-8">
+      <SEO
+        title={property.title}
+        description={metaDescription}
+        canonical={`/properties/${propertyId}`}
+        ogImage={ogImage}
+        ogType="website"
+        jsonLd={{
+          '@context': 'https://schema.org',
+          '@type': 'Product',
+          name: property.title,
+          description: metaDescription,
+          image: ogImage,
+          ...(property.price && { offers: { '@type': 'Offer', price: property.price, priceCurrency: 'USD' } }),
+        }}
+      />
       {/* Desktop: Enhanced Navigation */}
       <div className="mb-8">
         <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4">
@@ -348,7 +366,7 @@ const PropertyDetail = () => {
               </div>
               <div className="flex items-center p-3 bg-white/30 rounded-lg">
                 <Phone className="w-5 h-5 mr-3 text-turquoise-dark" />
-                <span className="text-sm lg:text-base">+504 123-456-7890</span>
+                <span className="text-sm lg:text-base">+504 3341-9532</span>
                 </div>
               <div className="flex items-center p-3 bg-white/30 rounded-lg">
                 <Clock className="w-5 h-5 mr-3 text-turquoise-dark" />

@@ -1,4 +1,4 @@
--- Caribbean Lux Realty Database Schema
+-- Roatán Luxury Homes Database Schema
 -- Run this in Supabase SQL Editor
 
 -- Properties Table

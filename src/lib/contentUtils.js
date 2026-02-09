@@ -25,25 +25,25 @@ export const safeGetContent = (page, section, field, fallback = '') => {
 const defaultContent = {
   home: {
     hero: {
-      title: 'Discover Your Dream Property in the Caribbean',
-      subtitle: 'Explore exclusive listings for luxury homes, beachfront properties, and investment opportunities with Caribbean Lux Realty.',
+      title: 'Buy or Rent a House in Roatán, Honduras',
+      subtitle: 'Your trusted source for buying and renting houses in Roatán, the Bay Islands, and the Caribbean. Luxury homes, beachfront properties, and investment opportunities.',
       trustIndicator1: '15+ Years Experience',
       trustIndicator2: '500+ Properties Sold',
       trustIndicator3: '24/7 Support'
     },
     welcome: {
       title: 'Welcome to Paradise 👋🏼',
-      description: 'The Caribbean, a collection of jewels, offers unparalleled beauty, vibrant cultures, and welcoming communities. Whether you\'re seeking a vacation home, a permanent residence, or a smart investment, Caribbean Lux Realty is your trusted guide.',
+      description: 'Roatán, Honduras – in the Caribbean\'s Bay Islands – offers unparalleled beauty and a welcoming community. Whether you want to buy a house in Roatán, rent a house in Roatán, or invest in Honduras real estate, Roatán Luxury Homes is your trusted guide.',
       feature1Title: 'Expert Guidance',
-      feature1Desc: 'Navigating the Caribbean market with local expertise and personalized service.',
+      feature1Desc: 'Navigating Roatán and Bay Islands real estate with local expertise and personalized service.',
       feature2Title: 'Client Focused',
       feature2Desc: 'Your dreams are our priority. We listen, advise, and deliver exceptional results.',
       feature3Title: 'Prime Locations',
-      feature3Desc: 'Access to exclusive listings in the Caribbean\'s most sought-after destinations.'
+      feature3Desc: 'Access to exclusive listings in Roatán, Honduras and the Caribbean\'s most sought-after destinations.'
     },
     featuredLocation: {
-      title: 'Featured Location: Roatán',
-      description: 'Discover the pristine beauty of Roatán, where crystal-clear waters meet white sandy beaches. Our exclusive properties offer the perfect blend of luxury and island living.',
+      title: 'Featured Location: Roatán, Bay Islands, Honduras',
+      description: 'Discover Roatán, Honduras – the largest of the Bay Islands in the Caribbean. Buy or rent a house in Roatan amid crystal-clear waters and white sandy beaches. Our exclusive properties offer the perfect blend of luxury and island living.',
       feature1: 'World-class diving and snorkeling',
       feature2: 'Pristine beaches and coral reefs',
       feature3: 'Luxury amenities and modern conveniences',
@@ -54,7 +54,7 @@ const defaultContent = {
       subtitle: 'Don\'t just take our word for it. Here\'s what our satisfied clients have to say about their experience.',
       testimonial1Name: 'Sarah & Mike',
       testimonial1Location: 'Roatán Beach Villa',
-      testimonial1Text: 'Caribbean Lux made our dream of owning a beachfront property a reality. Their attention to detail were exceptional.',
+      testimonial1Text: 'Roatán Luxury Homes made our dream of owning a beachfront property a reality. Their attention to detail was exceptional.',
       testimonial2Name: 'David Rodriguez',
       testimonial2Location: 'West Bay Condo',
       testimonial2Text: 'Professional, responsive, and truly understands the local market. I couldn\'t be happier with my investment property.',
@@ -69,10 +69,10 @@ const defaultContent = {
   },
   about: {
     company: {
-      title: 'About Roatán Realty',
-      subtitle: 'Your trusted partners in navigating the vibrant Roatán real estate market. We are dedicated to helping you find your piece of paradise.',
+      title: 'About Roatán Luxury Homes',
+      subtitle: 'Your trusted partners for buying or renting a house in Roatán, Honduras and the Bay Islands. We help you find your piece of Caribbean paradise.',
       missionTitle: 'Our Mission',
-      missionText: 'At Roatán Realty, our mission is to provide exceptional real estate services with integrity, professionalism, and a deep understanding of the local market. We strive to empower our clients—whether U.S. buyers seeking tropical homes or investors looking for lucrative opportunities—to make informed decisions and achieve their property goals in Roatán.',
+      missionText: 'At Roatán Luxury Homes, our mission is to provide exceptional real estate services with integrity, professionalism, and a deep understanding of the local market. We strive to empower our clients—whether U.S. buyers seeking tropical homes or investors looking for lucrative opportunities—to make informed decisions and achieve their property goals in Roatán.',
       missionText2: 'We believe in building lasting relationships based on trust and transparency, ensuring every client feels confident and supported throughout their journey.'
     },
     whyChooseUs: {
@@ -111,7 +111,7 @@ const defaultContent = {
       stat4Label: 'Support Available'
     },
     whyChooseUs: {
-      title: 'Why Choose Caribbean Lux Realty?',
+      title: 'Why Choose Roatán Luxury Homes?',
       subtitle: 'We combine local expertise with international standards to deliver exceptional results for our clients.',
       feature1Title: 'Trusted Expertise',
       feature1Desc: '15+ years of experience in Caribbean real estate with deep local knowledge.',
@@ -141,14 +141,14 @@ const defaultContent = {
       stat4Label: 'Years Experience'
     },
     contactInfo: {
-      phone: '+50412345678',
-      email: 'info@caribbeanluxrealty.com',
-      address: 'Main Street, Luxury Cay, Caribbean',
+      phone: '+504 3341-9532',
+      email: 'info@roatanluxuryhomes.com',
+      address: 'Roatán, Bay Islands, Honduras',
       officeHours: 'Monday - Friday: 9:00 AM - 6:00 PM',
       emergencyContact: 'Available 24/7 for urgent inquiries'
     },
     whyChooseUs: {
-      title: 'Why Choose Caribbean Lux Realty?',
+      title: 'Why Choose Roatán Luxury Homes?',
       subtitle: 'We combine local expertise with international standards to deliver exceptional results for our clients.',
       feature1Title: 'Trusted Expertise',
       feature1Desc: '15+ years of experience in Caribbean real estate with deep local knowledge.',
@@ -162,9 +162,9 @@ const defaultContent = {
   },
   properties: {
     hero: {
-      title: 'Explore Our Properties',
-      subtitle: 'Find your perfect piece of the Caribbean. Browse our curated listings of homes, land, and investment opportunities.',
-      badge: 'Premium Caribbean Properties'
+      title: 'Houses for Sale & Rent in Roatán, Honduras',
+      subtitle: 'Buy or rent a house in Roatán and the Bay Islands. Browse luxury homes, beachfront properties, and Caribbean real estate in Roatan, Honduras.',
+      badge: 'Roatan & Bay Islands Properties'
     }
   },
   'property-sales-acquisition': {
@@ -199,7 +199,7 @@ const defaultContent = {
   },
   header: {
     logo: {
-      companyName: 'Caribbean Lux Realty',
+      companyName: 'Roatán Luxury Homes',
       tagline: 'Luxury Caribbean Properties'
     },
     navigation: {
@@ -212,7 +212,7 @@ const defaultContent = {
     },
     topBar: {
       location: 'Roatán, Honduras',
-      phone: '+504 123-456-7890',
+      phone: '+504 3341-9532',
       hours: 'Mon-Fri 9AM-6PM'
     },
     cta: {
@@ -222,10 +222,10 @@ const defaultContent = {
   },
   footer: {
     companyInfo: {
-      description: 'Your trusted partner for finding exceptional properties in the Caribbean.',
-      address: 'Main Street, Luxury Cay, Caribbean',
-      phone: '+1 (555) LUX-REALTY',
-      email: 'info@caribbeanluxrealty.com'
+      description: 'Your trusted partner for buying and renting houses in Roatán, Honduras and the Caribbean. Luxury real estate in the Bay Islands.',
+      address: 'Roatán, Bay Islands, Honduras',
+      phone: '+504 3341-9532',
+      email: 'info@roatanluxuryhomes.com'
     },
     newsletter: {
       title: 'Stay Updated',
@@ -237,7 +237,7 @@ const defaultContent = {
       exploreTitle: 'Explore',
       companyTitle: 'Company',
       privacyPolicy: 'Privacy Policy',
-      copyright: 'Caribbean Lux Realty. All rights reserved.'
+      copyright: 'Roatán Luxury Homes. All rights reserved.'
     }
   }
 };

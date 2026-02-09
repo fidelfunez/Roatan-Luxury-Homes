@@ -7,56 +7,42 @@ const OptimizedImage = ({
   className = "", 
   loading = "lazy",
   fetchpriority = "auto",
+  sizes,
+  srcSet,
+  webpSrcSet,
   ...props 
 }) => {
   const [isLoaded, setIsLoaded] = useState(false);
   const [hasError, setHasError] = useState(false);
 
-  // Only use WebP if explicitly provided or if we're sure it exists
   const webpSource = webpSrc;
-  
-  const handleLoad = () => {
-    setIsLoaded(true);
+  const handleLoad = () => setIsLoaded(true);
+
+  const imgProps = {
+    alt,
+    className: `${className} ${isLoaded ? 'opacity-100' : 'opacity-0'}`,
+    loading,
+    fetchpriority,
+    onLoad: handleLoad,
+    onError: () => setHasError(true),
+    style: { transition: 'opacity 0.3s ease-in-out' },
+    ...(sizes && { sizes }),
+    ...(srcSet && { srcSet }),
+    ...props,
   };
 
-  // If no WebP source is provided, just use the regular img tag
   if (!webpSource) {
-    return (
-      <img
-        src={src}
-        alt={alt}
-        className={`${className} ${isLoaded ? 'opacity-100' : 'opacity-0'}`}
-        loading={loading}
-        fetchpriority={fetchpriority}
-        onLoad={handleLoad}
-        onError={() => setHasError(true)}
-        style={{ transition: 'opacity 0.3s ease-in-out' }}
-        {...props}
-      />
-    );
+    return <img src={src} {...imgProps} />;
   }
 
-  // If WebP source is provided, use picture element with fallback
   return (
     <picture>
-      {/* WebP format for modern browsers */}
-      <source 
-        srcSet={webpSource} 
-        type="image/webp" 
+      <source
+        srcSet={webpSrcSet || webpSource}
+        type="image/webp"
+        {...(sizes && { sizes })}
       />
-      
-      {/* Fallback image */}
-      <img
-        src={src}
-        alt={alt}
-        className={`${className} ${isLoaded ? 'opacity-100' : 'opacity-0'}`}
-        loading={loading}
-        fetchpriority={fetchpriority}
-        onLoad={handleLoad}
-        onError={() => setHasError(true)}
-        style={{ transition: 'opacity 0.3s ease-in-out' }}
-        {...props}
-      />
+      <img src={src} {...imgProps} />
     </picture>
   );
 };

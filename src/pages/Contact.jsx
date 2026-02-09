@@ -6,6 +6,7 @@ import { Textarea } from '@/components/ui/textarea';
 import { useToast } from '@/components/ui/use-toast';
 import { Mail, Phone, MapPin, MessageSquare, Send, Clock, Star, CheckCircle, Users, Award, Shield, ArrowRight, MessageCircle } from 'lucide-react';
 import NewsletterSignup from '@/components/NewsletterSignup';
+import SEO from '@/components/SEO';
 import { getContentField, getWebsiteContent } from '@/lib/contentUtils';
 
 const Contact = () => {
@@ -75,6 +76,11 @@ const Contact = () => {
 
   return (
     <div className="space-y-16 md:space-y-24">
+      <SEO
+        title="Contact Us"
+        description="Contact Roatán Luxury Homes for buying or renting a house in Roatán, Honduras and the Bay Islands. Caribbean real estate – we're here to help."
+        canonical="/contact"
+      />
       {/* Enhanced Hero Section */}
       <section className="hero-full-bleed text-center py-12 md:py-16 lg:py-20 relative overflow-hidden rounded-xl bg-gradient-to-br from-teal-400 via-cyan-500 to-blue-600 min-h-[400px] md:min-h-[500px] lg:min-h-[600px] flex items-center" style={{ background: 'linear-gradient(to bottom right, #2dd4bf, #06b6d4, #2563eb)' }}>
         {/* Background Image with Color-Matched Placeholder */}

@@ -9,6 +9,7 @@ import { Link, useSearchParams } from 'react-router-dom';
 import { getProperties } from '@/lib/supabaseUtils';
 import { useAdmin } from '@/context/AdminContext.jsx';
 import { useToast } from '@/components/ui/use-toast';
+import SEO from '@/components/SEO';
 import { getContentField, getWebsiteContent } from '@/lib/contentUtils';
 
 const Properties = () => {
@@ -173,6 +174,11 @@ const Properties = () => {
 
   return (
     <div className="space-y-16 md:space-y-24">
+      <SEO
+        title="Houses for Sale & Rent in Roatán, Honduras"
+        description="Buy or rent a house in Roatán and the Bay Islands. Browse luxury homes, beachfront properties, and Caribbean real estate in Roatan, Honduras."
+        canonical="/properties"
+      />
       {/* Enhanced Hero Section - Desktop Full Width */}
       <section className="hero-full-bleed text-center py-12 md:py-16 lg:py-20 relative overflow-hidden rounded-xl bg-gradient-to-br from-blue-400 via-blue-500 to-teal-600 min-h-[400px] md:min-h-[500px] lg:min-h-[600px] flex items-center" style={{ background: 'linear-gradient(to bottom right, #60a5fa, #3b82f6, #0d9488)' }}>
         {/* Background Image with Color-Matched Placeholder */}

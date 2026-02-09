@@ -5,6 +5,7 @@ import '@/index.css';
 import { Toaster } from '@/components/ui/toaster';
 import { AdminProvider } from '@/context/AdminContext.jsx';
 import { BrowserRouter as Router } from 'react-router-dom';
+import { HelmetProvider } from 'react-helmet-async';
 
 // Add loading state management
 const root = document.getElementById('root');
@@ -14,11 +15,13 @@ if (root) {
   
   ReactDOM.createRoot(root).render(
     <React.StrictMode>
-      <Router>
-        <AdminProvider>
-          <App />
-        </AdminProvider>
-      </Router>
+      <HelmetProvider>
+        <Router>
+          <AdminProvider>
+            <App />
+          </AdminProvider>
+        </Router>
+      </HelmetProvider>
       <Toaster />
     </React.StrictMode>
   );

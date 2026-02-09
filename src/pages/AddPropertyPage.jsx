@@ -313,7 +313,7 @@ import React, { useState, useRef } from 'react';
           <Card className="max-w-3xl mx-auto shadow-2xl">
             <CardHeader className="bg-primary/10 p-6 rounded-t-lg">
               <CardTitle className="text-3xl font-bold text-primary">List a New Property</CardTitle>
-              <CardDescription className="text-muted-foreground">Fill in the details below to add a new property to Caribbean Lux Realty.</CardDescription>
+              <CardDescription className="text-muted-foreground">Fill in the details below to add a new property to Roatán Luxury Homes.</CardDescription>
             </CardHeader>
             <CardContent className="p-6 md:p-8">
               <form onSubmit={handleSubmit} className="space-y-8">

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Users, Target, Award, ShieldCheck, HeartHandshake as Handshake, ArrowRight, Star, CheckCircle, MessageSquare, Phone, Mail, MapPin } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Link } from 'react-router-dom';
+import SEO from '@/components/SEO';
 import { getContentField, getWebsiteContent } from '@/lib/contentUtils';
 
 const About = () => {
@@ -49,6 +50,11 @@ const About = () => {
 
   return (
     <div className="space-y-16 md:space-y-24">
+      <SEO
+        title="About Us"
+        description="Your trusted partners for buying and renting houses in Roatán, Honduras and the Bay Islands. Learn about Roatán Luxury Homes and Caribbean real estate."
+        canonical="/about"
+      />
       {/* Enhanced Hero Section */}
       <section className="hero-full-bleed text-center py-12 md:py-16 lg:py-20 relative overflow-hidden rounded-xl bg-gradient-to-br from-sandy-light via-turquoise-light to-blue-500 min-h-[400px] md:min-h-[500px] lg:min-h-[600px] flex items-center" style={{ background: 'linear-gradient(to bottom right, #f4f1eb, #06b6d4, #3b82f6)' }}>
         {/* Background Image with Color-Matched Placeholder */}
@@ -150,7 +156,7 @@ const About = () => {
             </div>
             <h2 className="text-3xl md:text-4xl font-bold text-primary mb-4">{getContent('about', 'whyChooseUs', 'title')}</h2>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              Discover what makes Caribbean Lux Realty the premier choice for your real estate needs in Roatán.
+              Discover what makes Roatán Luxury Homes the premier choice for your real estate needs in Roatán.
             </p>
           </div>
           

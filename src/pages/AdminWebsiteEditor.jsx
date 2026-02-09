@@ -236,7 +236,7 @@ const AdminWebsiteEditor = () => {
             { key: 'subtitle', label: 'Subtitle', type: 'textarea', placeholder: 'Don\'t just take our word for it...' },
             { key: 'testimonial1Name', label: 'Testimonial 1 Name', type: 'text', placeholder: 'Sarah & Mike' },
             { key: 'testimonial1Location', label: 'Testimonial 1 Location', type: 'text', placeholder: 'Roatán Beach Villa' },
-            { key: 'testimonial1Text', label: 'Testimonial 1 Text', type: 'textarea', placeholder: 'Caribbean Lux made our dream...' },
+            { key: 'testimonial1Text', label: 'Testimonial 1 Text', type: 'textarea', placeholder: 'Roatán Luxury Homes made our dream...' },
             { key: 'testimonial2Name', label: 'Testimonial 2 Name', type: 'text', placeholder: 'David Rodriguez' },
             { key: 'testimonial2Location', label: 'Testimonial 2 Location', type: 'text', placeholder: 'West Bay Condo' },
             { key: 'testimonial2Text', label: 'Testimonial 2 Text', type: 'textarea', placeholder: 'Professional, responsive...' },
@@ -267,10 +267,10 @@ const AdminWebsiteEditor = () => {
           title: 'Company Information',
           icon: <Award className="w-4 h-4" />,
           fields: [
-            { key: 'title', label: 'Page Title', type: 'text', placeholder: 'About Roatán Realty' },
+            { key: 'title', label: 'Page Title', type: 'text', placeholder: 'About Roatán Luxury Homes' },
             { key: 'subtitle', label: 'Subtitle', type: 'textarea', placeholder: 'Your trusted partners in navigating...' },
             { key: 'missionTitle', label: 'Mission Title', type: 'text', placeholder: 'Our Mission' },
-            { key: 'missionText', label: 'Mission Text', type: 'textarea', placeholder: 'At Roatán Realty, our mission is...' },
+            { key: 'missionText', label: 'Mission Text', type: 'textarea', placeholder: 'At Roatán Luxury Homes, our mission is...' },
             { key: 'missionText2', label: 'Mission Text (continued)', type: 'textarea', placeholder: 'We believe in building lasting relationships...' }
           ]
         },
@@ -335,7 +335,7 @@ const AdminWebsiteEditor = () => {
           title: 'Why Choose Us',
           icon: <Shield className="w-4 h-4" />,
           fields: [
-            { key: 'title', label: 'Section Title', type: 'text', placeholder: 'Why Choose Caribbean Lux Realty?' },
+            { key: 'title', label: 'Section Title', type: 'text', placeholder: 'Why Choose Roatán Luxury Homes?' },
             { key: 'subtitle', label: 'Subtitle', type: 'textarea', placeholder: 'We combine local expertise with international standards...' },
             { key: 'feature1Title', label: 'Feature 1 Title', type: 'text', placeholder: 'Trusted Expertise' },
             { key: 'feature1Desc', label: 'Feature 1 Description', type: 'textarea', placeholder: '15+ years of experience in Caribbean real estate...' },
@@ -542,7 +542,7 @@ const AdminWebsiteEditor = () => {
           title: 'Why Choose Us',
           icon: <Shield className="w-4 h-4" />,
           fields: [
-            { key: 'title', label: 'Section Title', type: 'text', placeholder: 'Why Choose Caribbean Lux Realty?' },
+            { key: 'title', label: 'Section Title', type: 'text', placeholder: 'Why Choose Roatán Luxury Homes?' },
             { key: 'subtitle', label: 'Subtitle', type: 'textarea', placeholder: 'We combine local expertise with international standards...' },
             { key: 'feature1Title', label: 'Feature 1 Title', type: 'text', placeholder: 'Trusted Expertise' },
             { key: 'feature1Desc', label: 'Feature 1 Description', type: 'textarea', placeholder: '15+ years of experience in Caribbean real estate...' },
@@ -567,7 +567,7 @@ const AdminWebsiteEditor = () => {
           title: 'Logo & Brand',
           icon: <Type className="w-4 h-4" />,
           fields: [
-            { key: 'companyName', label: 'Company Name', type: 'text', placeholder: 'Caribbean Lux Realty' },
+            { key: 'companyName', label: 'Company Name', type: 'text', placeholder: 'Roatán Luxury Homes' },
             { key: 'tagline', label: 'Tagline', type: 'text', placeholder: 'Luxury Caribbean Properties' }
           ]
         },
@@ -590,7 +590,7 @@ const AdminWebsiteEditor = () => {
           icon: <Phone className="w-4 h-4" />,
           fields: [
             { key: 'location', label: 'Location Text', type: 'text', placeholder: 'Roatán, Honduras' },
-            { key: 'phone', label: 'Phone Number', type: 'text', placeholder: '+504 123-456-7890' },
+            { key: 'phone', label: 'Phone Number', type: 'text', placeholder: '+504 3341-9532' },
             { key: 'hours', label: 'Business Hours', type: 'text', placeholder: 'Mon-Fri 9AM-6PM' }
           ]
         },
@@ -641,7 +641,7 @@ const AdminWebsiteEditor = () => {
             { key: 'exploreTitle', label: 'Explore Section Title', type: 'text', placeholder: 'Explore' },
             { key: 'companyTitle', label: 'Company Section Title', type: 'text', placeholder: 'Company' },
             { key: 'privacyPolicy', label: 'Privacy Policy Link', type: 'text', placeholder: 'Privacy Policy' },
-            { key: 'copyright', label: 'Copyright Text', type: 'text', placeholder: 'Caribbean Lux Realty. All rights reserved.' }
+            { key: 'copyright', label: 'Copyright Text', type: 'text', placeholder: 'Roatán Luxury Homes. All rights reserved.' }
           ]
         }
       ]

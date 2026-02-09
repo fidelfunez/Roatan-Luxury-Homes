@@ -1,4 +1,4 @@
-# Caribbean Lux Realty
+# Roatán Luxury Homes
 
 A modern, high-end real estate website built with React, featuring a comprehensive content management system and luxurious design optimized for dark mode.
 
@@ -110,7 +110,7 @@ caribbean-lux-realty/
 Create a `.env` file in the root directory:
 
 ```env
-VITE_APP_TITLE=Caribbean Lux Realty
+VITE_APP_TITLE=Roatán Luxury Homes
 VITE_APP_DESCRIPTION=Luxury Real Estate in the Caribbean
 ```
 
@@ -227,6 +227,6 @@ For support and questions:
 
 ---
 
-**Caribbean Lux Realty** - Luxury Real Estate in the Caribbean
+**Roatán Luxury Homes** - Luxury Real Estate in the Caribbean
 
 Built with ❤️ using React, Vite, and Tailwind CSS 

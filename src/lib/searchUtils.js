@@ -26,26 +26,26 @@ export const searchWebsite = (searchTerm) => {
     home: {
       title: 'Home',
       url: '/',
-      content: 'Caribbean Lux Realty - Premium real estate services in Roatán, Honduras. Find your perfect piece of the Caribbean with our expert team.',
-      keywords: ['real estate', 'Roatán', 'Caribbean', 'properties', 'luxury homes', 'beachfront']
+      content: 'Buy or rent a house in Roatán, Honduras. Roatán Luxury Homes – Caribbean real estate in Roatan and the Bay Islands. Luxury homes, villas, beachfront.',
+      keywords: ['Roatan', 'Roatán', 'buy house in Roatan', 'rent house in Roatan', 'Honduras', 'Bay Islands', 'Caribbean', 'luxury homes', 'beachfront']
     },
     about: {
       title: 'About Us',
       url: '/about',
-      content: 'Learn about Caribbean Lux Realty, our mission, team, and commitment to providing exceptional real estate services in Roatán.',
-      keywords: ['about', 'team', 'mission', 'experience', 'expertise']
+      content: 'About Roatán Luxury Homes. Your trusted partners for buying and renting houses in Roatán, Honduras and the Bay Islands. Caribbean real estate.',
+      keywords: ['about', 'Roatan', 'Honduras', 'Bay Islands', 'team', 'mission']
     },
     services: {
       title: 'Our Services',
       url: '/services',
-      content: 'Comprehensive real estate services including property sales, vacation rentals, land development, and commercial real estate.',
-      keywords: ['services', 'property sales', 'vacation rentals', 'land development', 'commercial real estate']
+      content: 'Real estate services in Roatán, Honduras: buy house, rent house, property sales, vacation rentals, land development. Bay Islands and Caribbean.',
+      keywords: ['services', 'buy house Roatan', 'rent house Roatan', 'vacation rentals', 'Bay Islands', 'Honduras']
     },
     contact: {
       title: 'Contact Us',
       url: '/contact',
-      content: 'Get in touch with Caribbean Lux Realty. Contact us for all your real estate needs in Roatán, Honduras.',
-      keywords: ['contact', 'phone', 'email', 'office', 'location']
+      content: 'Contact Roatán Luxury Homes for buying or renting a house in Roatán, Honduras and the Bay Islands. Caribbean real estate.',
+      keywords: ['contact', 'Roatan', 'Honduras', 'Bay Islands', 'phone', 'email']
     }
   };
 

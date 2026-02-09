@@ -18,6 +18,7 @@ import {
   ArrowLeft,
   ArrowRight
 } from 'lucide-react';
+import SEO from '@/components/SEO';
 import { getBlogPostBySlug, getBlogPosts } from '@/lib/supabaseUtils';
 
 const fadeIn = {
@@ -146,8 +147,27 @@ const BlogDetail = () => {
     );
   }
 
+  const postImage = post.image || post.featured_image;
+  const postOgImage = postImage ? (postImage.startsWith('http') ? postImage : `${typeof window !== 'undefined' ? window.location.origin : ''}${postImage.startsWith('/') ? postImage : '/' + postImage}`) : null;
+
   return (
     <div className="container mx-auto px-4 py-8">
+      <SEO
+        title={post.title}
+        description={post.excerpt || `${post.title} - Roatán Luxury Homes Blog`}
+        canonical={`/blog/${slug}`}
+        ogImage={postOgImage}
+        ogType="article"
+        jsonLd={{
+          '@context': 'https://schema.org',
+          '@type': 'Article',
+          headline: post.title,
+          description: post.excerpt,
+          author: { '@type': 'Person', name: post.author },
+          datePublished: post.publishDate || post.createdAt,
+          ...(postOgImage && { image: postOgImage }),
+        }}
+      />
       <div className="max-w-4xl mx-auto">
         {/* Back Button */}
         <motion.div className="mb-8" variants={fadeIn}>

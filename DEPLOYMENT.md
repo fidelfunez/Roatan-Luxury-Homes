@@ -1,4 +1,4 @@
-# Deployment Guide - Caribbean Lux Realty
+# Deployment Guide - Roatán Luxury Homes
 
 ## 🚀 Netlify Deployment
 
@@ -58,7 +58,7 @@ In your Netlify dashboard:
 2. **Add the following variables:**
 
 ```env
-VITE_APP_TITLE=Caribbean Lux Realty
+VITE_APP_TITLE=Roatán Luxury Homes
 VITE_APP_DESCRIPTION=Luxury Real Estate in the Caribbean
 VITE_ADMIN_EMAIL=admin@caribbeanlux.com
 VITE_ADMIN_PASSWORD=your-secure-password
@@ -200,4 +200,4 @@ For future SQLite integration:
 
 **Your site is now live!** 🎉
 
-Visit your Netlify URL to see your Caribbean Lux Realty website in action. 
+Visit your Netlify URL to see your Roatán Luxury Homes website in action. 

@@ -8,6 +8,7 @@ import { Textarea } from '@/components/ui/textarea';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import { useToast } from '@/components/ui/use-toast';
+import SEO from '@/components/SEO';
 import { addClientSubmission } from '@/lib/supabaseUtils';
 import { validateAndConvertTypes } from '@/lib/fieldMappers';
 import { DollarSign, Type, MapPin as MapPinIcon, BedDouble, Bath, CarFront, Maximize, Info, Image as ImageIcon, ListChecks, CalendarDays, Clock, PlusCircle, Trash2, UploadCloud, Send } from 'lucide-react';
@@ -212,6 +213,11 @@ const ClientPropertySubmission = () => {
       animate="visible"
       variants={fadeIn}
     >
+      <SEO
+        title="Submit Your Property"
+        description="Submit your Roatán property for listing. Our team will review and contact you within 24 hours."
+        canonical="/submit-property"
+      />
       <Card className="max-w-4xl mx-auto shadow-2xl">
         <CardHeader className="bg-primary/10 p-6 rounded-t-lg">
           <CardTitle className="text-3xl font-bold text-primary">Submit Your Property</CardTitle>

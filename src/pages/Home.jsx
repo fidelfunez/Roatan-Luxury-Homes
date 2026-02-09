@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 import { MapPin, Home as HomeIconLucide, DollarSign, ArrowRight, Users, Award, MessageCircle, Star, CheckCircle, Clock, Phone, Mail, Search, Filter, BedDouble, Bath, CarFront } from 'lucide-react';
 import NewsletterSignup from '@/components/NewsletterSignup';
 import OptimizedImage from '@/components/OptimizedImage';
+import SEO from '@/components/SEO';
 import { getProperties } from '@/lib/supabaseUtils';
 import { getContentField, getWebsiteContent } from '@/lib/contentUtils';
 
@@ -63,6 +64,11 @@ const Home = () => {
 
   return (
     <div className="space-y-2 md:space-y-4">
+      <SEO
+        title="Buy or Rent a House in Roatán, Honduras"
+        description="Buy or rent a house in Roatán, the Bay Islands & Honduras. Roatán Luxury Homes – Caribbean real estate: luxury homes, villas, beachfront in Roatan."
+        canonical="/"
+      />
       {/* Enhanced Hero Section - Compact & Full Width */}
       <section className="hero-full-bleed relative py-12 md:py-16 lg:py-20 flex items-center justify-center text-center overflow-hidden w-full lg:w-screen lg:left-1/2 lg:right-1/2 lg:-translate-x-1/2 lg:mx-0">
         {/* Desktop Background */}
@@ -74,6 +80,7 @@ const Home = () => {
             webpSrc="/Photos/hero-banner-optimized.webp"
             loading="eager" 
             fetchpriority="high"
+            sizes="100vw"
           />
           <div className="absolute inset-0 bg-gradient-to-r from-primary/80 via-turquoise-dark/80 to-primary/70"></div>
         </div>
@@ -414,7 +421,7 @@ const Home = () => {
             {
               name: 'Sarah & Mike',
               location: 'Roatán Beach Villa',
-              text: 'Caribbean Lux made our dream of owning a beachfront property a reality. Their attention to detail were exceptional.',
+              text: 'Roatán Luxury Homes made our dream of owning a beachfront property a reality. Their attention to detail was exceptional.',
               rating: 5
             },
             {

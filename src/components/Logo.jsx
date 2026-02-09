@@ -15,7 +15,7 @@ const Logo = ({ className = "", textClassName = "" }) => {
         <Gem className="h-6 w-6 text-white" />
       </motion.div>
       <span className={`text-xl sm:text-2xl font-bold text-primary tracking-tight ${textClassName}`}>
-        Caribbean Lux Realty
+        Roatán Luxury Homes
       </span>
     </Link>
   );

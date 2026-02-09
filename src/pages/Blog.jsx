@@ -5,6 +5,7 @@ import { Input } from '@/components/ui/input';
 import { Link } from 'react-router-dom';
 import { CalendarDays, UserCircle, ArrowRight, Search, Filter, BookOpen, TrendingUp, Star, MessageSquare, Clock, Eye, Heart, Share2, Tag, PenTool, Home as HomeIconLucide } from 'lucide-react';
 import { getBlogPosts } from '@/lib/supabaseUtils';
+import SEO from '@/components/SEO';
 import { getContentField, getWebsiteContent } from '@/lib/contentUtils';
 
 const Blog = () => {
@@ -228,8 +229,13 @@ const Blog = () => {
     );
   }
 
-  return (
-    <div className="space-y-16 md:space-y-24">
+return (
+      <div className="space-y-16 md:space-y-24">
+      <SEO
+        title="Blog"
+        description="Roatán real estate insights, buying guides, market news, and lifestyle tips from Roatán Luxury Homes."
+        canonical="/blog"
+      />
       {/* Enhanced Hero Section */}
       <section className="hero-full-bleed text-center py-12 md:py-16 lg:py-20 relative overflow-hidden rounded-xl bg-gradient-to-br from-purple-400 via-pink-500 to-orange-500 min-h-[400px] md:min-h-[500px] lg:min-h-[600px] flex items-center" style={{ background: 'linear-gradient(to bottom right, #a855f7, #ec4899, #f97316)' }}>
         <div className="absolute inset-0">

@@ -28,14 +28,14 @@ const AdminFooter = () => {
           {/* Sun Decoration */}
           <div className="flex items-center space-x-2">
             <Sun className="w-3 h-3 text-yellow-500 fill-current" />
-            <span className="text-xs text-slate-500">Caribbean Lux Realty</span>
+            <span className="text-xs text-slate-500">Roatán Luxury Homes</span>
             <Sun className="w-3 h-3 text-yellow-500 fill-current" />
           </div>
 
           {/* Copyright */}
           <div className="text-center">
             <p className="text-xs text-slate-400">
-              © {currentYear} Caribbean Lux Realty. All rights reserved.
+              © {currentYear} Roatán Luxury Homes. All rights reserved.
             </p>
           </div>
 

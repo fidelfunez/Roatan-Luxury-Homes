@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { ArrowLeft, Mail, ArrowRight } from 'lucide-react';
+import SEO from '@/components/SEO';
 import { getContentField, getWebsiteContent } from '@/lib/contentUtils';
 
 const servicesData = {
@@ -98,8 +99,18 @@ const ServiceDetail = () => {
     );
   }
 
+  const serviceTitle = getContent(slug, '', 'title') || service.title;
+  const serviceDescription = (getContent(slug, '', 'description') || service.longDescription || '').slice(0, 160);
+  const canonicalPath = `/services/${slug}`;
+
   return (
     <div className="container mx-auto px-4 py-8">
+      <SEO
+        title={serviceTitle}
+        description={serviceDescription ? serviceDescription + (serviceDescription.length >= 160 ? '...' : '') : `Professional ${serviceTitle} in Roatán. Contact Roatán Luxury Homes.`}
+        canonical={canonicalPath}
+        ogImage={service.imageUrl ? (service.imageUrl.startsWith('http') ? service.imageUrl : (typeof window !== 'undefined' ? window.location.origin : '') + (service.imageUrl.startsWith('/') ? service.imageUrl : '/' + service.imageUrl)) : undefined}
+      />
       <div className="mb-8">
         <Button variant="outline" asChild>
           <Link to="/services" className="text-primary hover:text-primary/80">

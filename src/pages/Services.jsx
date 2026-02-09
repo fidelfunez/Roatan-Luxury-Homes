@@ -4,6 +4,7 @@ import { Button } from '@/components/ui/button';
 import { Link } from 'react-router-dom';
 import { Card, CardContent, CardFooter, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import OptimizedImage from '@/components/OptimizedImage';
+import SEO from '@/components/SEO';
 import { getContentField, getWebsiteContent } from '@/lib/contentUtils';
 
 const Services = () => {
@@ -108,6 +109,11 @@ const Services = () => {
 
   return (
     <div className="space-y-16 md:space-y-24">
+      <SEO
+        title="Our Services"
+        description="Comprehensive real estate solutions in Roatán: property sales, legal guidance, relocation, vacation rental management, and more."
+        canonical="/services"
+      />
       {/* Enhanced Hero Section */}
       <section className="hero-full-bleed text-center py-12 md:py-16 lg:py-20 relative overflow-hidden rounded-xl bg-gradient-to-br from-cyan-400 via-blue-500 to-indigo-600 min-h-[400px] md:min-h-[500px] lg:min-h-[600px] flex items-center" style={{ background: 'linear-gradient(to bottom right, #22d3ee, #3b82f6, #4f46e5)' }}>
         {/* Background Image with Color-Matched Placeholder */}
@@ -211,7 +217,7 @@ const Services = () => {
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
             <h2 className="text-3xl md:text-4xl font-bold text-primary mb-4">
-              {getContent('whyChooseUs', 'title', 'Why Choose Caribbean Lux Realty?')}
+              {getContent('whyChooseUs', 'title', 'Why Choose Roatán Luxury Homes?')}
             </h2>
             <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
               {getContent('whyChooseUs', 'subtitle', 'We combine local expertise with international standards to deliver exceptional results for our clients.')}

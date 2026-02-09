@@ -23,6 +23,8 @@ import DatabaseTest from '@/components/DatabaseTest';
 import AdminProperties from '@/pages/AdminProperties';
 import AdminBlog from '@/pages/AdminBlog';
 import BlogDetail from '@/pages/BlogDetail';
+import NotFound from '@/pages/NotFound';
+import PrivacyPolicy from '@/pages/PrivacyPolicy';
 import ProtectedRoute from '@/components/ProtectedRoute';
 import AdminLayout from '@/components/AdminLayout';
 import ScrollToTop from '@/components/ScrollToTop';
@@ -81,6 +83,11 @@ function App() {
         <Route path="/blog/:slug" element={
           <Layout>
             <BlogDetail />
+          </Layout>
+        } />
+        <Route path="/privacy-policy" element={
+          <Layout>
+            <PrivacyPolicy />
           </Layout>
         } />
         <Route path="/performance-test" element={
@@ -177,9 +184,13 @@ function App() {
           </AdminLayout>
         } />
         <Route path="/admin-login" element={<AdminLoginPage />} />
-        
-        {/* 404 Route - You can add a NotFoundPage component here */}
-        {/* <Route path="*" element={<NotFoundPage />} /> */}
+
+        {/* 404 - catch-all */}
+        <Route path="*" element={
+          <Layout>
+            <NotFound />
+          </Layout>
+        } />
       </Routes>
     </>
   );
