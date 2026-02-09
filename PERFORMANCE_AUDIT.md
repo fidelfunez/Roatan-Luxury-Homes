@@ -95,3 +95,13 @@ Performance is the main lever; accessibility and best practices are already stro
 - `src/pages/Blog.jsx` – loading/error hero no longer high-priority (kept)
 
 After deploying, run PageSpeed again and iterate on any remaining suggestions (images, fonts, third-party scripts) as needed.
+
+---
+
+## Mobile audit failing completely (no scores)
+
+**Symptom:** Desktop 100, but mobile run showed red exclamation marks and no scores for any category.
+
+**Cause:** The app hid the whole page (`#root` had `opacity: 0`) until JS ran and a 100ms timeout finished. On Lighthouse’s throttled mobile (slow 4G + slow CPU), the main JS bundle could load very late, so the page stayed blank long enough for the run to time out or be treated as a failure.
+
+**Fix:** Removed the initial `#root.loading` (opacity 0) and the 100ms delay in `main.jsx`. Content is visible as soon as React renders, so the mobile audit can finish even when JS is slow.

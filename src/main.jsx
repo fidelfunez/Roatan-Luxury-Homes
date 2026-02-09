@@ -7,12 +7,10 @@ import { AdminProvider } from '@/context/AdminContext.jsx';
 import { BrowserRouter as Router } from 'react-router-dom';
 import { HelmetProvider } from 'react-helmet-async';
 
-// Add loading state management
+// Avoid hiding #root until JS runs: on slow mobile (Lighthouse throttle) the page stayed
+// blank and the mobile audit failed. Content is visible as soon as React renders.
 const root = document.getElementById('root');
 if (root) {
-  // Add loading class for graceful transitions
-  root.classList.add('loading');
-  
   ReactDOM.createRoot(root).render(
     <React.StrictMode>
       <HelmetProvider>
@@ -25,10 +23,4 @@ if (root) {
       <Toaster />
     </React.StrictMode>
   );
-  
-  // Remove loading class after initial render
-  setTimeout(() => {
-    root.classList.remove('loading');
-    root.classList.add('loaded');
-  }, 100);
 }
