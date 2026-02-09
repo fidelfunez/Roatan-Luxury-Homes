@@ -60,6 +60,7 @@ const NewsletterSignup = () => {
               type="submit" 
               disabled={isSubmitting}
               className="w-full sm:w-auto bg-primary-dark hover:bg-primary-dark/90 text-primary-foreground"
+              aria-label="Subscribe to newsletter"
             >
               {isSubmitting ? 'Subscribing...' : 'Subscribe'}
             </Button>

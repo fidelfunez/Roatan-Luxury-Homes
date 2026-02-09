@@ -133,11 +133,11 @@ const Header = () => {
   };
 
   const linkClasses = "flex items-center px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200 ease-in-out";
-  const activeLinkClasses = "bg-primary text-primary-foreground shadow-md";
+  const activeLinkClasses = "bg-primary-dark text-primary-foreground shadow-md";
   const inactiveLinkClasses = "text-foreground hover:bg-primary/10 hover:text-primary";
   
   const mobileLinkClasses = "flex items-center px-3 py-3 rounded-md text-base font-medium transition-colors duration-200 ease-in-out";
-  const mobileActiveLinkClasses = "bg-primary text-primary-foreground shadow-lg";
+  const mobileActiveLinkClasses = "bg-primary-dark text-primary-foreground shadow-lg";
   const mobileInactiveLinkClasses = "text-foreground hover:bg-primary/10 hover:text-primary";
 
   return (
@@ -164,7 +164,7 @@ const Header = () => {
               </div>
             </div>
             <div className="flex items-center space-x-4">
-              <Button variant="ghost" size="sm" onClick={toggleSearch} className="text-muted-foreground hover:text-primary">
+              <Button variant="ghost" size="sm" onClick={toggleSearch} className="text-muted-foreground hover:text-primary" aria-label="Search">
                 <Search className="w-4 h-4" />
               </Button>
               <Button asChild size="sm" variant="outline" className="border-primary text-primary hover:bg-primary hover:text-primary-foreground bg-white/80 backdrop-blur-sm font-semibold shadow-lg">
@@ -178,7 +178,7 @@ const Header = () => {
 
           {/* Main Navigation */}
           <div className="flex items-center justify-between h-20">
-            <Logo textClassName="text-2xl font-bold" />
+            <Logo textClassName="text-2xl font-bold" imgClassName="h-9" />
             
             <nav className="flex space-x-1">
               {navLinks.map((link) => {
@@ -225,6 +225,7 @@ const Header = () => {
                       size="sm" 
                       onClick={handleSearchClose}
                       className="absolute right-2 top-1/2 transform -translate-y-1/2 text-muted-foreground hover:text-primary"
+                      aria-label="Close search"
                     >
                       <X className="h-4 w-4" />
                     </Button>
@@ -332,7 +333,7 @@ const Header = () => {
       <div className="lg:hidden">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-20">
-            <Logo textClassName="hidden sm:inline-block" />
+            <Logo textClassName="hidden sm:inline-block" imgClassName="h-8 sm:h-9" />
             
             <div className="flex items-center space-x-2">
               <Button variant="ghost" onClick={toggleSearch} aria-label="Search">
@@ -365,6 +366,7 @@ const Header = () => {
                 size="sm" 
                 onClick={handleSearchClose}
                 className="absolute right-2 top-1/2 transform -translate-y-1/2 text-muted-foreground hover:text-primary"
+                aria-label="Close search"
               >
                 <X className="h-4 w-4" />
               </Button>

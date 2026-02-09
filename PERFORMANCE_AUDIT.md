@@ -132,3 +132,5 @@ Applied to address PageSpeed’s “Opportunities” for mobile:
 **Best practices – source maps:** Enabled `build.sourcemap: true` in `vite.config.js` so the main JS file has a source map (Lighthouse “Missing source maps” resolved).
 
 **Best practices – console errors:** “Failed to load resource: net::ERR_CONNECTION_FAILED” for the Supabase `/v1/properties` request during Lighthouse is expected: the audit runs in a throttled/simulated environment and often cannot reach the API. No code change required; the app already handles fetch errors.
+
+**Desktop Accessibility (final pass):** (1) **Buttons without accessible name:** Desktop Search button and both search-close (X) buttons now have `aria-label="Search"` and `aria-label="Close search"`. (2) **Contrast:** Active nav link (e.g. "Home") uses `bg-primary-dark`; "List Your Property" solid button on Home uses `bg-primary-dark`; Subscribe button has `aria-label="Subscribe to newsletter"` and already uses `bg-primary-dark`.

@@ -400,7 +400,7 @@ const Home = () => {
                 <Button asChild variant="outline">
                   <Link to="/contact">Contact Us</Link>
                 </Button>
-                <Button asChild>
+                <Button asChild className="bg-primary-dark hover:bg-primary-dark/90 text-primary-foreground">
                   <Link to="/submit-property">List Your Property</Link>
                 </Button>
               </div>

@@ -91,7 +91,7 @@ const Footer = () => {
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 mb-10">
             <div className="space-y-4">
-              <Logo className="text-lg" textClassName="text-lg" />
+              <Logo textClassName="text-lg" imgClassName="h-7" />
               <p className="text-sm text-muted-foreground">{getContent('footer', 'companyInfo', 'description')}</p>
               <div className="space-y-2 text-sm">
                 <p className="flex items-center"><MapPin className="w-4 h-4 mr-2 text-primary" /> {getContent('footer', 'companyInfo', 'address')}</p>
