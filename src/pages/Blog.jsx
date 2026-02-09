@@ -5,6 +5,7 @@ import { Input } from '@/components/ui/input';
 import { Link } from 'react-router-dom';
 import { CalendarDays, UserCircle, ArrowRight, Search, Filter, BookOpen, TrendingUp, Star, MessageSquare, Clock, Eye, Heart, Share2, Tag, PenTool, Home as HomeIconLucide } from 'lucide-react';
 import { getBlogPosts } from '@/lib/supabaseUtils';
+import OptimizedImage from '@/components/OptimizedImage';
 import SEO from '@/components/SEO';
 import { getContentField, getWebsiteContent } from '@/lib/contentUtils';
 
@@ -121,9 +122,10 @@ const Blog = () => {
         {/* Enhanced Loading Hero Section */}
         <section className="hero-full-bleed text-center py-12 md:py-16 lg:py-20 relative overflow-hidden rounded-xl bg-gradient-to-br from-purple-400 via-pink-500 to-orange-500 min-h-[400px] md:min-h-[500px] lg:min-h-[600px] flex items-center" style={{ background: 'linear-gradient(to bottom right, #a855f7, #ec4899, #f97316)' }}>
           <div className="absolute inset-0">
-            <img 
-              src="/Photos/roatan-island-optimized.jpg" 
-              alt="Roatán Island" 
+            <OptimizedImage
+              src="/Photos/roatan-island-optimized.jpg"
+              webpSrc="/Photos/roatan-island-optimized.webp"
+              alt="Roatán Island"
               className="w-full h-full object-cover"
               loading="lazy"
             />
@@ -185,9 +187,10 @@ const Blog = () => {
         {/* Enhanced Error Hero Section */}
         <section className="hero-full-bleed text-center py-12 md:py-16 lg:py-20 relative overflow-hidden rounded-xl bg-gradient-to-br from-purple-400 via-pink-500 to-orange-500 min-h-[400px] md:min-h-[500px] lg:min-h-[600px] flex items-center" style={{ background: 'linear-gradient(to bottom right, #a855f7, #ec4899, #f97316)' }}>
           <div className="absolute inset-0">
-            <img 
-              src="/Photos/roatan-island-optimized.jpg" 
-              alt="Roatán Island" 
+            <OptimizedImage
+              src="/Photos/roatan-island-optimized.jpg"
+              webpSrc="/Photos/roatan-island-optimized.webp"
+              alt="Roatán Island"
               className="w-full h-full object-cover"
               loading="lazy"
             />
@@ -237,9 +240,10 @@ return (
       {/* Enhanced Hero Section */}
       <section className="hero-full-bleed text-center py-12 md:py-16 lg:py-20 relative overflow-hidden rounded-xl bg-gradient-to-br from-purple-400 via-pink-500 to-orange-500 min-h-[400px] md:min-h-[500px] lg:min-h-[600px] flex items-center" style={{ background: 'linear-gradient(to bottom right, #a855f7, #ec4899, #f97316)' }}>
         <div className="absolute inset-0">
-          <img 
-            src="/Photos/roatan-island-optimized.jpg" 
-            alt="Roatán Island" 
+          <OptimizedImage
+            src="/Photos/roatan-island-optimized.jpg"
+            webpSrc="/Photos/roatan-island-optimized.webp"
+            alt="Roatán Island"
             className="w-full h-full object-cover"
             loading="eager"
             fetchpriority="high"

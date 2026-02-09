@@ -86,9 +86,10 @@ const Contact = () => {
       <section className="hero-full-bleed text-center py-12 md:py-16 lg:py-20 relative overflow-hidden rounded-xl bg-gradient-to-br from-teal-400 via-cyan-500 to-blue-600 min-h-[400px] md:min-h-[500px] lg:min-h-[600px] flex items-center" style={{ background: 'linear-gradient(to bottom right, #2dd4bf, #06b6d4, #2563eb)' }}>
         {/* Background Image with Color-Matched Placeholder */}
         <div className="absolute inset-0">
-          <img 
-            src="/Photos/reef-ocean-optimized.jpg" 
-            alt="Reef in Caribbean ocean" 
+          <OptimizedImage
+            src="/Photos/reef-ocean-optimized.jpg"
+            webpSrc="/Photos/reef-ocean-optimized.webp"
+            alt="Reef in Caribbean ocean"
             className="w-full h-full object-cover"
             loading="lazy"
           />

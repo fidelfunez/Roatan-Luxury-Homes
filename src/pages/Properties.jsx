@@ -9,6 +9,7 @@ import { Link, useSearchParams } from 'react-router-dom';
 import { getProperties } from '@/lib/supabaseUtils';
 import { useAdmin } from '@/context/AdminContext.jsx';
 import { useToast } from '@/components/ui/use-toast';
+import OptimizedImage from '@/components/OptimizedImage';
 import SEO from '@/components/SEO';
 import { getContentField, getWebsiteContent } from '@/lib/contentUtils';
 
@@ -183,9 +184,10 @@ const Properties = () => {
       <section className="hero-full-bleed text-center py-12 md:py-16 lg:py-20 relative overflow-hidden rounded-xl bg-gradient-to-br from-blue-400 via-blue-500 to-teal-600 min-h-[400px] md:min-h-[500px] lg:min-h-[600px] flex items-center" style={{ background: 'linear-gradient(to bottom right, #60a5fa, #3b82f6, #0d9488)' }}>
         {/* Background Image with Color-Matched Placeholder */}
         <div className="absolute inset-0">
-          <img 
-            src="/Photos/beach-optimized.jpg" 
-            alt="Caribbean beach" 
+          <OptimizedImage
+            src="/Photos/beach-optimized.jpg"
+            webpSrc="/Photos/beach-optimized.webp"
+            alt="Caribbean beach"
             className="w-full h-full object-cover"
             loading="lazy"
           />

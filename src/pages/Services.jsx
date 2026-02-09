@@ -50,7 +50,7 @@ const Services = () => {
       icon: <Home className="w-12 h-12 text-primary" />,
       title: "Property Sales & Acquisition",
       description: "Expert assistance for buying or selling residential homes, luxury villas, condos, and commercial properties. We guide you through every step, from market analysis to closing.",
-      imageUrl: "/Photos/property-sales-acquisition-header.jpg",
+      imageUrl: "/Photos/property-sales-acquisition-header.webp",
       features: ["Market Analysis", "Negotiation Support", "Closing Assistance"],
       badge: "Most Popular",
       badgeColor: "from-yellow-400 to-orange-500"
@@ -60,7 +60,7 @@ const Services = () => {
       icon: <Gavel className="w-12 h-12 text-primary" />,
       title: "Legal Guidance & Assistance",
       description: "Navigating Honduran property law can be complex. We connect you with trusted legal professionals for due diligence, title searches, and contract reviews.",
-      imageUrl: "/Photos/legal-assistance-header.jpg",
+      imageUrl: "/Photos/legal-assistance-header.webp",
       features: ["Title Searches", "Contract Review", "Legal Compliance"],
       badge: "Essential",
       badgeColor: "from-blue-400 to-blue-600"
@@ -70,7 +70,7 @@ const Services = () => {
       icon: <Users className="w-12 h-12 text-primary" />,
       title: "Relocation Assistance",
       description: "Moving to Roatán? We offer comprehensive relocation support, including advice on residency, banking, schools, and settling into island life.",
-      imageUrl: "/Photos/relocation-assistance-header.jpg",
+      imageUrl: "/Photos/relocation-assistance-header.webp",
       features: ["Residency Guidance", "School Information", "Local Integration"],
       badge: "New Service",
       badgeColor: "from-green-400 to-green-600"
@@ -80,7 +80,7 @@ const Services = () => {
       icon: <TrendingUp className="w-12 h-12 text-primary" />,
       title: "Development & Investment",
       description: "Identifying prime land for development, connecting with architects and builders, and advising on investment strategies for maximum returns.",
-      imageUrl: "/Photos/land-development-header.jpeg",
+      imageUrl: "/Photos/land-development-header.webp",
       features: ["Site Selection", "Investment Analysis", "Development Planning"],
       badge: "Premium",
       badgeColor: "from-purple-400 to-purple-600"
@@ -90,7 +90,7 @@ const Services = () => {
       icon: <Anchor className="w-12 h-12 text-primary" />,
       title: "Vacation Rental Management",
       description: "Turn your Roatán property into a profitable investment with our professional vacation rental management services, handling bookings, maintenance, and guest services.",
-      imageUrl: "/Photos/vacation-rental-h.jpeg",
+      imageUrl: "/Photos/vacation-rental-h.webp",
       features: ["Booking Management", "Property Maintenance", "Guest Services"],
       badge: "High Demand",
       badgeColor: "from-pink-400 to-pink-600"
@@ -100,7 +100,7 @@ const Services = () => {
       icon: <Briefcase className="w-12 h-12 text-primary" />,
       title: "Commercial Real Estate",
       description: "Specialized services for businesses looking to establish or expand in Roatán, including office spaces, retail locations, and hospitality ventures.",
-      imageUrl: "/Photos/commercial-real-estate-header.jpg",
+      imageUrl: "/Photos/commercial-real-estate-header.webp",
       features: ["Business Location", "Market Research", "Investment Strategy"],
       badge: "Specialized",
       badgeColor: "from-indigo-400 to-indigo-600"
@@ -118,9 +118,10 @@ const Services = () => {
       <section className="hero-full-bleed text-center py-12 md:py-16 lg:py-20 relative overflow-hidden rounded-xl bg-gradient-to-br from-cyan-400 via-blue-500 to-indigo-600 min-h-[400px] md:min-h-[500px] lg:min-h-[600px] flex items-center" style={{ background: 'linear-gradient(to bottom right, #22d3ee, #3b82f6, #4f46e5)' }}>
         {/* Background Image with Color-Matched Placeholder */}
         <div className="absolute inset-0">
-          <img 
-            src="/Photos/turtle-ocean-optimized.jpg" 
-            alt="Turtle in Caribbean ocean" 
+          <OptimizedImage
+            src="/Photos/turtle-ocean-optimized.jpg"
+            webpSrc="/Photos/turtle-ocean-optimized.webp"
+            alt="Turtle in Caribbean ocean"
             className="w-full h-full object-cover"
             loading="eager"
             fetchpriority="high"

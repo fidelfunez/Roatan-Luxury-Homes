@@ -5,6 +5,7 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Facebook, Instagram, Linkedin, Twitter, Youtube, Mail, MapPin, Phone } from 'lucide-react';
 import Logo from './Logo';
+import OptimizedImage from './OptimizedImage';
 import { getContentField, getWebsiteContent } from '@/lib/contentUtils';
 
 const Footer = () => {
@@ -79,9 +80,10 @@ const Footer = () => {
   return (
     <footer className="relative text-foreground py-12 border-t-2 border-primary/30 overflow-hidden">
       {/* Background Image */}
-      <img 
-        src="/Photos/sand-optimized.jpg" 
-        alt="Caribbean sand" 
+      <OptimizedImage
+        src="/Photos/sand-optimized.jpg"
+        webpSrc="/Photos/sand-optimized.webp"
+        alt="Caribbean sand"
         className="absolute inset-0 w-full h-full object-cover"
         loading="lazy"
       />

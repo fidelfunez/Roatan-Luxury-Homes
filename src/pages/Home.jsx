@@ -186,9 +186,10 @@ const Home = () => {
           {/* Desktop: Right Image */}
           <div className="hidden lg:block">
             <div className="relative">
-              <img 
-                src="/Photos/roatan-island-optimized.jpg" 
-                alt="Roatán Island" 
+              <OptimizedImage
+                src="/Photos/roatan-island-optimized.jpg"
+                webpSrc="/Photos/roatan-island-optimized.webp"
+                alt="Roatán Island"
                 className="rounded-2xl shadow-2xl w-full h-96 object-cover"
               />
               <div className="absolute bottom-6 left-6 bg-white/95 backdrop-blur-sm rounded-xl px-4 py-3 shadow-lg">

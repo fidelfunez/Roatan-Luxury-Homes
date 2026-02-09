@@ -9,37 +9,37 @@ const servicesData = {
   "property-sales-acquisition": {
     title: "Property Sales & Acquisition",
     longDescription: "Our expert team provides comprehensive support for buying or selling properties in Roatán. We handle everything from initial market analysis, property viewings, negotiation, to the final closing stages. Whether you're looking for a luxury beachfront villa, a cozy condo, a plot of land to build your dream home, or a commercial investment, we leverage our extensive network and local knowledge to find the perfect match for your needs. We ensure a transparent and smooth transaction process, guiding you every step of the way.",
-    imageUrl: "/Photos/property-sales-acquisition.jpeg",
+    imageUrl: "/Photos/property-sales-acquisition.webp",
     relatedServices: ["legal-guidance-due-diligence", "relocation-assistance"]
   },
   "legal-guidance-due-diligence": {
             title: "Legal Guidance & Assistance",
     longDescription: "Navigating the legal landscape of Honduran real estate can be challenging. We connect you with highly reputable and experienced legal professionals specializing in property law. They will conduct thorough due diligence, including title searches, verification of property boundaries, and ensuring there are no outstanding liens or encumbrances. Our legal partners will also assist with contract review and preparation, ensuring your interests are protected throughout the transaction.",
-    imageUrl: "/Photos/legal-assistance.jpg",
+    imageUrl: "/Photos/legal-assistance.webp",
     relatedServices: ["property-sales-acquisition", "land-development-investment"]
   },
   "relocation-assistance": {
     title: "Relocation Assistance",
     longDescription: "Making the move to Roatán is an exciting adventure, and we're here to make your transition as smooth as possible. Our relocation assistance services cover a wide range of needs, from providing information on residency requirements and visa processes, to helping you set up bank accounts, find schools for your children, and connect with essential local services. We can also offer insights into island life, community groups, and cultural nuances to help you feel at home quickly.",
-    imageUrl: "/Photos/relocation assistance.jpg",
+    imageUrl: "/Photos/relocation assistance.webp",
     relatedServices: ["property-sales-acquisition", "vacation-rental-management"]
   },
   "land-development-investment": {
     title: "Development & Investment",
     longDescription: "Roatán offers significant opportunities for land development and real estate investment. We assist clients in identifying prime parcels of land suitable for residential, commercial, or mixed-use development. Our team can connect you with trusted local architects, engineers, and construction companies. We also provide market analysis and investment strategy advice to help you maximize your returns and navigate the development process efficiently.",
-    imageUrl: "/Photos/land-development.jpg",
+    imageUrl: "/Photos/land-development.webp",
     relatedServices: ["property-sales-acquisition", "legal-guidance-due-diligence"]
   },
   "vacation-rental-management": {
     title: "Vacation Rental Management",
     longDescription: "Turn your Roatán property into a lucrative income source with our professional vacation rental management services. We handle all aspects of managing your rental, including marketing and listing on popular platforms, managing bookings and guest communication, coordinating check-ins/check-outs, and overseeing cleaning and maintenance. Our goal is to maximize your occupancy rates and rental income while ensuring your property is well-maintained and your guests have an exceptional experience.",
-    imageUrl: "/Photos/vacation-rental.jpg",
+    imageUrl: "/Photos/vacation-rental.webp",
     relatedServices: ["property-sales-acquisition", "relocation-assistance"]
   },
   "commercial-real-estate": {
     title: "Commercial Real Estate",
     longDescription: "For businesses looking to establish or expand their presence in Roatán, we offer specialized commercial real estate services. We can help you find suitable office spaces, retail locations, warehouses, or properties for hospitality ventures like hotels and restaurants. Our team understands the local commercial market dynamics and can assist with site selection, lease negotiation, and connecting you with relevant business support services.",
-    imageUrl: "/Photos/commercial-real-estate.jpg",
+    imageUrl: "/Photos/commercial-real-estate.webp",
     relatedServices: ["land-development-investment", "legal-guidance-due-diligence"]
   }
 };

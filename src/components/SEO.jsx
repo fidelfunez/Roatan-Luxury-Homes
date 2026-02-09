@@ -2,7 +2,7 @@ import React from 'react';
 import { Helmet } from 'react-helmet-async';
 
 const SITE_NAME = 'Roatán Luxury Homes';
-const DEFAULT_OG_IMAGE = '/Photos/hero-banner-optimized.jpg';
+const DEFAULT_OG_IMAGE = '/Photos/hero-banner-optimized.webp';
 
 /**
  * SEO component: per-page title, description, canonical, Open Graph, Twitter Card.
