@@ -18,7 +18,7 @@ const AdminFooter = () => {
           {/* Personal Message */}
           <div className="text-center space-y-2">
             <p className="text-sm text-slate-600 font-medium">
-              Built with much love for my brother, Bristean Luzey.
+              Built with much love for my mother, Carolina Cartagena.
             </p>
             <p className="text-xs text-slate-500">
               - Fidel Fúnez C.

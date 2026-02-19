@@ -7,6 +7,7 @@ import { Label } from '@/components/ui/label';
 import { MapPin, DollarSign, Search, Filter, BedDouble, Bath, CarFront, ArrowRight, PlusSquare, Star, CheckCircle, Eye, Heart, TrendingUp, Grid3X3, List, SortAsc, SortDesc } from 'lucide-react';
 import { Link, useSearchParams } from 'react-router-dom';
 import { getProperties } from '@/lib/supabaseUtils';
+import { formatPropertyPrice } from '@/lib/propertyUtils';
 import { useAdmin } from '@/context/AdminContext.jsx';
 import { useToast } from '@/components/ui/use-toast';
 import OptimizedImage from '@/components/OptimizedImage';
@@ -21,6 +22,7 @@ const Properties = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   
+  const [listingTypeTab, setListingTypeTab] = useState('sale'); // 'sale' | 'rent' | 'all'
   const [searchTerm, setSearchTerm] = useState('');
   const [propertyType, setPropertyType] = useState('all');
   const [priceRange, setPriceRange] = useState([0, 2000000]);
@@ -101,6 +103,13 @@ const Properties = () => {
   useEffect(() => {
     let currentProperties = [...allProperties];
 
+    // Filter by listing type (tabs)
+    if (listingTypeTab === 'sale') {
+      currentProperties = currentProperties.filter(p => (p.listingType || 'sale') === 'sale');
+    } else if (listingTypeTab === 'rent') {
+      currentProperties = currentProperties.filter(p => p.listingType === 'rent');
+    }
+
     if (searchTerm) {
       currentProperties = currentProperties.filter(p => 
         p.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
@@ -133,7 +142,7 @@ const Properties = () => {
         currentProperties.sort((a, b) => b.price - a.price);
         break;
       case 'newest':
-        currentProperties.sort((a, b) => new Date(b.dateAdded || 0) - new Date(a.dateAdded || 0));
+        currentProperties.sort((a, b) => new Date(b.createdAt || b.dateAdded || 0) - new Date(a.createdAt || a.dateAdded || 0));
         break;
       case 'featured':
       default:
@@ -147,7 +156,7 @@ const Properties = () => {
     }
 
     setFilteredProperties(currentProperties);
-  }, [searchTerm, propertyType, priceRange, bedrooms, allProperties, sortBy]);
+  }, [listingTypeTab, searchTerm, propertyType, priceRange, bedrooms, allProperties, sortBy]);
 
   const uniquePropertyTypes = ['all', ...new Set(allProperties.map(p => p.type).filter(Boolean))];
   const bedroomOptions = ['all', '1', '2', '3', '4', '5+'];
@@ -211,8 +220,8 @@ const Properties = () => {
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-5xl mx-auto">
             {[
               { number: allProperties.length.toString(), label: "Total Properties", icon: <Grid3X3 className="w-6 h-6 text-white" /> },
-              { number: allProperties.filter(p => p.type === "Luxury").length.toString(), label: "Luxury Homes", icon: <Star className="w-6 h-6 text-white" /> },
-              { number: allProperties.filter(p => p.type === "Beachfront").length.toString(), label: "Beachfront", icon: <MapPin className="w-6 h-6 text-white" /> },
+              { number: allProperties.filter(p => (p.listingType || 'sale') === 'sale').length.toString(), label: "For Sale", icon: <DollarSign className="w-6 h-6 text-white" /> },
+              { number: allProperties.filter(p => p.listingType === 'rent').length.toString(), label: "For Rent", icon: <Heart className="w-6 h-6 text-white" /> },
               { number: allProperties.filter(p => p.type === "Land").length.toString(), label: "Land Plots", icon: <TrendingUp className="w-6 h-6 text-white" /> }
             ].map((stat, index) => (
               <div key={index} className="text-center p-4 bg-white/10 backdrop-blur-sm rounded-xl shadow-md border border-white/20">
@@ -228,6 +237,30 @@ const Properties = () => {
       {/* Enhanced Filter Section - Desktop Advanced */}
       <section className="container mx-auto px-4">
         <div className="bg-card p-6 md:p-8 lg:p-10 rounded-xl shadow-md mb-12 border border-border/50">
+          {/* Listing Type Tabs */}
+          <div className="flex flex-wrap gap-2 mb-8">
+            <Button
+              variant={listingTypeTab === 'sale' ? 'default' : 'outline'}
+              onClick={() => setListingTypeTab('sale')}
+              className="font-semibold"
+            >
+              For Sale ({allProperties.filter(p => (p.listingType || 'sale') === 'sale').length})
+            </Button>
+            <Button
+              variant={listingTypeTab === 'rent' ? 'default' : 'outline'}
+              onClick={() => setListingTypeTab('rent')}
+              className="font-semibold"
+            >
+              For Rent ({allProperties.filter(p => p.listingType === 'rent').length})
+            </Button>
+            <Button
+              variant={listingTypeTab === 'all' ? 'default' : 'outline'}
+              onClick={() => setListingTypeTab('all')}
+              className="font-semibold"
+            >
+              All ({allProperties.length})
+            </Button>
+          </div>
           <div className="flex flex-col lg:flex-row items-start lg:items-center justify-between mb-8">
             <div>
               <h2 className="text-2xl lg:text-3xl font-semibold text-primary mb-2">Filter Properties</h2>
@@ -346,7 +379,7 @@ const Properties = () => {
             <div className="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-4">
               <div className="flex items-center gap-4">
                 <p className="text-muted-foreground text-lg">
-                  Showing <span className="font-semibold text-primary">{filteredProperties.length}</span> of <span className="font-semibold">{allProperties.length}</span> properties
+                  Showing <span className="font-semibold text-primary">{filteredProperties.length}</span> {listingTypeTab === 'all' ? `of ${allProperties.length}` : listingTypeTab === 'sale' ? `of ${allProperties.filter(p => (p.listingType || 'sale') === 'sale').length} for sale` : `of ${allProperties.filter(p => p.listingType === 'rent').length} for rent`} properties
               </p>
                 {sortBy !== 'featured' && (
                   <div className="flex items-center gap-1 text-sm text-muted-foreground">
@@ -418,12 +451,19 @@ const Properties = () => {
                         />
                       </div>
                       
-                      {/* Property Type Badge */}
-                      {property.type && (
-                        <div className="absolute top-2 right-2 bg-primary text-primary-foreground px-3 py-1 rounded-full text-xs font-semibold shadow-md">
-                          {property.type}
-                        </div>
-                      )}
+                      {/* Listing Type & Property Type Badges */}
+                      <div className="absolute top-2 right-2 flex flex-col gap-1 items-end">
+                        {property.listingType === 'rent' && (
+                          <div className="bg-amber-500 text-white px-3 py-1 rounded-full text-xs font-semibold shadow-md">
+                            For Rent
+                          </div>
+                        )}
+                        {property.type && (
+                          <div className="bg-primary text-primary-foreground px-3 py-1 rounded-full text-xs font-semibold shadow-md">
+                            {property.type}
+                          </div>
+                        )}
+                      </div>
                       
                       {/* Special Badge */}
                       {badge && (
@@ -467,7 +507,7 @@ const Properties = () => {
                           <DollarSign className={`mr-1 ${
                             viewMode === 'list' ? 'h-6 w-6 lg:h-8 lg:w-8' : 'h-5 w-5 sm:h-6 sm:w-6'
                           }`} />
-                          {property.price ? property.price.toLocaleString() : 'N/A'}
+                          {formatPropertyPrice(property)}
                         </p>
                         <Button variant="link" className="text-primary p-0 group-hover:underline font-semibold">
                           <span className={viewMode === 'list' ? 'text-base lg:text-lg' : 'text-sm sm:text-base'}>
@@ -489,13 +529,13 @@ const Properties = () => {
             <div className="max-w-md mx-auto">
               <div className="text-8xl mb-6">🏠</div>
               <h3 className="text-2xl font-semibold text-foreground mb-4">
-                {searchTerm || propertyType !== 'all' || bedrooms !== 'all' || priceRange[0] > 0 || priceRange[1] < 2000000
+                {searchTerm || listingTypeTab !== 'all' || propertyType !== 'all' || bedrooms !== 'all' || priceRange[0] > 0 || priceRange[1] < 2000000
                   ? 'No Properties Found'
                   : 'No Properties Listed Yet'
                 }
               </h3>
               <p className="text-muted-foreground mb-8 text-lg">
-                {searchTerm || propertyType !== 'all' || bedrooms !== 'all' || priceRange[0] > 0 || priceRange[1] < 2000000
+                {searchTerm || listingTypeTab !== 'all' || propertyType !== 'all' || bedrooms !== 'all' || priceRange[0] > 0 || priceRange[1] < 2000000
                   ? 'Try adjusting your search filters or browse all properties.'
                   : 'Our team is working on adding amazing properties. Check back soon or contact us to list your property!'
                 }
@@ -503,11 +543,12 @@ const Properties = () => {
               
               {/* Action buttons based on context */}
                 <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                {(searchTerm || propertyType !== 'all' || bedrooms !== 'all' || priceRange[0] > 0 || priceRange[1] < 2000000) ? (
+                {(searchTerm || listingTypeTab !== 'all' || propertyType !== 'all' || bedrooms !== 'all' || priceRange[0] > 0 || priceRange[1] < 2000000) ? (
                   <>
                     <Button 
                       variant="outline" 
                       onClick={() => {
+                        setListingTypeTab('all');
                         setSearchTerm('');
                         setPropertyType('all');
                         setBedrooms('all');

@@ -91,4 +91,10 @@ tmp/
 temp/
 
 # Local Netlify folder
-.netlify 
+.netlify
+
+# Supabase CLI - project-specific (contains project ref, connection URLs)
+supabase/.temp/
+
+# Cursor IDE / AI artifacts (avoid exposing dev tooling)
+.cursor/

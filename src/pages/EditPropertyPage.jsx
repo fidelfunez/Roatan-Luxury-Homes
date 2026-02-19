@@ -8,8 +8,8 @@ import React, { useState, useEffect, useRef } from 'react';
     import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
     import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
     import { useToast } from '@/components/ui/use-toast';
-    import { getPropertyById, updateProperty } from '@/lib/propertyUtils';
-    import { DollarSign, Type, MapPin as MapPinIcon, BedDouble, Bath, CarFront, Maximize, Info, Image as ImageIcon, ListChecks, CalendarDays, Clock, PlusCircle, Trash2, UploadCloud, Save } from 'lucide-react';
+    import { getPropertyById, updateProperty } from '@/lib/supabaseUtils';
+    import { DollarSign, Type, MapPin as MapPinIcon, BedDouble, Bath, CarFront, Maximize, Info, Image as ImageIcon, ListChecks, CalendarDays, Clock, PlusCircle, Trash2, UploadCloud, Save, KeyRound } from 'lucide-react';
 
     const fadeIn = {
       hidden: { opacity: 0, y: 20 },
@@ -29,31 +29,46 @@ import React, { useState, useEffect, useRef } from 'react';
       const galleryImageInputRef = useRef(null);
 
       useEffect(() => {
-        const propertyToEdit = getPropertyById(propertyId);
-        if (propertyToEdit) {
-          const features = propertyToEdit.features ? (Array.isArray(propertyToEdit.features) ? propertyToEdit.features : [propertyToEdit.features]) : [''];
-          setFormData({
-            ...propertyToEdit,
-            features: features.length > 0 ? features : [''],
-            beds: propertyToEdit.beds ?? '',
-            baths: propertyToEdit.baths ?? '',
-            parking: propertyToEdit.parking ?? '',
-            area: propertyToEdit.area ?? '',
-            ownershipYears: propertyToEdit.ownershipYears ?? '',
-            timeToAttractions: propertyToEdit.timeToAttractions ?? '',
-          });
-          setImagePreviews({
-            main: propertyToEdit.image || null,
-            gallery: propertyToEdit.images || [],
-          });
-        } else {
-          toast({
-            title: "Property not found!",
-            description: "Could not find the property you're trying to edit.",
-            variant: "destructive",
-          });
-          navigate(`/properties/${propertyId}`);
-        }
+        const loadProperty = async () => {
+          try {
+            const propertyToEdit = await getPropertyById(propertyId);
+            if (propertyToEdit) {
+              const features = propertyToEdit.features ? (Array.isArray(propertyToEdit.features) ? propertyToEdit.features : [propertyToEdit.features]) : [''];
+              setFormData({
+                ...propertyToEdit,
+                features: features.length > 0 ? features : [''],
+                beds: propertyToEdit.beds ?? '',
+                baths: propertyToEdit.baths ?? '',
+                parking: propertyToEdit.parking ?? '',
+                area: propertyToEdit.area ?? '',
+                ownershipYears: propertyToEdit.ownershipYears ?? '',
+                timeToAttractions: propertyToEdit.timeToAttractions ?? '',
+                listingType: propertyToEdit.listingType || 'sale',
+                pricePeriod: propertyToEdit.pricePeriod || 'monthly',
+              });
+              setImagePreviews({
+                main: propertyToEdit.image || null,
+                gallery: propertyToEdit.images || [],
+              });
+            } else {
+              toast({
+                title: "Property not found!",
+                description: "Could not find the property you're trying to edit.",
+                variant: "destructive",
+              });
+              navigate('/admin/properties');
+            }
+          } catch (err) {
+            console.error('Error loading property:', err);
+            toast({
+              title: "Error loading property",
+              description: "Failed to load property. Please try again.",
+              variant: "destructive",
+            });
+            navigate('/admin/properties');
+          }
+        };
+        loadProperty();
       }, [propertyId, navigate, toast]);
 
       const handleFileChange = (e, fieldName) => {
@@ -120,7 +135,7 @@ import React, { useState, useEffect, useRef } from 'react';
         setFormData(prev => ({ ...prev, features: list }));
       };
 
-      const handleSubmit = (e) => {
+      const handleSubmit = async (e) => {
         e.preventDefault();
         try {
           const numericFields = ['price', 'beds', 'baths', 'parking', 'area'];
@@ -141,6 +156,8 @@ import React, { useState, useEffect, useRef } from 'react';
           });
           
           processedData.features = formData.features.filter(feat => feat.trim() !== '');
+          processedData.listingType = formData.listingType || 'sale';
+          processedData.pricePeriod = formData.listingType === 'rent' ? (formData.pricePeriod || 'monthly') : null;
 
           if (!processedData.image && processedData.images.length > 0) {
             processedData.image = processedData.images[0];
@@ -153,13 +170,13 @@ import React, { useState, useEffect, useRef } from 'react';
             processedData.images = ['https://images.unsplash.com/photo-1582407947304-fd86f028f716?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8cmVhbCUyMGVzdGF0ZXxlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=800&q=60'];
           }
 
-          updateProperty(propertyId, processedData);
+          await updateProperty(propertyId, processedData);
           toast({
             title: "Property Updated! ✨",
             description: `${formData.title} has been successfully updated.`,
             variant: "default",
           });
-          navigate(`/properties/${propertyId}`);
+          navigate(`/admin/properties`);
         } catch (error) {
           console.error("Failed to update property:", error);
           toast({
@@ -213,10 +230,41 @@ import React, { useState, useEffect, useRef } from 'react';
 
                 <section className="space-y-4">
                   <h3 className="text-xl font-semibold text-primary border-b pb-2 mb-4">Property Details</h3>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                      <Label htmlFor="listingType" className="flex items-center mb-1"><KeyRound className="w-4 h-4 mr-2 text-primary" />Listing Type</Label>
+                      <select
+                        id="listingType"
+                        name="listingType"
+                        value={formData.listingType || 'sale'}
+                        onChange={handleChange}
+                        className="w-full h-10 rounded-md border border-input bg-background px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-primary"
+                      >
+                        <option value="sale">For Sale</option>
+                        <option value="rent">For Rent</option>
+                      </select>
+                    </div>
+                    {(formData.listingType || 'sale') === 'rent' && (
+                      <div>
+                        <Label htmlFor="pricePeriod" className="flex items-center mb-1"><CalendarDays className="w-4 h-4 mr-2 text-primary" />Price Period</Label>
+                        <select
+                          id="pricePeriod"
+                          name="pricePeriod"
+                          value={formData.pricePeriod || 'monthly'}
+                          onChange={handleChange}
+                          className="w-full h-10 rounded-md border border-input bg-background px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-primary"
+                        >
+                          <option value="monthly">Monthly</option>
+                          <option value="weekly">Weekly</option>
+                          <option value="nightly">Nightly</option>
+                        </select>
+                      </div>
+                    )}
+                  </div>
                   <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                     <div>
-                      <Label htmlFor="price" className="flex items-center mb-1"><DollarSign className="w-4 h-4 mr-2 text-primary" />Price (USD)</Label>
-                      <Input id="price" name="price" type="number" value={formData.price} onChange={handleChange} placeholder="e.g., 500000" required />
+                      <Label htmlFor="price" className="flex items-center mb-1"><DollarSign className="w-4 h-4 mr-2 text-primary" />{(formData.listingType || 'sale') === 'rent' ? ((formData.pricePeriod || 'monthly') === 'monthly' ? 'Monthly Rent (USD)' : (formData.pricePeriod || 'monthly') === 'weekly' ? 'Weekly Rent (USD)' : 'Nightly Rate (USD)') : 'Price (USD)'}</Label>
+                      <Input id="price" name="price" type="number" value={formData.price} onChange={handleChange} placeholder={(formData.listingType || 'sale') === 'rent' ? 'e.g., 2500' : 'e.g., 500000'} required />
                     </div>
                     <div>
                       <Label htmlFor="type" className="flex items-center mb-1"><Type className="w-4 h-4 mr-2 text-primary" />Property Type</Label>

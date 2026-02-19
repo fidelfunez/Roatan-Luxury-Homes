@@ -25,14 +25,14 @@ import React, { useState } from 'react';
         e.preventDefault();
         if (login(password)) {
           toast({
-            title: 'Login Successful! ✅',
-            description: 'Welcome, Admin! You now have access to restricted areas.',
+            title: 'Login Successful!',
+            description: 'Welcome, Admin! You now have full access to the management panel.',
           });
           const from = location.state?.from?.pathname || '/admin/dashboard';
           navigate(from, { replace: true });
         } else {
           toast({
-            title: 'Login Failed ❌',
+            title: 'Login Failed',
             description: 'Incorrect password. Please try again.',
             variant: 'destructive',
           });

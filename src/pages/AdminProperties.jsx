@@ -5,6 +5,7 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { getProperties, deleteProperty } from '@/lib/supabaseUtils';
+import { formatPropertyPrice } from '@/lib/propertyUtils';
 import { 
   PlusSquare, 
   Edit, 
@@ -35,6 +36,7 @@ const AdminProperties = () => {
   const [filteredProperties, setFilteredProperties] = useState([]);
   const [searchTerm, setSearchTerm] = useState('');
   const [typeFilter, setTypeFilter] = useState('all');
+  const [listingTypeFilter, setListingTypeFilter] = useState('all'); // 'sale' | 'rent' | 'all'
   const [loading, setLoading] = useState(true);
   const [deletingId, setDeletingId] = useState(null);
 
@@ -44,7 +46,7 @@ const AdminProperties = () => {
 
   useEffect(() => {
     filterProperties();
-  }, [properties, searchTerm, typeFilter]);
+  }, [properties, searchTerm, typeFilter, listingTypeFilter]);
 
   const loadProperties = async () => {
     try {
@@ -77,6 +79,12 @@ const AdminProperties = () => {
 
     if (typeFilter !== 'all') {
       filtered = filtered.filter(property => property.type === typeFilter);
+    }
+
+    if (listingTypeFilter === 'sale') {
+      filtered = filtered.filter(property => (property.listingType || 'sale') === 'sale');
+    } else if (listingTypeFilter === 'rent') {
+      filtered = filtered.filter(property => property.listingType === 'rent');
     }
 
     setFilteredProperties(filtered);
@@ -121,16 +129,6 @@ const AdminProperties = () => {
     } finally {
       setDeletingId(null);
     }
-  };
-
-  const formatPrice = (price) => {
-    if (!price) return 'Price on request';
-    return new Intl.NumberFormat('en-US', {
-      style: 'currency',
-      currency: 'USD',
-      minimumFractionDigits: 0,
-      maximumFractionDigits: 0,
-    }).format(price);
   };
 
   const formatDate = (dateString) => {
@@ -207,7 +205,7 @@ const AdminProperties = () => {
         variants={fadeIn}
       >
         <div className="bg-white rounded-lg shadow-sm border p-6 mb-8">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-2">Search Properties</label>
               <div className="relative">
@@ -236,12 +234,26 @@ const AdminProperties = () => {
               </select>
             </div>
             
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-2">Listing Type</label>
+              <select
+                value={listingTypeFilter}
+                onChange={(e) => setListingTypeFilter(e.target.value)}
+                className="w-full h-10 rounded-md border border-input bg-background px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-primary"
+              >
+                <option value="all">All</option>
+                <option value="sale">For Sale</option>
+                <option value="rent">For Rent</option>
+              </select>
+            </div>
+            
             <div className="flex items-end">
               <Button 
                 variant="outline" 
                 onClick={() => {
                   setSearchTerm('');
                   setTypeFilter('all');
+                  setListingTypeFilter('all');
                 }}
                 className="w-full"
               >
@@ -336,14 +348,19 @@ const AdminProperties = () => {
                   
                   <CardContent className="p-4">
                     <div className="flex items-start justify-between mb-2">
-                      <div className="flex items-center space-x-2">
+                      <div className="flex items-center space-x-2 flex-wrap gap-1">
+                        {property.listingType === 'rent' && (
+                          <span className="text-xs font-medium px-2 py-0.5 rounded bg-amber-100 text-amber-800 dark:bg-amber-900 dark:text-amber-200">
+                            For Rent
+                          </span>
+                        )}
                         {getPropertyTypeIcon(property.type)}
                         <span className="text-xs text-gray-500 uppercase tracking-wide">
                           {property.type || 'Property'}
                         </span>
                       </div>
                       <span className="text-xs text-gray-500">
-                        {formatDate(property.created_at)}
+                        {formatDate(property.createdAt || property.created_at)}
                       </span>
                     </div>
                     
@@ -358,7 +375,7 @@ const AdminProperties = () => {
                     
                     <div className="flex items-center justify-between mb-3">
                       <span className="font-bold text-lg text-primary">
-                        {formatPrice(property.price)}
+                        {formatPropertyPrice(property)}
                       </span>
                       {property.beds && property.baths && (
                         <div className="text-sm text-gray-600">

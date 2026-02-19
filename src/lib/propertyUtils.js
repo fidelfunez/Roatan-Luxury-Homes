@@ -2,6 +2,24 @@ import React from 'react';
 
 const LOCAL_STORAGE_KEY = 'caribbeanLuxRealty_properties';
 
+/**
+ * Format property price for display (sale vs rent with period)
+ * @param {Object} property - Property object with price, listingType, pricePeriod
+ * @returns {string} Formatted price string
+ */
+export const formatPropertyPrice = (property) => {
+  const price = property?.price;
+  if (price === null || price === undefined) return 'N/A';
+  const num = typeof price === 'number' ? price : parseFloat(price);
+  if (isNaN(num)) return 'N/A';
+  const formatted = num.toLocaleString();
+  if (property?.listingType === 'rent' && property?.pricePeriod) {
+    const suffix = { monthly: '/mo', weekly: '/wk', nightly: '/night' }[property.pricePeriod] || '/mo';
+    return `$${formatted}${suffix}`;
+  }
+  return `$${formatted} USD`;
+};
+
 export const getProperties = () => {
   try {
     const storedProperties = localStorage.getItem(LOCAL_STORAGE_KEY);

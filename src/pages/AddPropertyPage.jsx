@@ -10,7 +10,7 @@ import React, { useState, useRef } from 'react';
     import { useToast } from '@/components/ui/use-toast';
     import { addProperty } from '@/lib/supabaseUtils';
     import { optimizeImage, optimizeImages, validateImageFile, formatFileSize } from '@/lib/imageUtils';
-    import { DollarSign, Type, MapPin as MapPinIcon, BedDouble, Bath, CarFront, Maximize, Info, Image as ImageIcon, ListChecks, CalendarDays, Clock, PlusCircle, Trash2, UploadCloud, AlertCircle } from 'lucide-react';
+    import { DollarSign, Type, MapPin as MapPinIcon, BedDouble, Bath, CarFront, Maximize, Info, Image as ImageIcon, ListChecks, CalendarDays, Clock, PlusCircle, Trash2, UploadCloud, AlertCircle, KeyRound } from 'lucide-react';
 
     const fadeIn = {
       hidden: { opacity: 0, y: 20 },
@@ -32,6 +32,8 @@ import React, { useState, useRef } from 'react';
         baths: '',
         parking: '',
         area: '',
+        listingType: 'sale',
+        pricePeriod: 'monthly',
         image: '', // Main image (will store Base64 string)
         images: [], // Array for gallery images (will store Base64 strings)
         features: [''], 
@@ -245,6 +247,8 @@ import React, { useState, useRef } from 'react';
           });
           
           processedData.features = formData.features.filter(feat => feat.trim() !== '');
+          processedData.listingType = formData.listingType || 'sale';
+          processedData.pricePeriod = formData.listingType === 'rent' ? (formData.pricePeriod || 'monthly') : null;
 
           if (!processedData.image && processedData.images.length > 0) {
             processedData.image = processedData.images[0];
@@ -282,6 +286,8 @@ import React, { useState, useRef } from 'react';
             baths: '',
             parking: '',
             area: '',
+            listingType: 'sale',
+            pricePeriod: 'monthly',
             image: '',
             images: [],
             features: [''],
@@ -338,10 +344,41 @@ import React, { useState, useRef } from 'react';
 
                 <section className="space-y-4">
                   <h3 className="text-xl font-semibold text-primary border-b pb-2 mb-4">Property Details</h3>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                      <Label htmlFor="listingType" className="flex items-center mb-1"><KeyRound className="w-4 h-4 mr-2 text-primary" />Listing Type</Label>
+                      <select
+                        id="listingType"
+                        name="listingType"
+                        value={formData.listingType}
+                        onChange={handleChange}
+                        className="w-full h-10 rounded-md border border-input bg-background px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-primary"
+                      >
+                        <option value="sale">For Sale</option>
+                        <option value="rent">For Rent</option>
+                      </select>
+                    </div>
+                    {formData.listingType === 'rent' && (
+                      <div>
+                        <Label htmlFor="pricePeriod" className="flex items-center mb-1"><CalendarDays className="w-4 h-4 mr-2 text-primary" />Price Period</Label>
+                        <select
+                          id="pricePeriod"
+                          name="pricePeriod"
+                          value={formData.pricePeriod}
+                          onChange={handleChange}
+                          className="w-full h-10 rounded-md border border-input bg-background px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-primary"
+                        >
+                          <option value="monthly">Monthly</option>
+                          <option value="weekly">Weekly</option>
+                          <option value="nightly">Nightly</option>
+                        </select>
+                      </div>
+                    )}
+                  </div>
                   <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                     <div>
-                      <Label htmlFor="price" className="flex items-center mb-1"><DollarSign className="w-4 h-4 mr-2 text-primary" />Price (USD)</Label>
-                      <Input id="price" name="price" type="number" value={formData.price} onChange={handleChange} placeholder="e.g., 500000" required />
+                      <Label htmlFor="price" className="flex items-center mb-1"><DollarSign className="w-4 h-4 mr-2 text-primary" />{formData.listingType === 'rent' ? (formData.pricePeriod === 'monthly' ? 'Monthly Rent (USD)' : formData.pricePeriod === 'weekly' ? 'Weekly Rent (USD)' : 'Nightly Rate (USD)') : 'Price (USD)'}</Label>
+                      <Input id="price" name="price" type="number" value={formData.price} onChange={handleChange} placeholder={formData.listingType === 'rent' ? (formData.pricePeriod === 'monthly' ? 'e.g., 2500' : formData.pricePeriod === 'weekly' ? 'e.g., 600' : 'e.g., 150') : 'e.g., 500000'} required />
                     </div>
                     <div>
                       <Label htmlFor="type" className="flex items-center mb-1"><Type className="w-4 h-4 mr-2 text-primary" />Property Type</Label>

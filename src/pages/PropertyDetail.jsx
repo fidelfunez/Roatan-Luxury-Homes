@@ -5,6 +5,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { ChevronLeft, ChevronRight, MapPin, DollarSign, BedDouble, Bath, CarFront, Maximize, CalendarDays, Clock, Home, CheckCircle, Info, Mail, Heart, Phone, Share2, Download, Eye, Star, TrendingUp } from 'lucide-react';
 import SEO from '@/components/SEO';
 import { getPropertyById } from '@/lib/supabaseUtils';
+import { formatPropertyPrice } from '@/lib/propertyUtils';
 
 const PropertyDetail = () => {
   const { propertyId } = useParams();
@@ -79,7 +80,7 @@ const PropertyDetail = () => {
   }
   
   const propertyImages = property.images && property.images.length > 0 ? property.images : (property.image ? [property.image] : ['https://images.unsplash.com/photo-1582407947304-fd86f028f716?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8cmVhbCUyMGVzdGF0ZXxlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=800&q=60']);
-  const metaDescription = property.description ? (property.description.length > 160 ? property.description.slice(0, 157) + '...' : property.description) : `${property.title} - ${property.location || 'Roatán'}. ${property.price ? `$${Number(property.price).toLocaleString()}` : ''}`;
+  const metaDescription = property.description ? (property.description.length > 160 ? property.description.slice(0, 157) + '...' : property.description) : `${property.title} - ${property.location || 'Roatán'}. ${property.price ? formatPropertyPrice(property) : ''}`;
   const ogImage = propertyImages[0] && propertyImages[0].startsWith('http') ? propertyImages[0] : (typeof window !== 'undefined' ? `${window.location.origin}${propertyImages[0]?.startsWith('/') ? propertyImages[0] : '/' + propertyImages[0]}` : propertyImages[0]);
 
   const nextImage = () => {
@@ -148,7 +149,12 @@ const PropertyDetail = () => {
         <div className="lg:col-span-2 space-y-8">
           {/* Enhanced Header */}
           <div className="space-y-4">
-            <div className="flex items-center gap-2 text-sm text-muted-foreground">
+            <div className="flex flex-wrap items-center gap-2 text-sm text-muted-foreground">
+              {property.listingType === 'rent' && (
+                <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold bg-amber-100 text-amber-800 dark:bg-amber-900 dark:text-amber-200">
+                  For Rent
+                </span>
+              )}
               <Home className="w-4 h-4" />
               <span>{property.type || 'Property'}</span>
               <span>•</span>
@@ -297,10 +303,10 @@ const PropertyDetail = () => {
             </CardHeader>
             <CardContent className="p-0 space-y-4 text-foreground">
               <div className="flex items-center justify-between p-4 bg-white/50 rounded-lg">
-                <span className="font-semibold text-lg">Price:</span>
+                <span className="font-semibold text-lg">{property.listingType === 'rent' ? 'Rent:' : 'Price:'}</span>
                 <span className="text-3xl lg:text-4xl font-bold text-primary flex items-center">
                   <DollarSign className="w-6 h-6 lg:w-8 lg:h-8 mr-2" />
-                  {property.price ? property.price.toLocaleString() : 'N/A'} USD
+                  {formatPropertyPrice(property)}
                 </span>
               </div>
               <hr className="border-turquoise-light/50"/>

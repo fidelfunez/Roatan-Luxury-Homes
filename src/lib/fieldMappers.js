@@ -24,6 +24,8 @@ export const DB_FIELDS = {
   FEATURES: 'features',
   OWNERSHIP_YEARS: 'ownership_years',
   TIME_TO_ATTRACTIONS: 'time_to_attractions',
+  LISTING_TYPE: 'listing_type',
+  PRICE_PERIOD: 'price_period',
   
   // Client submissions table fields
   NAME: 'name',
@@ -72,6 +74,8 @@ export const FRONTEND_FIELDS = {
   FEATURES: 'features',
   OWNERSHIP_YEARS: 'ownershipYears',
   TIME_TO_ATTRACTIONS: 'timeToAttractions',
+  LISTING_TYPE: 'listingType',
+  PRICE_PERIOD: 'pricePeriod',
   
   // Client submissions table fields
   NAME: 'name',
@@ -130,6 +134,18 @@ export const dbToFrontend = (dbObject, tableType = 'properties') => {
     if (frontendObject.time_to_attractions) {
       frontendObject.timeToAttractions = frontendObject.time_to_attractions;
       delete frontendObject.time_to_attractions;
+    }
+    
+    if (frontendObject.listing_type) {
+      frontendObject.listingType = frontendObject.listing_type;
+    } else {
+      frontendObject.listingType = 'sale'; // Default for existing properties
+    }
+    delete frontendObject.listing_type;
+    
+    if (frontendObject.price_period !== undefined && frontendObject.price_period !== null) {
+      frontendObject.pricePeriod = frontendObject.price_period;
+      delete frontendObject.price_period;
     }
   }
   
@@ -222,6 +238,16 @@ export const frontendToDb = (frontendObject, tableType = 'properties') => {
     if (dbObject.timeToAttractions) {
       dbObject.time_to_attractions = dbObject.timeToAttractions;
       delete dbObject.timeToAttractions;
+    }
+    
+    if (dbObject.listingType) {
+      dbObject.listing_type = dbObject.listingType;
+      delete dbObject.listingType;
+    }
+    
+    if (dbObject.pricePeriod !== undefined && dbObject.pricePeriod !== null) {
+      dbObject.price_period = dbObject.pricePeriod;
+      delete dbObject.pricePeriod;
     }
   }
   
