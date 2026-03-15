@@ -18,6 +18,7 @@ import React, { useState } from 'react';
       const [email, setEmail] = useState('');
       const [password, setPassword] = useState('');
       const [isSubmitting, setIsSubmitting] = useState(false);
+      const [capsLockOn, setCapsLockOn] = useState(false);
       const { login } = useAdmin();
       const navigate = useNavigate();
       const location = useLocation();
@@ -89,10 +90,14 @@ import React, { useState } from 'react';
                     type="password"
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
+                    onKeyDown={(e) => setCapsLockOn(e.getModifierState('CapsLock'))}
                     placeholder="Enter password"
                     required
                     className="mt-1"
                   />
+                  {capsLockOn && (
+                    <p className="text-amber-600 text-sm mt-1">Caps Lock is on</p>
+                  )}
                 </div>
                 <Button type="submit" className="w-full bg-primary hover:bg-primary/90 text-lg py-3" disabled={isSubmitting}>
                   <LogIn className="mr-2 h-5 w-5" /> {isSubmitting ? 'Signing in...' : 'Login'}
