@@ -69,9 +69,24 @@ export const addProperty = async (newPropertyData) => {
     const validatedData = validateAndConvertTypes(newPropertyData, 'properties');
     const dbData = frontendToDb(validatedData, 'properties');
 
+    // Only send columns that exist in the schema (avoids 400 from unknown columns)
+    const PROPERTIES_COLUMNS = [
+      'title', 'title_es', 'description', 'description_es', 'location', 'location_es',
+      'price', 'type', 'beds', 'baths', 'parking', 'area', 'image', 'images', 'features',
+      'ownership_years', 'time_to_attractions', 'status', 'listing_type', 'price_period',
+      'created_at', 'updated_at'
+    ];
+    const filteredData = Object.fromEntries(
+      Object.entries(dbData).filter(([key]) => PROPERTIES_COLUMNS.includes(key))
+    );
+    // Ensure price_period is null for sale listings (DB constraint)
+    if (filteredData.listing_type === 'sale') {
+      filteredData.price_period = null;
+    }
+
     const { data, error } = await supabase
       .from('properties')
-      .insert([dbData])
+      .insert([filteredData])
       .select()
       .single();
 

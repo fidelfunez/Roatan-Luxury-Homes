@@ -302,9 +302,14 @@ import React, { useState, useRef } from 'react';
           navigate('/admin/properties');
         } catch (error) {
           console.error("Failed to add property:", error);
+          const errMsg = error?.message || error?.error_description || String(error);
+          const details = error?.details ? ` (${error.details})` : '';
+          const isAuthError = errMsg?.includes('row-level security') || errMsg?.includes('42501') || error?.code === '42501';
           toast({
             title: "Uh oh! Something went wrong.",
-            description: "There was a problem saving the property to the database. Please try again.",
+            description: isAuthError
+              ? "Please make sure you're logged in and try again. Your session may have expired."
+              : `${errMsg}${details}` || "There was a problem saving the property to the database. Please try again.",
             variant: "destructive",
           });
         } finally {
