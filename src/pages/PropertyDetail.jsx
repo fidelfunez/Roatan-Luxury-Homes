@@ -2,7 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { ChevronLeft, ChevronRight, MapPin, DollarSign, BedDouble, Bath, CarFront, Maximize, CalendarDays, Clock, Home, CheckCircle, Mail, Heart, Phone, Share2, Download, MessageSquare } from 'lucide-react';
+import { ChevronLeft, ChevronRight, MapPin, DollarSign, BedDouble, Bath, CarFront, Maximize, CalendarDays, Clock, Home, CheckCircle, Mail, Phone, Share2, MessageSquare } from 'lucide-react';
+import { useToast } from '@/components/ui/use-toast';
 import SEO from '@/components/SEO';
 import { useTranslation } from 'react-i18next';
 import { getPropertyById, incrementPropertyViews } from '@/lib/supabaseUtils';
@@ -12,6 +13,7 @@ import { useLocalizedProperty } from '@/lib/useLocalizedProperty';
 const PropertyDetail = () => {
   const { propertyId } = useParams();
   const { t } = useTranslation();
+  const { toast } = useToast();
   const { getTitle, getDescription, getLocation } = useLocalizedProperty();
   const [property, setProperty] = useState(null);
   const [viewCount, setViewCount] = useState(null);
@@ -86,9 +88,14 @@ const PropertyDetail = () => {
     );
   }
   
-  // Use gallery images only if we have 2+ (main + gallery); otherwise just main to avoid empty gallery space
-  const hasGallery = property.images && property.images.length > 1;
-  const propertyImages = hasGallery ? property.images : (property.image ? [property.image] : ['https://images.unsplash.com/photo-1582407947304-fd86f028f716?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8cmVhbCUyMGVzdGF0ZXxlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=800&q=60']);
+  // Build image list: filter to valid URLs only, avoid empty gallery space when single photo
+  const fallbackImage = 'https://images.unsplash.com/photo-1582407947304-fd86f028f716?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8cmVhbCUyMGVzdGF0ZXxlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=800&q=60';
+  const validUrl = (url) => url && typeof url === 'string' && url.trim().length > 0;
+  const rawImages = [property.image, ...(Array.isArray(property.images) ? property.images : [])].filter(validUrl);
+  const seen = new Set();
+  const propertyImages = rawImages.length > 0
+    ? rawImages.filter((url) => { if (seen.has(url)) return false; seen.add(url); return true; })
+    : [fallbackImage];
   const displayTitle = getTitle(property);
   const displayDescription = getDescription(property);
   const displayLocation = getLocation(property);
@@ -110,6 +117,28 @@ const PropertyDetail = () => {
 
   const closeLightbox = () => {
     setIsLightboxOpen(false);
+  };
+
+  const handleShare = async () => {
+    const url = typeof window !== 'undefined' ? window.location.href : '';
+    if (navigator.share) {
+      try {
+        await navigator.share({ title: displayTitle, url });
+        toast({ title: t('common.shareSuccess'), variant: 'default' });
+      } catch (err) {
+        if (err.name !== 'AbortError') copyToClipboard(url);
+      }
+    } else {
+      copyToClipboard(url);
+    }
+  };
+
+  const copyToClipboard = (url) => {
+    navigator.clipboard?.writeText(url).then(() => {
+      toast({ title: t('common.linkCopied'), variant: 'default' });
+    }).catch(() => {
+      toast({ title: t('common.shareError'), variant: 'destructive' });
+    });
   };
 
   return (
@@ -138,19 +167,11 @@ const PropertyDetail = () => {
           </Link>
         </Button>
           
-          {/* Desktop: Action Buttons */}
+          {/* Desktop: Share Button */}
           <div className="hidden lg:flex items-center gap-3">
-            <Button variant="outline" size="sm">
+            <Button variant="outline" size="sm" onClick={handleShare}>
               <Share2 className="w-4 h-4 mr-2" />
-              Share
-            </Button>
-            <Button variant="outline" size="sm">
-              <Download className="w-4 h-4 mr-2" />
-              Download Details
-            </Button>
-            <Button variant="outline" size="sm">
-              <Heart className="w-4 h-4 mr-2" />
-              Save
+              {t('common.share')}
             </Button>
           </div>
         </div>
@@ -421,15 +442,11 @@ const PropertyDetail = () => {
               </CardContent>
             </Card>
 
-          {/* Mobile: Action Buttons */}
-          <div className="lg:hidden flex gap-3">
-            <Button variant="outline" className="flex-1">
+          {/* Mobile: Share Button */}
+          <div className="lg:hidden">
+            <Button variant="outline" className="w-full" onClick={handleShare}>
               <Share2 className="w-4 h-4 mr-2" />
-              Share
-            </Button>
-            <Button variant="outline" className="flex-1">
-              <Heart className="w-4 h-4 mr-2" />
-              Save
+              {t('common.share')}
             </Button>
           </div>
           </aside>
