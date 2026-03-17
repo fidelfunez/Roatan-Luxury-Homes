@@ -101,11 +101,11 @@ const Header = () => {
     setSearchQuery('');
   };
 
-  const linkClasses = "flex items-center px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200 ease-in-out";
+  const linkClasses = "flex items-center px-2.5 py-1.5 rounded-md text-sm font-medium transition-colors duration-200 ease-in-out";
   const activeLinkClasses = "bg-primary-dark text-primary-foreground shadow-md";
   const inactiveLinkClasses = "text-foreground hover:bg-primary/10 hover:text-primary";
   
-  const mobileLinkClasses = "flex items-center px-3 py-3 rounded-md text-base font-medium transition-colors duration-200 ease-in-out";
+  const mobileLinkClasses = "flex items-center px-3 py-2 rounded-md text-base font-medium transition-colors duration-200 ease-in-out";
   const mobileActiveLinkClasses = "bg-primary-dark text-primary-foreground shadow-lg";
   const mobileInactiveLinkClasses = "text-foreground hover:bg-primary/10 hover:text-primary";
 
@@ -117,8 +117,8 @@ const Header = () => {
       <div className="hidden lg:block">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           {/* Top Bar with Contact Info */}
-          <div className="flex items-center justify-between py-2 border-b border-primary/10">
-            <div className="flex items-center space-x-6 text-sm text-muted-foreground">
+          <div className="flex items-center justify-between py-1.5 border-b border-primary/10">
+            <div className="flex items-center space-x-4 text-xs text-muted-foreground">
               <div className="flex items-center">
                 <MapPin className="w-4 h-4 mr-2 text-primary" />
                 <span>{getContent('header', 'topBar', 'location')}</span>
@@ -147,8 +147,8 @@ const Header = () => {
           </div>
 
           {/* Main Navigation */}
-          <div className="flex items-center justify-between h-20">
-            <Logo textClassName="text-2xl font-bold" imgClassName="h-9" />
+          <div className="flex items-center justify-between h-14">
+            <Logo textClassName="text-xl font-bold" imgClassName="h-7" />
             
             <nav className="flex space-x-1">
               {navLinks.map((link) => {
@@ -301,8 +301,8 @@ const Header = () => {
       {/* Mobile Header */}
       <div className="lg:hidden">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between h-20">
-            <Logo textClassName="hidden sm:inline-block" imgClassName="h-8 sm:h-9" />
+          <div className="flex items-center justify-between h-14">
+            <Logo textClassName="hidden sm:inline-block text-lg" imgClassName="h-7 sm:h-8" />
             
             <div className="flex items-center space-x-2">
               <LanguageSwitcher />

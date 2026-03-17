@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { ChevronLeft, ChevronRight, MapPin, DollarSign, BedDouble, Bath, CarFront, Maximize, CalendarDays, Clock, Home, CheckCircle, Mail, Phone, Share2, MessageSquare } from 'lucide-react';
+import { ChevronLeft, ChevronRight, MapPin, BedDouble, Bath, CarFront, Maximize, CalendarDays, Clock, Home, CheckCircle, Mail, Phone, Share2, MessageSquare } from 'lucide-react';
 import { useToast } from '@/components/ui/use-toast';
 import SEO from '@/components/SEO';
 import { useTranslation } from 'react-i18next';
@@ -310,8 +310,7 @@ const PropertyDetail = () => {
             <CardContent className="p-0 space-y-4 text-foreground">
               <div className="flex items-center justify-between p-4 bg-white/50 rounded-lg">
                 <span className="font-semibold text-lg">{property.listingType === 'rent' ? t('propertyDetail.rent') + ':' : t('propertyDetail.price') + ':'}</span>
-                <span className="text-3xl lg:text-4xl font-bold text-primary flex items-center">
-                  <DollarSign className="w-6 h-6 lg:w-8 lg:h-8 mr-2" />
+                <span className="text-3xl lg:text-4xl font-bold text-primary">
                   {formatPropertyPrice(property, i18n.language)}
                 </span>
               </div>

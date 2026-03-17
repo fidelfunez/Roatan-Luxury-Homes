@@ -478,12 +478,9 @@ const Properties = () => {
                       <CardFooter className={`p-4 sm:p-6 bg-slate-50 dark:bg-slate-800/50 flex justify-between items-center mt-auto ${
                         viewMode === 'list' ? 'lg:w-2/3' : ''
                       }`}>
-                        <p className={`font-bold text-primary flex items-center ${
+                        <p className={`font-bold text-primary ${
                           viewMode === 'list' ? 'text-xl lg:text-3xl' : 'text-lg sm:text-2xl'
                         }`}>
-                          <DollarSign className={`mr-1 ${
-                            viewMode === 'list' ? 'h-6 w-6 lg:h-8 lg:w-8' : 'h-5 w-5 sm:h-6 sm:w-6'
-                          }`} />
                           {formatPropertyPrice(property, i18n.language)}
                         </p>
                         <Button variant="link" className="text-primary p-0 group-hover:underline font-semibold">
