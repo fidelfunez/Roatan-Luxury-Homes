@@ -111,7 +111,7 @@ const Footer = () => {
               <form onSubmit={handleSubmit} className="space-y-3">
                 <div>
                   <Label htmlFor="footer-email" className="sr-only">Email address</Label>
-                  <Input type="email" id="footer-email" placeholder={getContent('footer', 'newsletter', 'placeholder')} className="bg-white/80 focus:bg-white" />
+                  <Input type="email" id="footer-email" placeholder={getContent('footer', 'newsletter', 'placeholder')} className="bg-white/80 focus:bg-white" autoComplete="off" />
                 </div>
                 <Button type="submit" className="w-full bg-primary hover:bg-primary/90 text-primary-foreground">
                   {getContent('footer', 'newsletter', 'buttonText')}

@@ -89,7 +89,7 @@
     "freeListing": "100% gratis",
     "responseTime": "Te respondemos en 48 horas",
     "submitProperty": "Enviar Propiedad",
-    "parkingLabel": "Estacionamiento",
+    "parkingLabel": "Parqueo",
     "areaLabel": "Área"
   },
   "services": {
@@ -205,7 +205,7 @@
     "type": "Tipo",
     "bedrooms": "Habitaciones",
     "bathrooms": "Baños",
-    "parking": "Estacionamiento",
+    "parking": "Parqueo",
     "area": "Área",
     "sqFt": "pies²",
     "contactInformation": "Información de Contacto",

@@ -105,21 +105,15 @@ const PropertyDetail = () => {
   const metaDescription = displayDescription ? (displayDescription.length > 160 ? displayDescription.slice(0, 157) + '...' : displayDescription) : `${displayTitle} - ${displayLocation || 'Roatán'}. ${property.price ? formatPropertyPrice(property, i18n.language) : ''}`;
   const ogImage = propertyImages[0] && propertyImages[0].startsWith('http') ? propertyImages[0] : (typeof window !== 'undefined' ? `${window.location.origin}${propertyImages[0]?.startsWith('/') ? propertyImages[0] : '/' + propertyImages[0]}` : propertyImages[0]);
 
+  const len = propertyImages.length;
   const nextImage = () => {
-    setCurrentImageIndex((prevIndex) => (prevIndex + 1) % propertyImages.length);
+    if (len <= 1) return;
+    setCurrentImageIndex((prevIndex) => (prevIndex + 1) % len);
   };
 
-  // Keep active thumbnail visible when main image changes
-  useEffect(() => {
-    const strip = thumbnailStripRef.current;
-    const thumb = strip?.children[currentImageIndex];
-    if (strip && thumb) {
-      thumb.scrollIntoView({ block: 'nearest', inline: 'center', behavior: 'smooth' });
-    }
-  }, [currentImageIndex]);
-
   const prevImage = () => {
-    setCurrentImageIndex((prevIndex) => (prevIndex - 1 + propertyImages.length) % propertyImages.length);
+    if (len <= 1) return;
+    setCurrentImageIndex((prevIndex) => (prevIndex - 1 + len) % len);
   };
   
   const openLightbox = (index) => {

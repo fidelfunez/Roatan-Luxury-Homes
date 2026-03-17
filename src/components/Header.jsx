@@ -187,6 +187,7 @@ const Header = () => {
                       onKeyPress={handleSearchKeyPress}
                       className="pl-10 bg-background/70 focus:bg-background"
                       autoFocus
+                      autoComplete="off"
                     />
                     <Button 
                       type="button" 
@@ -329,6 +330,7 @@ const Header = () => {
                 onKeyPress={handleSearchKeyPress}
                 className="pl-10 bg-background/70 focus:bg-background"
                 autoFocus
+                autoComplete="off"
               />
               <Button 
                 type="button" 

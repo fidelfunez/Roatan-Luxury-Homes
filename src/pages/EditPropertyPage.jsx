@@ -10,7 +10,7 @@ import React, { useState, useEffect, useRef } from 'react';
     import { useToast } from '@/components/ui/use-toast';
     import { getPropertyById, updateProperty } from '@/lib/supabaseUtils';
     import { optimizeImage, optimizeImages, optimizeDataUrl, validateImageFile } from '@/lib/imageUtils';
-    import { DollarSign, Type, MapPin as MapPinIcon, BedDouble, Bath, CarFront, Maximize, Info, Image as ImageIcon, ListChecks, CalendarDays, Clock, PlusCircle, Trash2, UploadCloud, Save, KeyRound } from 'lucide-react';
+    import { DollarSign, Type, MapPin as MapPinIcon, BedDouble, Bath, CarFront, Maximize, Info, Image as ImageIcon, ListChecks, CalendarDays, Clock, PlusCircle, Trash2, UploadCloud, Save, KeyRound, ChevronUp, ChevronDown } from 'lucide-react';
 
     const fadeIn = {
       hidden: { opacity: 0, y: 20 },
@@ -142,6 +142,17 @@ import React, { useState, useEffect, useRef } from 'react';
         const newPreviews = [...imagePreviews.gallery];
         newImages.splice(index, 1);
         newPreviews.splice(index, 1);
+        setFormData(prev => ({ ...prev, images: newImages }));
+        setImagePreviews(prev => ({ ...prev, gallery: newPreviews }));
+      };
+
+      const moveGalleryImage = (index, direction) => {
+        const newIndex = direction === 'up' ? index - 1 : index + 1;
+        if (newIndex < 0 || newIndex >= formData.images.length) return;
+        const newImages = [...formData.images];
+        const newPreviews = [...imagePreviews.gallery];
+        [newImages[index], newImages[newIndex]] = [newImages[newIndex], newImages[index]];
+        [newPreviews[index], newPreviews[newIndex]] = [newPreviews[newIndex], newPreviews[index]];
         setFormData(prev => ({ ...prev, images: newImages }));
         setImagePreviews(prev => ({ ...prev, gallery: newPreviews }));
       };
@@ -410,15 +421,43 @@ import React, { useState, useEffect, useRef } from 'react';
                         {imagePreviews.gallery.map((previewUrl, index) => (
                           <div key={index} className="relative aspect-square border rounded-md overflow-hidden group">
                             <img  src={previewUrl} alt={`Gallery preview ${index + 1}`} className="w-full h-full object-cover" loading="lazy" />
-                            <Button 
-                              type="button" 
-                              variant="destructive" 
-                              size="icon" 
-                              onClick={() => removeGalleryImage(index)}
-                              className="absolute top-1 right-1 h-6 w-6 opacity-0 group-hover:opacity-100 transition-opacity"
-                            >
-                              <Trash2 className="h-3 w-3" />
-                            </Button>
+                            <span className="absolute top-1 left-1 bg-black/60 text-white text-xs px-2 py-0.5 rounded font-medium">
+                              {index + 1}
+                            </span>
+                            <div className="absolute top-1 right-1 flex gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
+                              <Button
+                                type="button"
+                                variant="secondary"
+                                size="icon"
+                                className="h-6 w-6"
+                                onClick={() => moveGalleryImage(index, 'up')}
+                                disabled={index === 0}
+                                title="Move earlier"
+                              >
+                                <ChevronUp className="h-3 w-3" />
+                              </Button>
+                              <Button
+                                type="button"
+                                variant="secondary"
+                                size="icon"
+                                className="h-6 w-6"
+                                onClick={() => moveGalleryImage(index, 'down')}
+                                disabled={index === imagePreviews.gallery.length - 1}
+                                title="Move later"
+                              >
+                                <ChevronDown className="h-3 w-3" />
+                              </Button>
+                              <Button 
+                                type="button" 
+                                variant="destructive" 
+                                size="icon" 
+                                className="h-6 w-6"
+                                onClick={() => removeGalleryImage(index)}
+                                title="Remove"
+                              >
+                                <Trash2 className="h-3 w-3" />
+                              </Button>
+                            </div>
                           </div>
                         ))}
                       </div>
