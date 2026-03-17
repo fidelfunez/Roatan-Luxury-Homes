@@ -4,7 +4,7 @@ import { Card, CardContent, CardFooter, CardHeader, CardTitle, CardDescription }
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Link } from 'react-router-dom';
-import { CalendarDays, UserCircle, ArrowRight, Search, BookOpen, TrendingUp, Star, MessageSquare, Eye, Tag, PenTool, Home as HomeIconLucide } from 'lucide-react';
+import { CalendarDays, UserCircle, ArrowRight, Search, BookOpen, MessageSquare, Eye, Tag, PenTool } from 'lucide-react';
 import { getBlogPosts } from '@/lib/supabaseUtils';
 import OptimizedImage from '@/components/OptimizedImage';
 import SEO from '@/components/SEO';
@@ -117,7 +117,7 @@ const Blog = () => {
               {[
                 { number: blogPosts.length.toString(), label: t('blog.articlesPublished'), icon: <PenTool className="w-6 h-6 text-white" /> },
                 { number: "0", label: t('blog.monthlyReaders'), icon: <Eye className="w-6 h-6 text-white" /> },
-                { number: [...new Set(blogPosts.map(p => p.author).filter(Boolean))].length.toString(), label: t('blog.expertAuthors'), icon: <UserCircle className="w-6 h-6 text-white" /> },
+                { number: Math.max(2, [...new Set(blogPosts.map(p => p.author).filter(Boolean))].length).toString(), label: t('blog.expertAuthors'), icon: <UserCircle className="w-6 h-6 text-white" /> },
                 { number: [...new Set(blogPosts.map(p => p.category).filter(Boolean))].length.toString(), label: t('blog.categories'), icon: <Tag className="w-6 h-6 text-white" /> }
               ].map((stat, index) => (
                 <div key={index} className="text-center p-4 bg-white/10 backdrop-blur-sm rounded-xl shadow-md border border-white/20">
@@ -236,7 +236,7 @@ return (
             {[
               { number: blogPosts.length.toString(), label: t('blog.articlesPublished'), icon: <PenTool className="w-6 h-6 text-white" /> },
               { number: "0", label: t('blog.monthlyReaders'), icon: <Eye className="w-6 h-6 text-white" /> },
-              { number: [...new Set(blogPosts.map(p => p.author).filter(Boolean))].length.toString(), label: t('blog.expertAuthors'), icon: <UserCircle className="w-6 h-6 text-white" /> },
+              { number: Math.max(2, [...new Set(blogPosts.map(p => p.author).filter(Boolean))].length).toString(), label: t('blog.expertAuthors'), icon: <UserCircle className="w-6 h-6 text-white" /> },
               { number: [...new Set(blogPosts.map(p => p.category).filter(Boolean))].length.toString(), label: t('blog.categories'), icon: <Tag className="w-6 h-6 text-white" /> }
             ].map((stat, index) => (
               <div key={index} className="text-center p-4 bg-white/10 backdrop-blur-sm rounded-xl shadow-md border border-white/20 hover:bg-white/15 transition-all duration-300">
@@ -294,43 +294,6 @@ return (
                   : t('blog.noPostsDesc')
                 }
               </p>
-              
-              {/* Coming Soon Preview */}
-              <div className="grid md:grid-cols-3 gap-6 mt-12">
-                {[
-                  {
-                    title: t('blog.previewBuyingTitle'),
-                    category: t('blog.previewBuyingCategory'),
-                    excerpt: t('blog.previewBuyingExcerpt'),
-                    icon: <HomeIconLucide className="w-8 h-8 text-primary" />
-                  },
-                  {
-                    title: t('blog.previewInvestmentTitle'),
-                    category: t('blog.previewInvestmentCategory'),
-                    excerpt: t('blog.previewInvestmentExcerpt'),
-                    icon: <TrendingUp className="w-8 h-8 text-primary" />
-                  },
-                  {
-                    title: t('blog.previewLifestyleTitle'),
-                    category: t('blog.previewLifestyleCategory'),
-                    excerpt: t('blog.previewLifestyleExcerpt'),
-                    icon: <Star className="w-8 h-8 text-primary" />
-                  }
-                ].map((preview, index) => (
-                  <div key={index} className="bg-card p-6 rounded-xl shadow-md border border-border/50 hover:shadow-lg transition-all duration-300">
-                    <div className="flex justify-center mb-4">
-                      <div className="p-3 bg-primary/10 rounded-xl">
-                        {preview.icon}
-                      </div>
-                    </div>
-                    <div className="inline-block bg-primary/10 text-primary text-xs px-2 py-1 rounded-full mb-3">
-                      {preview.category}
-                    </div>
-                    <h4 className="text-lg font-semibold mb-2 text-foreground">{preview.title}</h4>
-                    <p className="text-sm text-muted-foreground">{preview.excerpt}</p>
-                  </div>
-                ))}
-              </div>
               
               <div className="mt-8">
                 <Button asChild size="lg" variant="outline" className="border-primary text-primary hover:bg-primary hover:text-primary-foreground">

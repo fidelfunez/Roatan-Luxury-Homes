@@ -252,112 +252,112 @@ const defaultContent = {
 const defaultContentEs = {
   home: {
     hero: {
-      title: 'Comprar o alquilar una casa en Roatan, Honduras',
-      subtitle: 'Tu fuente confiable para comprar y alquilar casas en Roatan, las Islas de la Bahia y el Caribe. Casas de lujo, propiedades frente al mar e inversiones.',
+      title: 'Casas en venta y alquiler en Roatán',
+      subtitle: 'Tu aliado para encontrar la casa ideal en Roatán, las Islas de la Bahía y el Caribe. Propiedades de lujo, frente al mar y oportunidades de inversión.',
       trustIndicator1: '15+ años de experiencia',
       trustIndicator2: '500+ propiedades vendidas',
       trustIndicator3: 'Soporte 24/7'
     },
     welcome: {
-      title: 'Bienvenido al paraiso',
-      description: 'Roatan, Honduras, en las Islas de la Bahia del Caribe, ofrece una belleza incomparable y una comunidad acogedora. Ya sea que quieras comprar, alquilar o invertir en bienes raices en Honduras, Roatan Luxury Homes es tu guia de confianza.',
-      feature1Title: 'Orientacion experta',
-      feature1Desc: 'Navegando el mercado inmobiliario de Roatan e Islas de la Bahia con conocimiento local y servicio personalizado.',
-      feature2Title: 'Enfocados en el cliente',
-      feature2Desc: 'Tus suenos son nuestra prioridad. Escuchamos, asesoramos y entregamos resultados excepcionales.',
-      feature3Title: 'Ubicaciones privilegiadas',
-      feature3Desc: 'Acceso a listados exclusivos en Roatan, Honduras y los destinos mas codiciados del Caribe.'
+      title: 'Bienvenido al paraíso',
+      description: 'Roatán, Honduras — en el corazón del Caribe — te ofrece belleza única y una comunidad que te recibe con los brazos abiertos. Ya sea que busques comprar, alquilar o invertir en bienes raíces, Roatán Luxury Homes es tu guía de confianza.',
+      feature1Title: 'Asesoría experta',
+      feature1Desc: 'Conocemos el mercado de Roatán y las Islas de la Bahía como nadie. Te acompañamos con conocimiento local y un trato personalizado.',
+      feature2Title: 'Tu prioridad es la nuestra',
+      feature2Desc: 'Escuchamos lo que necesitas, te asesoramos con honestidad y trabajamos para que logres tus metas.',
+      feature3Title: 'Las mejores ubicaciones',
+      feature3Desc: 'Acceso a propiedades exclusivas en Roatán y los destinos más buscados del Caribe.'
     },
     featuredLocation: {
-      title: 'Ubicacion destacada: Roatan, Islas de la Bahia, Honduras',
-      description: 'Descubre Roatan, Honduras, la mas grande de las Islas de la Bahia en el Caribe. Compra o alquila una casa en Roatan entre aguas cristalinas y playas de arena blanca. Nuestras propiedades exclusivas ofrecen la combinacion perfecta de lujo y vida insular.',
+      title: 'Roatán, Islas de la Bahía, Honduras',
+      description: 'Roatán es la isla más grande de la Bahía. Encuentra tu casa entre aguas cristalinas y playas de arena blanca. Ofrecemos el equilibrio perfecto entre lujo y vida isleña.',
       feature1: 'Buceo y snorkel de clase mundial',
-      feature2: 'Playas pristinas y arrecifes de coral',
-      feature3: 'Amenidades de lujo y comodidades modernas',
+      feature2: 'Playas vírgenes y arrecifes de coral',
+      feature3: 'Amenidades de lujo y todas las comodidades',
       startingPrice: 'Desde $450,000'
     },
     testimonials: {
       title: 'Lo que dicen nuestros clientes',
-      subtitle: 'No solo nos creas a nosotros. Esto es lo que nuestros clientes satisfechos dicen sobre su experiencia.',
+      subtitle: 'No te quedes con nuestra palabra. Mira lo que quienes ya confiaron en nosotros tienen que decir.',
       testimonial1Name: 'Sarah y Mike',
-      testimonial1Location: 'Villa en playa Roatan',
-      testimonial1Text: 'Roatan Luxury Homes hizo realidad nuestro sueno de tener una propiedad frente al mar. Su atencion al detalle fue excepcional.',
-      testimonial2Name: 'David Rodriguez',
+      testimonial1Location: 'Villa en playa Roatán',
+      testimonial1Text: 'Roatán Luxury Homes hizo realidad nuestro sueño de tener una propiedad frente al mar. Su atención al detalle fue excepcional.',
+      testimonial2Name: 'David Rodríguez',
       testimonial2Location: 'Condominio West Bay',
-      testimonial2Text: 'Profesionales, receptivos y entienden el mercado local. No podria estar mas feliz con mi propiedad de inversion.',
+      testimonial2Text: 'Profesionales, atentos y conocen el mercado. No podría estar más contento con mi inversión.',
       testimonial3Name: 'Emma Thompson',
       testimonial3Location: 'Casa Sandy Bay',
-      testimonial3Text: 'Desde la primera consulta hasta el cierre, todo fue fluido. Realmente se preocupan por el exito de sus clientes.'
+      testimonial3Text: 'Desde la primera consulta hasta el cierre, todo salió perfecto. Se preocupan de verdad por sus clientes.'
     },
     cta: {
-      title: 'Listo para encontrar tu paraiso?',
-      subtitle: 'Comencemos tu camino hacia tu pedazo del paraiso caribeno hoy.'
+      title: '¿Listo para encontrar tu lugar en el paraíso?',
+      subtitle: 'Empecemos hoy tu camino hacia tu hogar en el Caribe.'
     }
   },
   about: {
     company: {
-      title: 'Sobre Roatan Luxury Homes',
-      subtitle: 'Tus socios de confianza para comprar y alquilar casas en Roatan, Honduras e Islas de la Bahia. Te ayudamos a encontrar tu pedazo del paraiso caribeno.',
-      missionTitle: 'Nuestra mision',
-      missionText: 'En Roatan Luxury Homes, nuestra mision es brindar servicios inmobiliarios excepcionales con integridad, profesionalismo y un profundo conocimiento del mercado local. Ayudamos a nuestros clientes, ya sean compradores estadounidenses buscando casas tropicales o inversionistas, a tomar decisiones informadas y alcanzar sus metas en Roatan.',
-      missionText2: 'Creemos en construir relaciones duraderas basadas en confianza y transparencia, asegurando que cada cliente se sienta seguro y apoyado durante todo el proceso.'
+      title: 'Sobre Roatán Luxury Homes',
+      subtitle: 'Somos tu socio de confianza para comprar o alquilar en Roatán, Honduras e Islas de la Bahía. Te ayudamos a encontrar tu hogar en el Caribe.',
+      missionTitle: 'Nuestra misión',
+      missionText: 'En Roatán Luxury Homes nos dedicamos a ofrecer un servicio inmobiliario excepcional, con honestidad y un conocimiento profundo del mercado local. Ayudamos a compradores e inversionistas a tomar decisiones informadas y alcanzar sus metas en Roatán.',
+      missionText2: 'Creemos en relaciones a largo plazo basadas en confianza y transparencia. Queremos que te sientas seguro y acompañado en cada paso.'
     },
     whyChooseUs: {
-      title: 'Por que elegirnos?',
+      title: '¿Por qué elegirnos?',
       feature1Title: 'Experiencia local',
-      feature1Desc: 'Conocimiento incomparable de los barrios, tendencias del mercado y aspectos legales de Roatan.',
+      feature1Desc: 'Conocemos los barrios, las tendencias del mercado y los aspectos legales de Roatán como nadie.',
       feature2Title: 'Confianza y transparencia',
-      feature2Desc: 'Operamos con los mas altos estandares eticos, asegurando claridad y honestidad en todas las transacciones.',
-      feature3Title: 'Enfoque centrado en el cliente',
-      feature3Desc: 'Tus necesidades son nuestra prioridad. Ofrecemos servicio personalizado adaptado a tus objetivos.'
+      feature2Desc: 'Trabajamos con los más altos estándares éticos. Claridad y honestidad en cada trato.',
+      feature3Title: 'Tú eres la prioridad',
+      feature3Desc: 'Tus necesidades van primero. Te ofrecemos un servicio a tu medida.'
     },
     team: {
-      title: 'Conoce nuestro equipo',
+      title: 'Conoce a nuestro equipo',
       member1Name: 'Alice Johnson',
       member1Role: 'Agente principal y fundadora',
-      member1Bio: 'Con mas de 15 años de experiencia en bienes raices de Roatan, Alice apasiona conectar clientes con sus propiedades ideales y asegurar un proceso de transaccion fluido.',
+      member1Bio: 'Con más de 15 años en bienes raíces de Roatán, Alice se dedica a conectar a sus clientes con la propiedad ideal y a que todo el proceso sea sencillo.',
       member2Name: 'Bob Williams',
       member2Role: 'Especialista en ventas',
-      member2Bio: 'El profundo conocimiento del mercado local y dedicacion a la satisfaccion del cliente de Bob lo hacen un activo invaluable.',
+      member2Bio: 'Bob conoce el mercado local a fondo y se compromete con la satisfacción de cada cliente.',
       member3Name: 'Carol Davis',
       member3Role: 'Gerente de relaciones con clientes',
-      member3Bio: 'Carol asegura que cada cliente reciba atencion personalizada y apoyo durante todo su proceso inmobiliario.'
+      member3Bio: 'Carol se asegura de que cada cliente reciba atención personalizada y apoyo durante todo el proceso.'
     }
   },
   services: {
     hero: {
       title: 'Nuestros servicios',
-      subtitle: 'Soluciones inmobiliarias integrales adaptadas a tus necesidades en Roatan. Desde comprar la casa de tus suenos hasta gestionar inversiones.',
+      subtitle: 'Soluciones inmobiliarias completas para ti. Desde encontrar la casa de tus sueños hasta gestionar tus inversiones en Roatán.',
       stat1Number: '500+',
       stat1Label: 'Propiedades vendidas',
       stat2Number: '15+',
-      stat2Label: 'Anos de experiencia',
+      stat2Label: 'Años de experiencia',
       stat3Number: '100%',
-      stat3Label: 'Satisfaccion del cliente',
+      stat3Label: 'Clientes satisfechos',
       stat4Number: '24/7',
       stat4Label: 'Soporte disponible'
     },
     whyChooseUs: {
-      title: 'Por que elegir Roatan Luxury Homes?',
-      subtitle: 'Combinamos experiencia local con estandares internacionales para entregar resultados excepcionales.',
-      feature1Title: 'Experiencia confiable',
-      feature1Desc: '15+ años de experiencia en bienes raices del Caribe con profundo conocimiento local.',
-      feature2Title: 'Servicio personalizado',
-      feature2Desc: 'Soporte dedicado durante todo tu proceso inmobiliario.',
-      feature3Title: 'Garantia de calidad',
-      feature3Desc: 'Debida diligencia rigurosa y estandares de calidad en cada transaccion.',
+      title: '¿Por qué Roatán Luxury Homes?',
+      subtitle: 'Unimos experiencia local con estándares internacionales para darte los mejores resultados.',
+      feature1Title: 'Experiencia de confianza',
+      feature1Desc: 'Más de 15 años en bienes raíces del Caribe. Conocemos el mercado como nadie.',
+      feature2Title: 'Servicio a tu medida',
+      feature2Desc: 'Te acompañamos en cada paso de tu proceso inmobiliario.',
+      feature3Title: 'Calidad garantizada',
+      feature3Desc: 'Revisamos cada detalle y mantenemos altos estándares en cada operación.',
       feature4Title: 'Soporte 24/7',
-      feature4Desc: 'Asistencia las 24 horas para todas tus necesidades inmobiliarias.'
+      feature4Desc: 'Estamos disponibles cuando nos necesites.'
     },
     cta: {
-      title: 'Listo para comenzar?',
-      subtitle: 'Contáctanos hoy para discutir tus necesidades inmobiliarias y descubrir como podemos ayudarte a alcanzar tus metas en Roatan.'
+      title: '¿Listo para empezar?',
+      subtitle: 'Escríbenos hoy y te ayudamos a alcanzar tus metas en Roatán.'
     }
   },
   contact: {
     hero: {
       title: 'Contáctanos',
-      subtitle: 'Estamos aqui para ayudarte con todas tus necesidades inmobiliarias en Roatan. Escribenos hoy!',
+      subtitle: 'Estamos aquí para ayudarte con todo lo que necesites en Roatán. Escríbenos hoy.',
       stat1Number: '24/7',
       stat1Label: 'Soporte disponible',
       stat2Number: '< 2hrs',
@@ -365,75 +365,75 @@ const defaultContentEs = {
       stat3Number: '500+',
       stat3Label: 'Clientes satisfechos',
       stat4Number: '15+',
-      stat4Label: 'Anos de experiencia'
+      stat4Label: 'Años de experiencia'
     },
     contactInfo: {
       phone: '+504 3341-9532',
       email: 'info@roatanluxuryhomes.com',
-      address: 'Roatan, Islas de la Bahia, Honduras',
-      officeHours: 'Lunes - Viernes: 9:00 AM - 6:00 PM',
+      address: 'Roatán, Islas de la Bahía, Honduras',
+      officeHours: 'Lunes a viernes: 9:00 AM - 6:00 PM',
       emergencyContact: 'Disponible 24/7 para consultas urgentes'
     },
     whyChooseUs: {
-      title: 'Por que elegir Roatan Luxury Homes?',
-      subtitle: 'Combinamos experiencia local con estandares internacionales para entregar resultados excepcionales.',
-      feature1Title: 'Experiencia confiable',
-      feature1Desc: '15+ años de experiencia en bienes raices del Caribe.',
-      feature2Title: 'Servicio personalizado',
-      feature2Desc: 'Soporte dedicado durante todo tu proceso inmobiliario.',
-      feature3Title: 'Garantia de calidad',
-      feature3Desc: 'Debida diligencia rigurosa en cada transaccion.',
-      feature4Title: 'Satisfaccion del cliente',
-      feature4Desc: '500+ clientes satisfechos con 100% de satisfaccion.'
+      title: '¿Por qué Roatán Luxury Homes?',
+      subtitle: 'Unimos experiencia local con estándares internacionales para darte los mejores resultados.',
+      feature1Title: 'Experiencia de confianza',
+      feature1Desc: 'Más de 15 años en bienes raíces del Caribe.',
+      feature2Title: 'Servicio a tu medida',
+      feature2Desc: 'Te acompañamos en cada paso.',
+      feature3Title: 'Calidad garantizada',
+      feature3Desc: 'Revisamos cada detalle en cada operación.',
+      feature4Title: 'Clientes satisfechos',
+      feature4Desc: 'Más de 500 clientes con 100% de satisfacción.'
     }
   },
   blog: {
     hero: {
       title: 'Nuestro blog',
-      subtitle: 'Informacion, consejos y noticias sobre bienes raices en Roatan e Islas de la Bahia.',
-      badge: 'Ultimas actualizaciones'
+      subtitle: 'Consejos, información y noticias sobre bienes raíces en Roatán e Islas de la Bahía.',
+      badge: 'Últimas actualizaciones'
     }
   },
   properties: {
     hero: {
-      title: 'Casas en venta y alquiler en Roatan, Honduras',
-      subtitle: 'Compra o alquila una casa en Roatan e Islas de la Bahia. Explora casas de lujo, propiedades frente al mar y bienes raices en Roatan, Honduras.',
-      badge: 'Propiedades Roatan e Islas de la Bahia'
+      title: 'Casas en venta y alquiler en Roatán',
+      subtitle: 'Encuentra tu casa en Roatán e Islas de la Bahía. Propiedades de lujo, frente al mar y más.',
+      badge: 'Propiedades Roatán e Islas de la Bahía'
     }
   },
   'property-sales-acquisition': {
-    title: 'Ventas y adquisicion de propiedades',
-    description: 'Nuestro equipo experto brinda soporte integral para comprar o vender propiedades en Roatan. Nos encargamos de todo: analisis de mercado, visitas a propiedades, negociacion y cierre. Ya sea una villa frente al mar, un condominio, un terreno o una inversion comercial, utilizamos nuestra red y conocimiento local para encontrar la opcion perfecta. Garantizamos un proceso transparente y fluido.',
-    ctaText: 'Hablemos de como podemos ayudarte con ventas y adquisicion. Contáctanos hoy para una consulta personalizada.'
+    title: 'Ventas y adquisición de propiedades',
+    description: 'Nuestro equipo te acompaña en todo el proceso: análisis de mercado, visitas, negociación y cierre. Ya sea una villa frente al mar, un condominio, un terreno o una inversión comercial, usamos nuestra red y conocimiento local para encontrar lo que buscas. Proceso transparente y sin complicaciones.',
+    ctaText: 'Hablemos de cómo podemos ayudarte. Contáctanos hoy para una consulta personalizada.'
   },
   'legal-guidance-due-diligence': {
-    title: 'Asesoria legal y asistencia',
-    description: 'Navegar el panorama legal de bienes raices en Honduras puede ser desafiante. Te conectamos con profesionales legales especializados en derecho inmobiliario para due diligence, busqueda de titulos y revision de contratos.',
-    ctaText: 'Hablemos de como podemos ayudarte con asesoria legal. Contáctanos hoy.'
+    title: 'Asesoría legal',
+    description: 'El tema legal en bienes raíces en Honduras puede ser complejo. Te conectamos con abogados especializados en derecho inmobiliario para revisión de títulos, contratos y due diligence.',
+    ctaText: '¿Necesitas asesoría legal? Contáctanos hoy.'
   },
   'relocation-assistance': {
-    title: 'Asistencia para reubicacion',
-    description: 'Mudarse a Roatan es una aventura emocionante. Cubrimos residencia, visas, cuentas bancarias, escuelas y servicios locales para que tu transicion sea fluida.',
-    ctaText: 'Hablemos de asistencia para reubicacion. Contáctanos hoy.'
+    title: 'Ayuda para mudarte',
+    description: 'Mudarte a Roatán es una aventura emocionante. Te ayudamos con residencia, visas, cuentas bancarias, escuelas y todo lo que necesites para que tu transición sea sencilla.',
+    ctaText: '¿Planeas mudarte? Contáctanos hoy.'
   },
   'land-development-investment': {
-    title: 'Desarrollo e inversion',
-    description: 'Roatan ofrece oportunidades significativas para desarrollo de terrenos e inversion inmobiliaria. Te ayudamos a identificar parcelas para desarrollo residencial, comercial o mixto.',
-    ctaText: 'Hablemos de desarrollo e inversion. Contáctanos hoy.'
+    title: 'Desarrollo e inversión',
+    description: 'Roatán ofrece grandes oportunidades para desarrollo e inversión. Te ayudamos a encontrar terrenos para proyectos residenciales, comerciales o mixtos.',
+    ctaText: '¿Buscas invertir? Contáctanos hoy.'
   },
   'vacation-rental-management': {
-    title: 'Gestion de alquileres vacacionales',
-    description: 'Convierte tu propiedad en Roatan en una fuente de ingresos. Gestionamos marketing, reservas, check-in/out, limpieza y mantenimiento para maximizar tu ocupacion e ingresos.',
-    ctaText: 'Hablemos de gestion de alquileres. Contáctanos hoy.'
+    title: 'Administración de alquileres vacacionales',
+    description: 'Convierte tu propiedad en Roatán en una fuente de ingresos. Nos encargamos del marketing, reservas, check-in/out, limpieza y mantenimiento para maximizar tu ocupación e ingresos.',
+    ctaText: '¿Quieres rentar tu propiedad? Contáctanos hoy.'
   },
   'commercial-real-estate': {
-    title: 'Bienes raices comerciales',
-    description: 'Para negocios que buscan establecerse o expandirse en Roatan, ofrecemos servicios comerciales especializados: oficinas, locales, almacenes, hoteles y restaurantes.',
-    ctaText: 'Hablemos de bienes raices comerciales. Contáctanos hoy.'
+    title: 'Bienes raíces comerciales',
+    description: 'Para negocios que quieren establecerse o crecer en Roatán: oficinas, locales, almacenes, hoteles y restaurantes. Te ayudamos a encontrar el espacio ideal.',
+    ctaText: '¿Buscas espacio comercial? Contáctanos hoy.'
   },
   header: {
     logo: {
-      companyName: 'Roatan Luxury Homes',
+      companyName: 'Roatán Luxury Homes',
       tagline: 'Propiedades de lujo en el Caribe'
     },
     navigation: {
@@ -445,7 +445,7 @@ const defaultContentEs = {
       contactLabel: 'Contacto'
     },
     topBar: {
-      location: 'Roatan, Honduras',
+      location: 'Roatán, Honduras',
       phone: '+504 3341-9532',
       hours: 'Lun-Vie 9AM-6PM'
     },
@@ -456,22 +456,22 @@ const defaultContentEs = {
   },
   footer: {
     companyInfo: {
-      description: 'Tu socio de confianza para comprar y alquilar casas en Roatan, Honduras y el Caribe. Bienes raices de lujo en las Islas de la Bahia.',
-      address: 'Roatan, Islas de la Bahia, Honduras',
+      description: 'Tu socio de confianza para comprar y alquilar en Roatán, Honduras y el Caribe. Bienes raíces de lujo en las Islas de la Bahía.',
+      address: 'Roatán, Islas de la Bahía, Honduras',
       phone: '+504 3341-9532',
       email: 'info@roatanluxuryhomes.com'
     },
     newsletter: {
       title: 'Mantente informado',
-      description: 'Suscribete a nuestro boletin para las ultimas propiedades y noticias.',
-      placeholder: 'Ingresa tu email',
+      description: 'Suscríbete a nuestro boletín para recibir las últimas propiedades y noticias.',
+      placeholder: 'Ingresa tu correo',
       buttonText: 'Suscribirse'
     },
     links: {
       exploreTitle: 'Explorar',
       companyTitle: 'Empresa',
-      privacyPolicy: 'Politica de privacidad',
-      copyright: 'Roatan Luxury Homes. Todos los derechos reservados.'
+      privacyPolicy: 'Política de privacidad',
+      copyright: 'Roatán Luxury Homes. Todos los derechos reservados.'
     }
   }
 };

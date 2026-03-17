@@ -31,8 +31,8 @@ const Contact = () => {
     await new Promise(resolve => setTimeout(resolve, 1500));
 
     toast({
-      title: "Message Sent!",
-      description: "Thank you for contacting us. We'll get back to you shortly.",
+      title: t('contact.messageSent'),
+      description: t('contact.messageSentDesc'),
       variant: "default",
     });
     setFormData({ name: '', email: '', subject: '', message: '' });

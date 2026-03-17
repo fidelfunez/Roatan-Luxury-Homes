@@ -34,7 +34,7 @@ const PropertyDetail = () => {
     setViewCount(newCount ?? fetchedProperty?.view_count ?? 0); 
       } catch (err) {
         console.error('Error fetching property:', err);
-        setError('Failed to load property details. Please try again later.');
+        setError(t('propertyDetail.errorDesc'));
       } finally {
         setLoading(false);
       }
@@ -49,8 +49,8 @@ const PropertyDetail = () => {
       <div className="container mx-auto px-4 py-12 text-center">
         <div>
           <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary mx-auto mb-4"></div>
-          <h1 className="text-2xl font-bold text-foreground mb-4">Loading Property Details</h1>
-          <p className="text-muted-foreground">Fetching property information...</p>
+          <h1 className="text-2xl font-bold text-foreground mb-4">{t('propertyDetail.loading')}</h1>
+          <p className="text-muted-foreground">{t('propertyDetail.loadingDesc')}</p>
         </div>
       </div>
     );
@@ -62,10 +62,10 @@ const PropertyDetail = () => {
       <div className="container mx-auto px-4 py-12 text-center">
         <div>
           <div className="text-6xl mb-6">⚠️</div>
-          <h1 className="text-2xl font-bold text-destructive mb-4">Error Loading Property</h1>
+          <h1 className="text-2xl font-bold text-destructive mb-4">{t('propertyDetail.errorLoading')}</h1>
           <p className="text-muted-foreground mb-8">{error}</p>
           <Button asChild>
-            <Link to="/properties"><ChevronLeft className="mr-2 h-4 w-4" /> Back to Properties</Link>
+            <Link to="/properties"><ChevronLeft className="mr-2 h-4 w-4" /> {t('propertyDetail.backToProperties')}</Link>
           </Button>
         </div>
       </div>
@@ -78,23 +78,24 @@ const PropertyDetail = () => {
       <div className="container mx-auto px-4 py-12 text-center">
         <div>
           <Home className="w-16 h-16 text-destructive mx-auto mb-4" />
-          <h1 className="text-3xl font-bold text-destructive mb-4">Property Not Found</h1>
-          <p className="text-muted-foreground mb-8">The property you are looking for does not exist or may have been sold.</p>
+          <h1 className="text-3xl font-bold text-destructive mb-4">{t('propertyDetail.propertyNotFound')}</h1>
+          <p className="text-muted-foreground mb-8">{t('propertyDetail.propertyNotFoundDesc')}</p>
           <Button asChild>
-            <Link to="/properties"><ChevronLeft className="mr-2 h-4 w-4" /> Back to Properties</Link>
+            <Link to="/properties"><ChevronLeft className="mr-2 h-4 w-4" /> {t('propertyDetail.backToProperties')}</Link>
           </Button>
         </div>
       </div>
     );
   }
   
-  // Build image list: filter to valid URLs only, avoid empty gallery space when single photo
+  // Build image list: filter valid URLs, dedupe by normalized path (main + gallery may share same image with different URL formats)
   const fallbackImage = 'https://images.unsplash.com/photo-1582407947304-fd86f028f716?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8cmVhbCUyMGVzdGF0ZXxlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=800&q=60';
   const validUrl = (url) => url && typeof url === 'string' && url.trim().length > 0;
+  const imageKey = (url) => url.split('?')[0].trim().split('/').pop() || url;
   const rawImages = [property.image, ...(Array.isArray(property.images) ? property.images : [])].filter(validUrl);
   const seen = new Set();
   const propertyImages = rawImages.length > 0
-    ? rawImages.filter((url) => { if (seen.has(url)) return false; seen.add(url); return true; })
+    ? rawImages.filter((url) => { const key = imageKey(url); if (seen.has(key)) return false; seen.add(key); return true; })
     : [fallbackImage];
   const displayTitle = getTitle(property);
   const displayDescription = getDescription(property);
@@ -163,7 +164,7 @@ const PropertyDetail = () => {
         <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4">
           <Button variant="outline" asChild className="w-fit">
           <Link to="/properties" className="text-primary hover:text-primary/80">
-            <ChevronLeft className="mr-2 h-4 w-4" /> Back to All Properties
+            <ChevronLeft className="mr-2 h-4 w-4" /> {t('propertyDetail.backToAllProperties')}
           </Link>
         </Button>
           
@@ -185,7 +186,7 @@ const PropertyDetail = () => {
             <div className="flex flex-wrap items-center gap-2 text-sm text-muted-foreground">
               {property.listingType === 'rent' && (
                 <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold bg-amber-100 text-amber-800 dark:bg-amber-900 dark:text-amber-200">
-                  For Rent
+                  {t('propertyDetail.forRent')}
                 </span>
               )}
               <Home className="w-4 h-4" />
@@ -269,7 +270,7 @@ const PropertyDetail = () => {
           {/* Enhanced Property Overview */}
           <Card className="bg-background/50 p-6 lg:p-8 rounded-xl shadow-md border border-border/50">
             <CardHeader className="p-0 mb-6">
-               <CardTitle className="text-2xl lg:text-3xl font-semibold text-primary">Property Overview</CardTitle>
+               <CardTitle className="text-2xl lg:text-3xl font-semibold text-primary">{t('propertyDetail.propertyOverview')}</CardTitle>
               </CardHeader>
               <CardContent className="p-0">
               <p className="text-base sm:text-lg lg:text-xl leading-relaxed text-foreground whitespace-pre-line">
@@ -282,7 +283,7 @@ const PropertyDetail = () => {
              {property.features && property.features.length > 0 && (
             <Card className="bg-background/50 p-6 lg:p-8 rounded-xl shadow-md border border-border/50">
               <CardHeader className="p-0 mb-6">
-                 <CardTitle className="text-2xl lg:text-3xl font-semibold text-primary">Key Features</CardTitle>
+                 <CardTitle className="text-2xl lg:text-3xl font-semibold text-primary">{t('propertyDetail.keyFeatures')}</CardTitle>
                 </CardHeader>
                 <CardContent className="p-0">
                 <ul className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-6 gap-y-4 text-foreground">
@@ -304,11 +305,11 @@ const PropertyDetail = () => {
           {/* Enhanced Price Card */}
           <Card className="bg-gradient-to-br from-sandy-light to-turquoise-light p-6 lg:p-8 rounded-xl shadow-lg border border-border/50">
             <CardHeader className="p-0 mb-6">
-              <CardTitle className="text-2xl lg:text-3xl font-semibold text-primary">Property Details</CardTitle>
+              <CardTitle className="text-2xl lg:text-3xl font-semibold text-primary">{t('propertyDetail.propertyDetails')}</CardTitle>
             </CardHeader>
             <CardContent className="p-0 space-y-4 text-foreground">
               <div className="flex items-center justify-between p-4 bg-white/50 rounded-lg">
-                <span className="font-semibold text-lg">{property.listingType === 'rent' ? 'Rent:' : 'Price:'}</span>
+                <span className="font-semibold text-lg">{property.listingType === 'rent' ? t('propertyDetail.rent') + ':' : t('propertyDetail.price') + ':'}</span>
                 <span className="text-3xl lg:text-4xl font-bold text-primary flex items-center">
                   <DollarSign className="w-6 h-6 lg:w-8 lg:h-8 mr-2" />
                   {formatPropertyPrice(property)}
@@ -318,7 +319,7 @@ const PropertyDetail = () => {
               <div className="space-y-3">
                 {property.type && (
                   <div className="flex items-center justify-between p-3 bg-white/30 rounded-lg">
-                    <span className="font-medium">Type:</span>
+                    <span className="font-medium">{t('propertyDetail.type')}:</span>
                     <div className="flex items-center">
                       <Home className="w-5 h-5 mr-2 text-turquoise-dark" /> 
                       {property.type}
@@ -327,7 +328,7 @@ const PropertyDetail = () => {
                 )}
                 {property.beds && (
                   <div className="flex items-center justify-between p-3 bg-white/30 rounded-lg">
-                    <span className="font-medium">Bedrooms:</span>
+                    <span className="font-medium">{t('propertyDetail.bedrooms')}:</span>
                     <div className="flex items-center">
                       <BedDouble className="w-5 h-5 mr-2 text-turquoise-dark" /> 
                       {property.beds}
@@ -336,7 +337,7 @@ const PropertyDetail = () => {
                 )}
                 {property.baths && (
                   <div className="flex items-center justify-between p-3 bg-white/30 rounded-lg">
-                    <span className="font-medium">Bathrooms:</span>
+                    <span className="font-medium">{t('propertyDetail.bathrooms')}:</span>
                     <div className="flex items-center">
                       <Bath className="w-5 h-5 mr-2 text-turquoise-dark" /> 
                       {property.baths}
@@ -345,7 +346,7 @@ const PropertyDetail = () => {
                 )}
                 {property.parking && (
                   <div className="flex items-center justify-between p-3 bg-white/30 rounded-lg">
-                    <span className="font-medium">Parking:</span>
+                    <span className="font-medium">{t('propertyDetail.parking')}:</span>
                     <div className="flex items-center">
                       <CarFront className="w-5 h-5 mr-2 text-turquoise-dark" /> 
                       {property.parking}
@@ -354,10 +355,10 @@ const PropertyDetail = () => {
                 )}
                 {property.area && (
                   <div className="flex items-center justify-between p-3 bg-white/30 rounded-lg">
-                    <span className="font-medium">Area:</span>
+                    <span className="font-medium">{t('propertyDetail.area')}:</span>
                     <div className="flex items-center">
                       <Maximize className="w-5 h-5 mr-2 text-turquoise-dark" /> 
-                      {property.area.toLocaleString()} sq ft
+                      {property.area.toLocaleString()} {t('propertyDetail.sqFt')}
                     </div>
                   </div>
                 )}
@@ -368,7 +369,7 @@ const PropertyDetail = () => {
           {/* Enhanced Contact Card */}
           <Card className="bg-background/50 p-6 lg:p-8 rounded-xl shadow-md border border-border/50">
             <CardHeader className="p-0 mb-6">
-              <CardTitle className="text-xl lg:text-2xl font-semibold text-primary">Contact Information</CardTitle>
+              <CardTitle className="text-xl lg:text-2xl font-semibold text-primary">{t('propertyDetail.contactInformation')}</CardTitle>
               </CardHeader>
             <CardContent className="p-0 space-y-4">
               <div className="flex items-center p-3 bg-white/30 rounded-lg">
@@ -391,13 +392,13 @@ const PropertyDetail = () => {
                 </div>
               <div className="flex items-center p-3 bg-white/30 rounded-lg">
                 <Clock className="w-5 h-5 mr-3 text-turquoise-dark" />
-                <span className="text-sm lg:text-base">Available 24/7</span>
+                <span className="text-sm lg:text-base">{t('propertyDetail.available24')}</span>
                 </div>
               <div className="space-y-3 pt-2">
                 <Button asChild className="w-full bg-primary hover:bg-primary/90 text-primary-foreground text-base py-3">
                   <a href={`mailto:carol@roatan-luxury-homes.com?subject=${encodeURIComponent('Inquiry about: ' + displayTitle)}`}>
                     <Mail className="w-5 h-5 mr-2" />
-                    Contact Agent
+                    {t('propertyDetail.contactAgent')}
                   </a>
                 </Button>
                 <Button asChild variant="outline" className="w-full text-base py-3">
@@ -409,7 +410,7 @@ const PropertyDetail = () => {
                 <Button asChild variant="outline" className="w-full text-base py-3">
                   <a href="tel:+13466125122">
                     <Phone className="w-5 h-5 mr-2" />
-                    Call Now
+                    {t('propertyDetail.callNow')}
                   </a>
                 </Button>
               </div>
@@ -419,24 +420,24 @@ const PropertyDetail = () => {
           {/* Enhanced Status Card */}
           <Card className="bg-background/50 p-6 lg:p-8 rounded-xl shadow-md border border-border/50">
             <CardHeader className="p-0 mb-6">
-              <CardTitle className="text-xl lg:text-2xl font-semibold text-primary">Property Status</CardTitle>
+              <CardTitle className="text-xl lg:text-2xl font-semibold text-primary">{t('propertyDetail.propertyStatus')}</CardTitle>
               </CardHeader>
             <CardContent className="p-0 space-y-4">
               <div className="flex items-center justify-between p-3 bg-white/30 rounded-lg">
-                <span className="font-medium">Status:</span>
+                <span className="font-medium">{t('propertyDetail.status')}:</span>
                 <span className="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200">
                   <CheckCircle className="w-4 h-4 mr-2" />
-                    Available
+                    {t('propertyDetail.available')}
                   </span>
                 </div>
               <div className="flex items-center justify-between p-3 bg-white/30 rounded-lg">
-                <span className="font-medium">Listed:</span>
+                <span className="font-medium">{t('propertyDetail.listed')}:</span>
                 <span className="text-sm lg:text-base">
-                  {property.createdAt ? new Date(property.createdAt).toLocaleDateString() : 'Recently'}
+                  {property.createdAt ? new Date(property.createdAt).toLocaleDateString() : t('propertyDetail.recently')}
                 </span>
               </div>
               <div className="flex items-center justify-between p-3 bg-white/30 rounded-lg">
-                <span className="font-medium">Views:</span>
+                <span className="font-medium">{t('propertyDetail.views')}:</span>
                 <span className="text-sm lg:text-base">{viewCount != null ? viewCount.toLocaleString() : (property?.view_count ?? 0).toLocaleString()}</span>
                 </div>
               </CardContent>
