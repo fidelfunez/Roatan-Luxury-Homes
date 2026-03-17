@@ -178,31 +178,31 @@ const PropertyDetail = () => {
         </div>
       </div>
 
+      {/* Header - full width so gallery and sidebar align */}
+      <div className="space-y-4 mb-8">
+        <div className="flex flex-wrap items-center gap-2 text-sm text-muted-foreground">
+          {property.listingType === 'rent' && (
+            <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold bg-amber-100 text-amber-800 dark:bg-amber-900 dark:text-amber-200">
+              {t('propertyDetail.forRent')}
+            </span>
+          )}
+          <Home className="w-4 h-4" />
+          <span>{property.type || 'Property'}</span>
+          <span>•</span>
+          <span>Roatán, Honduras</span>
+        </div>
+        <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold text-primary leading-tight">
+          {displayTitle}
+        </h1>
+        <div className="flex items-center text-lg lg:text-xl text-muted-foreground">
+          <MapPin className="w-5 h-5 mr-2 text-turquoise-dark" /> 
+          <span>{displayLocation}</span>
+        </div>
+      </div>
+
       <div className="grid lg:grid-cols-3 gap-8 lg:gap-12">
         {/* Desktop: Main Content - 2/3 Width */}
         <div className="lg:col-span-2 space-y-8">
-          {/* Enhanced Header */}
-          <div className="space-y-4">
-            <div className="flex flex-wrap items-center gap-2 text-sm text-muted-foreground">
-              {property.listingType === 'rent' && (
-                <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold bg-amber-100 text-amber-800 dark:bg-amber-900 dark:text-amber-200">
-                  {t('propertyDetail.forRent')}
-                </span>
-              )}
-              <Home className="w-4 h-4" />
-              <span>{property.type || 'Property'}</span>
-              <span>•</span>
-              <span>Roatán, Honduras</span>
-            </div>
-            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold text-primary leading-tight">
-          {displayTitle}
-        </h1>
-            <div className="flex items-center text-lg lg:text-xl text-muted-foreground">
-              <MapPin className="w-5 h-5 mr-2 text-turquoise-dark" /> 
-              <span>{displayLocation}</span>
-            </div>
-        </div>
-
           {/* Enhanced Image Gallery */}
           <div className="space-y-4">
             <div className="relative aspect-[2/1] max-h-[50vh] rounded-xl overflow-hidden shadow-lg group">
