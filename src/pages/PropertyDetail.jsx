@@ -91,7 +91,8 @@ const PropertyDetail = () => {
   // Build image list: filter valid URLs, dedupe by normalized path (main + gallery may share same image with different URL formats)
   const fallbackImage = 'https://images.unsplash.com/photo-1582407947304-fd86f028f716?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8cmVhbCUyMGVzdGF0ZXxlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=800&q=60';
   const validUrl = (url) => url && typeof url === 'string' && url.trim().length > 0;
-  const imageKey = (url) => url.split('?')[0].trim().split('/').pop() || url;
+  // For data: URLs use full url as key (base64 contains '/' so path-based key causes false duplicates)
+  const imageKey = (url) => url.startsWith('data:') ? url : (url.split('?')[0].trim().split('/').pop() || url);
   const rawImages = [property.image, ...(Array.isArray(property.images) ? property.images : [])].filter(validUrl);
   const seen = new Set();
   const propertyImages = rawImages.length > 0
