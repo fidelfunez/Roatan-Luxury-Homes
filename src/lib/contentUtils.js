@@ -252,7 +252,7 @@ const defaultContent = {
 const defaultContentEs = {
   home: {
     hero: {
-      title: 'Casas en venta y alquiler en Roatán',
+      title: 'Casas en venta y alquiler en Roatán y Honduras',
       subtitle: 'Tu aliado para encontrar la casa ideal en Roatán, las Islas de la Bahía y el Caribe. Propiedades de lujo, frente al mar y oportunidades de inversión.',
       trustIndicator1: '15+ años de experiencia',
       trustIndicator2: '500+ propiedades vendidas',
@@ -396,7 +396,7 @@ const defaultContentEs = {
   },
   properties: {
     hero: {
-      title: 'Casas en venta y alquiler en Roatán',
+      title: 'Casas en venta y alquiler en Roatán y Honduras',
       subtitle: 'Encuentra tu casa en Roatán e Islas de la Bahía. Propiedades de lujo, frente al mar y más.',
       badge: 'Propiedades Roatán e Islas de la Bahía'
     }

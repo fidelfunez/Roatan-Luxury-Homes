@@ -4,6 +4,7 @@ import { Button } from '@/components/ui/button';
 import { ArrowLeft, Mail, ArrowRight } from 'lucide-react';
 import SEO from '@/components/SEO';
 import { useContent } from '@/lib/useContent';
+import { useTranslation } from 'react-i18next';
 
 const servicesData = {
   "property-sales-acquisition": {
@@ -49,15 +50,16 @@ const getServiceName = (slug) => servicesData[slug]?.title || "Service";
 const ServiceDetail = () => {
   const { slug } = useParams();
   const { getContent } = useContent();
+  const { t } = useTranslation();
   const service = servicesData[slug];
 
   if (!service) {
     return (
       <div className="container mx-auto px-4 py-12 text-center">
-        <h1 className="text-3xl font-bold text-destructive mb-4">Service Not Found</h1>
-        <p className="text-muted-foreground mb-8">The service you are looking for does not exist or may have been moved.</p>
+        <h1 className="text-3xl font-bold text-destructive mb-4">{t('services.notFound')}</h1>
+        <p className="text-muted-foreground mb-8">{t('services.notFoundDesc')}</p>
         <Button asChild>
-          <Link to="/services"><ArrowLeft className="mr-2 h-4 w-4" /> Back to Services</Link>
+          <Link to="/services"><ArrowLeft className="mr-2 h-4 w-4" /> {t('common.backToServices')}</Link>
         </Button>
       </div>
     );
@@ -78,7 +80,7 @@ const ServiceDetail = () => {
       <div className="mb-8">
         <Button variant="outline" asChild>
           <Link to="/services" className="text-primary hover:text-primary/80">
-            <ArrowLeft className="mr-2 h-4 w-4" /> Back to All Services
+            <ArrowLeft className="mr-2 h-4 w-4" /> {t('services.backToAllServices')}
           </Link>
         </Button>
       </div>

@@ -1,10 +1,12 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import { Button } from '@/components/ui/button';
 import { ArrowLeft } from 'lucide-react';
 import SEO from '@/components/SEO';
 
 export default function PrivacyPolicy() {
+  const { t } = useTranslation();
   return (
     <div className="container mx-auto px-4 py-8 max-w-3xl">
       <SEO
@@ -15,7 +17,7 @@ export default function PrivacyPolicy() {
       <Button variant="ghost" asChild className="mb-8">
         <Link to="/">
           <ArrowLeft className="mr-2 h-4 w-4" />
-          Back to Home
+          {t('common.backToHome')}
         </Link>
       </Button>
 

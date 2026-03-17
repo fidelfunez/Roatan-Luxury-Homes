@@ -5,16 +5,20 @@ const LOCAL_STORAGE_KEY = 'caribbeanLuxRealty_properties';
 /**
  * Format property price for display (sale vs rent with period)
  * @param {Object} property - Property object with price, listingType, pricePeriod
+ * @param {string} [locale='en'] - Locale for period suffix (e.g. 'es' for /noche, /mes, /sem)
  * @returns {string} Formatted price string
  */
-export const formatPropertyPrice = (property) => {
+export const formatPropertyPrice = (property, locale = 'en') => {
   const price = property?.price;
   if (price === null || price === undefined) return 'N/A';
   const num = typeof price === 'number' ? price : parseFloat(price);
   if (isNaN(num)) return 'N/A';
   const formatted = num.toLocaleString();
   if (property?.listingType === 'rent' && property?.pricePeriod) {
-    const suffix = { monthly: '/mo', weekly: '/wk', nightly: '/night' }[property.pricePeriod] || '/mo';
+    const isEs = locale === 'es' || (typeof locale === 'string' && locale.startsWith('es'));
+    const suffix = isEs
+      ? { monthly: '/mes', weekly: '/sem', nightly: '/noche' }[property.pricePeriod] || '/mes'
+      : { monthly: '/mo', weekly: '/wk', nightly: '/night' }[property.pricePeriod] || '/mo';
     return `$${formatted}${suffix}`;
   }
   return `$${formatted} USD`;

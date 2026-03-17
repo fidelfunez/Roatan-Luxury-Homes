@@ -34,7 +34,7 @@ const Properties = () => {
   const [sortBy, setSortBy] = useState('featured'); // 'featured', 'price-low', 'price-high', 'newest'
   const { isAdmin, loading: adminLoading } = useAdmin();
   const { toast } = useToast();
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const { getTitle, getLocation, getDescription } = useLocalizedProperty();
 
   // Handle URL search parameters
@@ -466,14 +466,14 @@ const Properties = () => {
                           <div className={`flex flex-wrap gap-x-3 gap-y-1 text-muted-foreground mb-3 ${
                             viewMode === 'list' ? 'text-base' : 'text-sm'
                           }`}>
-                            {property.beds && <span className="flex items-center"><BedDouble className="w-4 h-4 mr-1 text-turquoise-dark flex-shrink-0" /> {property.beds} Beds</span>}
-                            {property.baths && <span className="flex items-center"><Bath className="w-4 h-4 mr-1 text-turquoise-dark flex-shrink-0" /> {property.baths} Baths</span>}
-                            {property.parking && <span className="flex items-center"><CarFront className="w-4 h-4 mr-1 text-turquoise-dark flex-shrink-0" /> {property.parking} Parking</span>}
+                            {property.beds && <span className="flex items-center"><BedDouble className="w-4 h-4 mr-1 text-turquoise-dark flex-shrink-0" /> {property.beds} {t('home.beds')}</span>}
+                            {property.baths && <span className="flex items-center"><Bath className="w-4 h-4 mr-1 text-turquoise-dark flex-shrink-0" /> {property.baths} {t('home.baths')}</span>}
+                            {property.parking && <span className="flex items-center"><CarFront className="w-4 h-4 mr-1 text-turquoise-dark flex-shrink-0" /> {property.parking} {t('properties.parkingLabel')}</span>}
                           </div>
                         )}
                         {property.area && <p className={`text-muted-foreground ${
                           viewMode === 'list' ? 'text-base' : 'text-sm'
-                        }`}>Area: {property.area ? property.area.toLocaleString() : 'N/A'} sq ft</p>}
+                        }`}>{t('properties.areaLabel')}: {property.area.toLocaleString()} {t('common.sqFt')}</p>}
                       </CardContent>
                       <CardFooter className={`p-4 sm:p-6 bg-slate-50 dark:bg-slate-800/50 flex justify-between items-center mt-auto ${
                         viewMode === 'list' ? 'lg:w-2/3' : ''
@@ -484,7 +484,7 @@ const Properties = () => {
                           <DollarSign className={`mr-1 ${
                             viewMode === 'list' ? 'h-6 w-6 lg:h-8 lg:w-8' : 'h-5 w-5 sm:h-6 sm:w-6'
                           }`} />
-                          {formatPropertyPrice(property)}
+                          {formatPropertyPrice(property, i18n.language)}
                         </p>
                         <Button variant="link" className="text-primary p-0 group-hover:underline font-semibold">
                           <span className={viewMode === 'list' ? 'text-base lg:text-lg' : 'text-sm sm:text-base'}>

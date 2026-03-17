@@ -16,8 +16,8 @@ const NewsletterSignup = () => {
     e.preventDefault();
     if (!email) {
       toast({
-        title: "Error",
-        description: "Please enter your email address.",
+        title: t('newsletter.error'),
+        description: t('newsletter.errorDesc'),
         variant: "destructive",
       });
       return;
@@ -27,8 +27,8 @@ const NewsletterSignup = () => {
     await new Promise(resolve => setTimeout(resolve, 1000));
 
     toast({
-      title: "Subscribed!",
-      description: "Thank you for subscribing to our newsletter.",
+      title: t('newsletter.subscribed'),
+      description: t('newsletter.subscribedDesc'),
     });
     setEmail('');
     setIsSubmitting(false);

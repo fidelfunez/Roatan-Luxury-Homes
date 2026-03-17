@@ -1,5 +1,6 @@
 import React, { useState, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import { motion } from 'framer-motion';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -23,6 +24,7 @@ const propertyTypes = ['Villa', 'House', 'Condo', 'Apartment', 'Land', 'Commerci
 const ClientPropertySubmission = () => {
   const navigate = useNavigate();
   const { toast } = useToast();
+  const { t } = useTranslation();
   const [formData, setFormData] = useState({
     title: '',
     location: '',
@@ -219,7 +221,7 @@ const ClientPropertySubmission = () => {
       />
       <Card className="max-w-4xl mx-auto shadow-2xl">
         <CardHeader className="bg-primary/10 p-6 rounded-t-lg">
-          <CardTitle className="text-3xl font-bold text-primary">Submit Your Property</CardTitle>
+          <CardTitle className="text-3xl font-bold text-primary">{t('submitProperty.title')}</CardTitle>
           <CardDescription className="text-muted-foreground">
             Fill in the details below to submit your property for review. Our team will contact you within 24 hours.
           </CardDescription>
@@ -229,7 +231,7 @@ const ClientPropertySubmission = () => {
             
             {/* Contact Information */}
             <section className="space-y-4">
-              <h3 className="text-xl font-semibold text-primary border-b pb-2 mb-4">Contact Information</h3>
+              <h3 className="text-xl font-semibold text-primary border-b pb-2 mb-4">{t('submitProperty.contactInfo')}</h3>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                 <div>
                   <Label htmlFor="contactName" className="flex items-center mb-1"><Info className="w-4 h-4 mr-2 text-primary" />Your Name</Label>
@@ -278,8 +280,8 @@ const ClientPropertySubmission = () => {
                     onChange={handleChange}
                     className="w-full h-10 rounded-md border border-input bg-background px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-primary"
                   >
-                    <option value="sale">For Sale</option>
-                    <option value="rent">For Rent</option>
+                    <option value="sale">{t('submitProperty.forSale')}</option>
+                    <option value="rent">{t('submitProperty.forRent')}</option>
                   </select>
                 </div>
                 {formData.listingType === 'rent' && (
@@ -434,7 +436,7 @@ const ClientPropertySubmission = () => {
             {/* Submit Button */}
             <div className="flex justify-end space-x-4 pt-6 border-t">
               <Button type="button" variant="outline" onClick={() => navigate('/properties')}>
-                Cancel
+                {t('submitProperty.cancel')}
               </Button>
               <Button type="submit" size="lg" disabled={isSubmitting} className="bg-gradient-to-r from-primary to-turquoise-dark hover:from-primary/90 hover:to-turquoise-dark/90 text-primary-foreground transform hover:scale-105 transition-transform duration-200 shadow-lg">
                 {isSubmitting ? (
@@ -444,12 +446,12 @@ const ClientPropertySubmission = () => {
                       transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
                       className="w-5 h-5 border-2 border-transparent border-t-white rounded-full mr-2"
                     />
-                    Submitting...
+                    {t('submitProperty.submitting')}
                   </>
                 ) : (
                   <>
                     <Send className="w-5 h-5 mr-2" />
-                    Submit Property
+                    {t('submitProperty.submitButton')}
                   </>
                 )}
               </Button>

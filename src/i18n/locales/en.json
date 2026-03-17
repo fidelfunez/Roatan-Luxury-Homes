@@ -25,7 +25,13 @@
     "shareError": "Could not share",
     "viewAllProperties": "View All Properties",
     "yearsExperience": "Years Experience",
-    "trustedBy": "Trusted by 500+ Clients"
+    "trustedBy": "Trusted by 500+ Clients",
+    "backToHome": "Back to Home",
+    "backToBlog": "Back to Blog",
+    "backToServices": "Back to Services",
+    "backToAllServices": "Back to All Services",
+    "sqFt": "sq ft",
+    "notAvailable": "N/A"
   },
   "home": {
     "featuredProperties": "Featured Properties",
@@ -82,11 +88,17 @@
     "quickSubmission": "Quick submission process",
     "freeListing": "100% Free Listing",
     "responseTime": "48-hour response time",
-    "submitProperty": "Submit Your Property"
+    "submitProperty": "Submit Your Property",
+    "parkingLabel": "Parking",
+    "areaLabel": "Area"
   },
   "services": {
     "contactUsToday": "Contact Us Today",
-    "viewProperties": "View Properties"
+    "viewProperties": "View Properties",
+    "backToServices": "Back to Services",
+    "backToAllServices": "Back to All Services",
+    "notFound": "Service Not Found",
+    "notFoundDesc": "The service you are looking for does not exist or may have been moved."
   },
   "about": {
     "trustedPartner": "Your Trusted Real Estate Partner",
@@ -142,7 +154,11 @@
     "enterEmail": "Enter your email",
     "subscribe": "Subscribe",
     "subscribing": "Subscribing...",
-    "privacyNote": "We respect your privacy. Unsubscribe at any time."
+    "privacyNote": "We respect your privacy. Unsubscribe at any time.",
+    "error": "Error",
+    "errorDesc": "Please enter your email address.",
+    "subscribed": "Subscribed!",
+    "subscribedDesc": "Thank you for subscribing to our newsletter."
   },
   "blog": {
     "noPostsFound": "No Blog Posts Found",
@@ -166,7 +182,13 @@
     "previewInvestmentExcerpt": "Discover the best investment strategies for maximizing returns on your Roatán property investment.",
     "previewLifestyleTitle": "Living the Island Life: A Day in Roatán",
     "previewLifestyleCategory": "Lifestyle",
-    "previewLifestyleExcerpt": "Experience the daily rhythm of island living and what makes Roatán the perfect place to call home."
+    "previewLifestyleExcerpt": "Experience the daily rhythm of island living and what makes Roatán the perfect place to call home.",
+    "backToBlog": "Back to Blog",
+    "postNotFound": "Blog Post Not Found",
+    "postNotFoundDesc": "The blog post you're looking for doesn't exist or has been removed.",
+    "share": "Share",
+    "contactAuthor": "Contact {{author}}",
+    "minRead": "5 min read"
   },
   "propertyDetail": {
     "backToProperties": "Back to Properties",
@@ -199,6 +221,19 @@
     "loading": "Loading Property Details",
     "loadingDesc": "Fetching property information...",
     "errorDesc": "Failed to load property details. Please try again later."
+  },
+  "notFound": {
+    "title": "Page Not Found",
+    "desc": "The page you are looking for does not exist or may have been moved."
+  },
+  "submitProperty": {
+    "title": "Submit Your Property",
+    "contactInfo": "Contact Information",
+    "forSale": "For Sale",
+    "forRent": "For Rent",
+    "cancel": "Cancel",
+    "submitting": "Submitting...",
+    "submitButton": "Submit Property"
   },
   "footer": {
     "explore": "Explore",

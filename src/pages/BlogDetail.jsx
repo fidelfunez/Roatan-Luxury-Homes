@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import { motion } from 'framer-motion';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
@@ -28,6 +29,7 @@ const fadeIn = {
 
 const BlogDetail = () => {
   const { slug } = useParams();
+  const { t } = useTranslation();
   const [post, setPost] = useState(null);
   const [relatedPosts, setRelatedPosts] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -131,14 +133,14 @@ const BlogDetail = () => {
             animate="visible"
             variants={fadeIn}
           >
-            <h1 className="text-4xl font-bold text-primary mb-4">Blog Post Not Found</h1>
+            <h1 className="text-4xl font-bold text-primary mb-4">{t('blog.postNotFound')}</h1>
             <p className="text-lg text-muted-foreground mb-8">
-              The blog post you're looking for doesn't exist or has been removed.
+              {t('blog.postNotFoundDesc')}
             </p>
             <Button asChild>
               <Link to="/blog">
                 <ArrowLeft className="w-4 h-4 mr-2" />
-                Back to Blog
+                {t('common.backToBlog')}
               </Link>
             </Button>
           </motion.div>
@@ -173,7 +175,7 @@ const BlogDetail = () => {
         <motion.div className="mb-8" variants={fadeIn}>
           <Button variant="outline" asChild>
             <Link to="/blog" className="text-primary hover:text-primary/80">
-              <ChevronLeft className="mr-2 h-4 w-4" /> Back to Blog
+              <ChevronLeft className="mr-2 h-4 w-4" /> {t('common.backToBlog')}
             </Link>
           </Button>
         </motion.div>
@@ -207,13 +209,13 @@ const BlogDetail = () => {
               </div>
               <div className="flex items-center gap-2">
                 <Clock className="w-4 h-4" />
-                <span>5 min read</span>
+                <span>{t('blog.minRead')}</span>
               </div>
             </div>
 
             {/* Share Buttons */}
             <div className="flex items-center gap-2 mb-8">
-              <span className="text-sm font-medium text-muted-foreground">Share:</span>
+              <span className="text-sm font-medium text-muted-foreground">{t('blog.share')}:</span>
               <Button size="sm" variant="outline" onClick={() => sharePost('facebook')}>
                 <Facebook className="w-4 h-4" />
               </Button>
@@ -283,7 +285,7 @@ const BlogDetail = () => {
                     </p>
                     <Button asChild variant="outline" size="sm">
                       <Link to="/contact">
-                        Contact {post.author}
+                        {t('blog.contactAuthor', { author: post.author })}
                       </Link>
                     </Button>
                   </div>
@@ -329,7 +331,7 @@ const BlogDetail = () => {
                         </span>
                         <Button size="sm" variant="outline" asChild>
                           <Link to={`/blog/${relatedPost.slug}`}>
-                            Read More
+                            {t('blog.readMore')}
                             <ArrowRight className="w-3 h-3 ml-1" />
                           </Link>
                         </Button>

@@ -8,12 +8,13 @@ import NewsletterSignup from '@/components/NewsletterSignup';
 import OptimizedImage from '@/components/OptimizedImage';
 import SEO from '@/components/SEO';
 import { getProperties } from '@/lib/supabaseUtils';
+import { formatPropertyPrice } from '@/lib/propertyUtils';
 import { useContent } from '@/lib/useContent';
 import { useLocalizedProperty } from '@/lib/useLocalizedProperty';
 
 const Home = () => {
   const { getContent } = useContent();
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const { getTitle, getLocation, getDescription } = useLocalizedProperty();
   const [featuredProperties, setFeaturedProperties] = useState([]);
 
@@ -78,7 +79,7 @@ const Home = () => {
             <Button size="lg" asChild variant="outline" className="border-white text-white hover:bg-white hover:text-primary shadow-lg text-lg px-8 py-4 bg-white/20 backdrop-blur-sm font-semibold">
               <Link to="/properties">
                 <Search className="mr-2 h-5 w-5" />
-                Browse Properties
+                {t('common.browseProperties')}
                 <ArrowRight className="ml-2 h-5 w-5" />
               </Link>
             </Button>
@@ -259,7 +260,7 @@ const Home = () => {
                         {property.area && (
                           <div className="flex items-center gap-2">
                             <CarFront className="w-5 h-5 text-primary" />
-                            <span>{property.area} sq ft</span>
+                            <span>{property.area} {t('common.sqFt')}</span>
                           </div>
                         )}
                       </div>
@@ -267,7 +268,7 @@ const Home = () => {
                       <div className="flex items-center justify-between">
                         <div className="flex items-center text-primary font-bold text-xl">
                           <DollarSign className="w-5 h-5 mr-2" />
-                          {property.price ? property.price.toLocaleString() : t('home.contactForPrice')}
+                          {property.price ? formatPropertyPrice(property, i18n.language) : t('home.contactForPrice')}
                         </div>
                         <Button asChild size="lg" className="bg-primary hover:bg-primary/90">
                           <Link to={`/properties/${property.id}`}>
@@ -330,7 +331,7 @@ const Home = () => {
                         {property.area && (
                           <div className="flex items-center gap-1">
                             <span>📐</span>
-                            <span>{property.area} sq ft</span>
+                            <span>{property.area} {t('common.sqFt')}</span>
                           </div>
                         )}
                       </div>
@@ -338,7 +339,7 @@ const Home = () => {
                       <div className="flex items-center justify-between">
                         <div className="flex items-center text-primary font-bold">
                           <DollarSign className="w-4 h-4 mr-1" />
-                          {property.price ? property.price.toLocaleString() : t('home.contactForPrice')}
+                          {property.price ? formatPropertyPrice(property, i18n.language) : t('home.contactForPrice')}
                         </div>
                         <Button asChild size="sm" className="bg-primary hover:bg-primary/90">
                           <Link to={`/properties/${property.id}`}>{t('common.viewDetails')} <ArrowRight className="ml-1 h-4 w-4" /></Link>

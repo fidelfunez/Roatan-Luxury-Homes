@@ -25,7 +25,13 @@
     "shareError": "No se pudo compartir",
     "viewAllProperties": "Ver Todas las Propiedades",
     "yearsExperience": "Años de experiencia",
-    "trustedBy": "Más de 500 clientes nos eligen"
+    "trustedBy": "Más de 500 clientes nos eligen",
+    "backToHome": "Volver al inicio",
+    "backToBlog": "Volver al blog",
+    "backToServices": "Volver a servicios",
+    "backToAllServices": "Ver todos los servicios",
+    "sqFt": "pies²",
+    "notAvailable": "N/D"
   },
   "home": {
     "featuredProperties": "Propiedades Destacadas",
@@ -82,11 +88,17 @@
     "quickSubmission": "Proceso rápido",
     "freeListing": "100% gratis",
     "responseTime": "Te respondemos en 48 horas",
-    "submitProperty": "Enviar Propiedad"
+    "submitProperty": "Enviar Propiedad",
+    "parkingLabel": "Estacionamiento",
+    "areaLabel": "Área"
   },
   "services": {
     "contactUsToday": "Contáctanos hoy",
-    "viewProperties": "Ver Propiedades"
+    "viewProperties": "Ver Propiedades",
+    "backToServices": "Volver a servicios",
+    "backToAllServices": "Ver todos los servicios",
+    "notFound": "Servicio no encontrado",
+    "notFoundDesc": "El servicio que buscas no existe o fue movido."
   },
   "about": {
     "trustedPartner": "Tu socio inmobiliario de confianza",
@@ -142,7 +154,11 @@
     "enterEmail": "Ingresa tu correo",
     "subscribe": "Suscribirse",
     "subscribing": "Suscribiendo...",
-    "privacyNote": "Respetamos tu privacidad. Puedes darte de baja cuando quieras."
+    "privacyNote": "Respetamos tu privacidad. Puedes darte de baja cuando quieras.",
+    "error": "Error",
+    "errorDesc": "Por favor ingresa tu correo electrónico.",
+    "subscribed": "¡Suscrito!",
+    "subscribedDesc": "Gracias por suscribirte a nuestro boletín."
   },
   "blog": {
     "noPostsFound": "No hay publicaciones",
@@ -166,7 +182,13 @@
     "previewInvestmentExcerpt": "Estrategias para maximizar el retorno de tu inversión en Roatán.",
     "previewLifestyleTitle": "La vida isleña: un día en Roatán",
     "previewLifestyleCategory": "Estilo de vida",
-    "previewLifestyleExcerpt": "El ritmo diario de la vida en la isla y por qué Roatán es el lugar ideal para vivir."
+    "previewLifestyleExcerpt": "El ritmo diario de la vida en la isla y por qué Roatán es el lugar ideal para vivir.",
+    "backToBlog": "Volver al blog",
+    "postNotFound": "Publicación no encontrada",
+    "postNotFoundDesc": "La publicación que buscas no existe o fue eliminada.",
+    "share": "Compartir",
+    "contactAuthor": "Contactar a {{author}}",
+    "minRead": "5 min lectura"
   },
   "propertyDetail": {
     "backToProperties": "Volver a propiedades",
@@ -199,6 +221,19 @@
     "loading": "Cargando propiedad",
     "loadingDesc": "Obteniendo la información...",
     "errorDesc": "No pudimos cargar la propiedad. Intenta de nuevo más tarde."
+  },
+  "notFound": {
+    "title": "Página no encontrada",
+    "desc": "La página que buscas no existe o fue movida."
+  },
+  "submitProperty": {
+    "title": "Publicar tu propiedad",
+    "contactInfo": "Información de contacto",
+    "forSale": "En venta",
+    "forRent": "En alquiler",
+    "cancel": "Cancelar",
+    "submitting": "Enviando...",
+    "submitButton": "Enviar propiedad"
   },
   "footer": {
     "explore": "Explorar",

@@ -12,7 +12,7 @@ import { useLocalizedProperty } from '@/lib/useLocalizedProperty';
 
 const PropertyDetail = () => {
   const { propertyId } = useParams();
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const { toast } = useToast();
   const { getTitle, getDescription, getLocation } = useLocalizedProperty();
   const [property, setProperty] = useState(null);
@@ -100,7 +100,7 @@ const PropertyDetail = () => {
   const displayTitle = getTitle(property);
   const displayDescription = getDescription(property);
   const displayLocation = getLocation(property);
-  const metaDescription = displayDescription ? (displayDescription.length > 160 ? displayDescription.slice(0, 157) + '...' : displayDescription) : `${displayTitle} - ${displayLocation || 'Roatán'}. ${property.price ? formatPropertyPrice(property) : ''}`;
+  const metaDescription = displayDescription ? (displayDescription.length > 160 ? displayDescription.slice(0, 157) + '...' : displayDescription) : `${displayTitle} - ${displayLocation || 'Roatán'}. ${property.price ? formatPropertyPrice(property, i18n.language) : ''}`;
   const ogImage = propertyImages[0] && propertyImages[0].startsWith('http') ? propertyImages[0] : (typeof window !== 'undefined' ? `${window.location.origin}${propertyImages[0]?.startsWith('/') ? propertyImages[0] : '/' + propertyImages[0]}` : propertyImages[0]);
 
   const nextImage = () => {
@@ -205,7 +205,7 @@ const PropertyDetail = () => {
 
           {/* Enhanced Image Gallery */}
           <div className="space-y-4">
-            <div className="relative aspect-w-16 aspect-h-10 lg:aspect-h-9 rounded-xl overflow-hidden shadow-lg group">
+            <div className="relative aspect-[2/1] max-h-[50vh] rounded-xl overflow-hidden shadow-lg group">
               <img  
                 alt={`${displayTitle} - image ${currentImageIndex + 1}`} 
                 className="object-cover w-full h-full cursor-pointer transition-transform duration-300 group-hover:scale-105"
@@ -312,7 +312,7 @@ const PropertyDetail = () => {
                 <span className="font-semibold text-lg">{property.listingType === 'rent' ? t('propertyDetail.rent') + ':' : t('propertyDetail.price') + ':'}</span>
                 <span className="text-3xl lg:text-4xl font-bold text-primary flex items-center">
                   <DollarSign className="w-6 h-6 lg:w-8 lg:h-8 mr-2" />
-                  {formatPropertyPrice(property)}
+                  {formatPropertyPrice(property, i18n.language)}
                 </span>
               </div>
               <hr className="border-turquoise-light/50"/>
