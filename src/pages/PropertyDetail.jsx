@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
@@ -19,6 +19,7 @@ const PropertyDetail = () => {
   const [viewCount, setViewCount] = useState(null);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [isLightboxOpen, setIsLightboxOpen] = useState(false);
+  const thumbnailStripRef = useRef(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
@@ -107,6 +108,15 @@ const PropertyDetail = () => {
   const nextImage = () => {
     setCurrentImageIndex((prevIndex) => (prevIndex + 1) % propertyImages.length);
   };
+
+  // Keep active thumbnail visible when main image changes
+  useEffect(() => {
+    const strip = thumbnailStripRef.current;
+    const thumb = strip?.children[currentImageIndex];
+    if (strip && thumb) {
+      thumb.scrollIntoView({ block: 'nearest', inline: 'center', behavior: 'smooth' });
+    }
+  }, [currentImageIndex]);
 
   const prevImage = () => {
     setCurrentImageIndex((prevIndex) => (prevIndex - 1 + propertyImages.length) % propertyImages.length);
@@ -244,26 +254,55 @@ const PropertyDetail = () => {
               )}
             </div>
 
-            {/* Enhanced Thumbnails */}
+            {/* Enhanced Thumbnails - single row with horizontal scroll */}
             {propertyImages.length > 1 && (
-              <div className="grid grid-cols-4 sm:grid-cols-5 lg:grid-cols-6 gap-3">
-                {propertyImages.map((imgSrc, index) => (
-                  <div 
-                    key={index} 
-                    className={`aspect-w-1 aspect-h-1 rounded-lg overflow-hidden cursor-pointer border-2 transition-all duration-200 ${
-                      index === currentImageIndex 
-                        ? 'border-primary ring-2 ring-primary shadow-lg' 
-                        : 'border-transparent hover:border-primary/50 hover:shadow-md'
-                    }`}
-                    onClick={() => setCurrentImageIndex(index)}
-                  >
-                    <img  
-                      alt={`${displayTitle} - thumbnail ${index + 1}`} 
-                      className="object-cover w-full h-full" 
-                      src={imgSrc} 
-                      loading="lazy" />
-                  </div>
-                ))}
+              <div className="relative">
+                <Button
+                  variant="ghost"
+                  size="icon"
+                  onClick={() => {
+                    thumbnailStripRef.current?.scrollBy({ left: -120, behavior: 'smooth' });
+                  }}
+                  className="absolute left-0 top-1/2 -translate-y-1/2 z-10 h-8 w-8 rounded-full bg-black/40 hover:bg-black/60 text-white -ml-1"
+                  aria-label="Scroll thumbnails left"
+                >
+                  <ChevronLeft className="h-4 w-4" />
+                </Button>
+                <div
+                  ref={thumbnailStripRef}
+                  className="flex gap-3 overflow-x-auto scroll-smooth py-1"
+                  style={{ scrollbarWidth: 'thin' }}
+                >
+                  {propertyImages.map((imgSrc, index) => (
+                    <div
+                      key={index}
+                      className={`flex-shrink-0 w-20 h-20 sm:w-24 sm:h-24 rounded-lg overflow-hidden cursor-pointer border-2 transition-all duration-200 ${
+                        index === currentImageIndex
+                          ? 'border-primary ring-2 ring-primary shadow-lg'
+                          : 'border-transparent hover:border-primary/50 hover:shadow-md'
+                      }`}
+                      onClick={() => setCurrentImageIndex(index)}
+                    >
+                      <img
+                        alt={`${displayTitle} - thumbnail ${index + 1}`}
+                        className="object-cover w-full h-full"
+                        src={imgSrc}
+                        loading="lazy"
+                      />
+                    </div>
+                  ))}
+                </div>
+                <Button
+                  variant="ghost"
+                  size="icon"
+                  onClick={() => {
+                    thumbnailStripRef.current?.scrollBy({ left: 120, behavior: 'smooth' });
+                  }}
+                  className="absolute right-0 top-1/2 -translate-y-1/2 z-10 h-8 w-8 rounded-full bg-black/40 hover:bg-black/60 text-white -mr-1"
+                  aria-label="Scroll thumbnails right"
+                >
+                  <ChevronRight className="h-4 w-4" />
+                </Button>
               </div>
             )}
           </div>
