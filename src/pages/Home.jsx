@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardFooter, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import { Link } from 'react-router-dom';
-import { MapPin, Home as HomeIconLucide, ArrowRight, Users, Award, MessageCircle, Star, CheckCircle, Clock, Phone, Mail, Search, Filter, BedDouble, Bath, CarFront, Square } from 'lucide-react';
+import { MapPin, Home as HomeIconLucide, ArrowRight, Users, Award, MessageCircle, Star, CheckCircle, Clock, Phone, Mail, Search, Filter, BedDouble, Bath, CarFront, Maximize } from 'lucide-react';
 import NewsletterSignup from '@/components/NewsletterSignup';
 import OptimizedImage from '@/components/OptimizedImage';
 import SEO from '@/components/SEO';
@@ -259,7 +259,7 @@ const Home = () => {
                         )}
                         {property.area && (
                           <div className="flex items-center gap-2">
-                            <Square className="w-5 h-5 text-primary" />
+                            <Maximize className="w-5 h-5 text-primary" />
                             <span>{property.area} {t('common.sqFt')}</span>
                           </div>
                         )}
@@ -329,7 +329,7 @@ const Home = () => {
                         )}
                         {property.area && (
                           <div className="flex items-center gap-1">
-                            <span>📐</span>
+                            <Maximize className="w-4 h-4 text-primary" />
                             <span>{property.area} {t('common.sqFt')}</span>
                           </div>
                         )}
