@@ -9,6 +9,7 @@ import React, { useState, useEffect, useRef } from 'react';
     import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
     import { useToast } from '@/components/ui/use-toast';
     import { getPropertyById, updateProperty } from '@/lib/supabaseUtils';
+    import { optimizeImage, optimizeImages, optimizeDataUrl, validateImageFile } from '@/lib/imageUtils';
     import { DollarSign, Type, MapPin as MapPinIcon, BedDouble, Bath, CarFront, Maximize, Info, Image as ImageIcon, ListChecks, CalendarDays, Clock, PlusCircle, Trash2, UploadCloud, Save, KeyRound } from 'lucide-react';
 
     const fadeIn = {
@@ -24,6 +25,8 @@ import React, { useState, useEffect, useRef } from 'react';
       const { toast } = useToast();
       const [formData, setFormData] = useState(null);
       const [imagePreviews, setImagePreviews] = useState({ main: null, gallery: [] });
+      const [isOptimizing, setIsOptimizing] = useState(false);
+      const [isSubmitting, setIsSubmitting] = useState(false);
 
       const mainImageInputRef = useRef(null);
       const galleryImageInputRef = useRef(null);
@@ -71,33 +74,67 @@ import React, { useState, useEffect, useRef } from 'react';
         loadProperty();
       }, [propertyId, navigate, toast]);
 
-      const handleFileChange = (e, fieldName) => {
+      const handleFileChange = async (e, fieldName) => {
         const file = e.target.files[0];
         if (file) {
-          const reader = new FileReader();
-          reader.onloadend = () => {
-            const result = reader.result;
+          const validation = validateImageFile(file);
+          if (!validation.valid) {
+            toast({ title: "Invalid Image", description: validation.error, variant: "destructive" });
+            return;
+          }
+          setIsOptimizing(true);
+          try {
+            const optimized = await optimizeImage(file, {
+              maxWidth: 1200,
+              maxHeight: 800,
+              quality: 0.8,
+              maxFileSize: 512 * 1024, // 512KB per image
+            });
             if (fieldName === 'image') {
-              setFormData(prev => ({ ...prev, image: result }));
-              setImagePreviews(prev => ({ ...prev, main: result }));
+              setFormData(prev => ({ ...prev, image: optimized.dataUrl }));
+              setImagePreviews(prev => ({ ...prev, main: optimized.dataUrl }));
             }
-          };
-          reader.readAsDataURL(file);
+          } catch (err) {
+            console.error('Image optimization failed:', err);
+            toast({ title: "Image Error", description: "Could not process image. Try a smaller file.", variant: "destructive" });
+          } finally {
+            setIsOptimizing(false);
+          }
         }
       };
 
-      const handleGalleryFileChange = (e) => {
+      const handleGalleryFileChange = async (e) => {
         const files = Array.from(e.target.files);
-        files.forEach(file => {
-          const reader = new FileReader();
-          reader.onloadend = () => {
-            const result = reader.result;
-            setFormData(prev => ({ ...prev, images: [...prev.images, result] }));
-            setImagePreviews(prev => ({ ...prev, gallery: [...prev.gallery, result] }));
-          };
-          reader.readAsDataURL(file);
-        });
-        e.target.value = null; // Reset file input
+        if (files.length === 0) return;
+        const validation = files.every(f => validateImageFile(f).valid);
+        if (!validation) {
+          toast({ title: "Invalid Image", description: "Please upload valid JPEG, PNG, or WebP files.", variant: "destructive" });
+          return;
+        }
+        setIsOptimizing(true);
+        try {
+          const results = await optimizeImages(files, {
+            maxWidth: 1200,
+            maxHeight: 800,
+            quality: 0.8,
+            maxFileSize: 512 * 1024,
+          });
+          const newDataUrls = results.map(r => r.dataUrl);
+          setFormData(prev => ({
+            ...prev,
+            images: [...(prev.images || []), ...newDataUrls],
+          }));
+          setImagePreviews(prev => ({
+            ...prev,
+            gallery: [...(prev.gallery || []), ...newDataUrls],
+          }));
+        } catch (err) {
+          console.error('Gallery optimization failed:', err);
+          toast({ title: "Image Error", description: "Could not process images. Try smaller files.", variant: "destructive" });
+        } finally {
+          setIsOptimizing(false);
+        }
+        e.target.value = null;
       };
 
       const removeGalleryImage = (index) => {
@@ -137,6 +174,8 @@ import React, { useState, useEffect, useRef } from 'react';
 
       const handleSubmit = async (e) => {
         e.preventDefault();
+        if (isOptimizing || isSubmitting) return;
+        setIsSubmitting(true);
         try {
           const numericFields = ['price', 'beds', 'baths', 'parking', 'area'];
           const processedData = { ...formData };
@@ -170,6 +209,19 @@ import React, { useState, useEffect, useRef } from 'react';
             processedData.images = ['https://images.unsplash.com/photo-1582407947304-fd86f028f716?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8cmVhbCUyMGVzdGF0ZXxlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=800&q=60'];
           }
 
+          // Re-optimize any base64 images before send to avoid 500 (payload too large)
+          const opts = { maxWidth: 1200, maxHeight: 800, quality: 0.8 };
+          if (processedData.image?.startsWith('data:image')) {
+            processedData.image = await optimizeDataUrl(processedData.image, opts);
+          }
+          if (Array.isArray(processedData.images)) {
+            processedData.images = await Promise.all(
+              processedData.images.map((img) =>
+                img?.startsWith('data:image') ? optimizeDataUrl(img, opts) : img
+              )
+            );
+          }
+
           await updateProperty(propertyId, processedData);
           toast({
             title: "Property Updated! ✨",
@@ -181,9 +233,11 @@ import React, { useState, useEffect, useRef } from 'react';
           console.error("Failed to update property:", error);
           toast({
             title: "Uh oh! Something went wrong.",
-            description: "There was a problem saving the property. Please try again.",
+            description: error?.message || "There was a problem saving the property. Try fewer/smaller images.",
             variant: "destructive",
           });
+        } finally {
+          setIsSubmitting(false);
         }
       };
 
@@ -410,8 +464,8 @@ import React, { useState, useEffect, useRef } from 'react';
 
 
                 <div className="flex justify-end pt-6">
-                  <Button type="submit" size="lg" className="bg-gradient-to-r from-primary to-turquoise-dark hover:from-primary/90 hover:to-turquoise-dark/90 text-lg px-8 py-3">
-                    <Save className="w-5 h-5 mr-2" /> Save Changes
+                  <Button type="submit" size="lg" disabled={isOptimizing || isSubmitting} className="bg-gradient-to-r from-primary to-turquoise-dark hover:from-primary/90 hover:to-turquoise-dark/90 text-lg px-8 py-3">
+                    <Save className="w-5 h-5 mr-2" /> {isSubmitting ? "Saving..." : "Save Changes"}
                   </Button>
                 </div>
               </form>

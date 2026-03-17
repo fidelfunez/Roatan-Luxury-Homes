@@ -72,6 +72,44 @@ export const optimizeImage = (file, options = {}) => {
   });
 };
 
+// Optimize a data URL (e.g. existing base64 from DB) - returns optimized data URL
+export const optimizeDataUrl = (dataUrl, options = {}) => {
+  return new Promise((resolve, reject) => {
+    if (!dataUrl || typeof dataUrl !== 'string' || !dataUrl.startsWith('data:image')) {
+      resolve(dataUrl);
+      return;
+    }
+    const { maxWidth = 1200, maxHeight = 800, quality = 0.8 } = options;
+    const img = new Image();
+    img.onload = () => {
+      const canvas = document.createElement('canvas');
+      const ctx = canvas.getContext('2d');
+      let { width, height } = img;
+      if (width > maxWidth || height > maxHeight) {
+        const ratio = Math.min(maxWidth / width, maxHeight / height);
+        width = Math.round(width * ratio);
+        height = Math.round(height * ratio);
+      }
+      canvas.width = width;
+      canvas.height = height;
+      ctx.drawImage(img, 0, 0, width, height);
+      canvas.toBlob(
+        (blob) => {
+          if (blob) {
+            const reader = new FileReader();
+            reader.onloadend = () => resolve(reader.result);
+            reader.readAsDataURL(blob);
+          } else resolve(dataUrl);
+        },
+        'image/jpeg',
+        quality
+      );
+    };
+    img.onerror = () => resolve(dataUrl);
+    img.src = dataUrl;
+  });
+};
+
 // Batch optimize multiple images
 export const optimizeImages = async (files, options = {}) => {
   const results = [];
