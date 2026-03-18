@@ -290,20 +290,13 @@ const AdminWebsiteEditor = () => {
           ]
         },
         {
-          id: 'team',
-          title: 'Team Members',
+          id: 'carolina',
+          title: 'Carolina (Founder)',
           icon: <Users className="w-4 h-4" />,
           fields: [
-            { key: 'title', label: 'Section Title', type: 'text', placeholder: 'Meet Our Team' },
-            { key: 'member1Name', label: 'Member 1 Name', type: 'text', placeholder: 'Alice Johnson' },
-            { key: 'member1Role', label: 'Member 1 Role', type: 'text', placeholder: 'Lead Agent & Founder' },
-            { key: 'member1Bio', label: 'Member 1 Bio', type: 'textarea', placeholder: 'With over 15 years of experience...' },
-            { key: 'member2Name', label: 'Member 2 Name', type: 'text', placeholder: 'Bob Williams' },
-            { key: 'member2Role', label: 'Member 2 Role', type: 'text', placeholder: 'Sales Specialist' },
-            { key: 'member2Bio', label: 'Member 2 Bio', type: 'textarea', placeholder: 'Bob\'s deep knowledge of the local market...' },
-            { key: 'member3Name', label: 'Member 3 Name', type: 'text', placeholder: 'Carol Davis' },
-            { key: 'member3Role', label: 'Member 3 Role', type: 'text', placeholder: 'Client Relations Manager' },
-            { key: 'member3Bio', label: 'Member 3 Bio', type: 'textarea', placeholder: 'Carol ensures every client receives...' }
+            { key: 'title', label: 'Section Title', type: 'text', placeholder: 'Meet Carolina' },
+            { key: 'role', label: 'Role / Title', type: 'text', placeholder: 'Founder & Lead Real Estate Expert' },
+            { key: 'bio', label: 'Bio / Experience Paragraph', type: 'textarea', placeholder: 'Carolina brings nearly two decades of real estate experience, starting on the mainland where she sold warehouses, condominiums, houses, and land...' }
           ]
         }
       ]

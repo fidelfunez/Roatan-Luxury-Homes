@@ -95,6 +95,11 @@ const defaultContent = {
       member3Name: 'Carol Davis',
       member3Role: 'Client Relations Manager',
       member3Bio: 'Carol ensures every client receives personalized attention and support throughout their real estate journey, making complex processes feel simple.'
+    },
+    carolina: {
+      title: 'Meet Carolina',
+      role: 'Founder & Lead Real Estate Expert',
+      bio: 'Carolina brings nearly two decades of real estate experience, starting on the mainland where she sold warehouses, condominiums, houses, and land. In 2020–2021 she made the transition to Roatán and began specializing in vacation rentals—a venture that quickly took off. Today, Roatán Luxury Homes has earned more than 50 reviews on Airbnb and holds Superhost status with nearly five-star ratings. Carolina\'s commitment to transparency, personalized service, and her deep understanding of both traditional real estate and vacation rentals make her the trusted partner you need for buying, renting, or investing in Roatán.'
     }
   },
   services: {
@@ -322,6 +327,11 @@ const defaultContentEs = {
       member3Name: 'Carol Davis',
       member3Role: 'Gerente de relaciones con clientes',
       member3Bio: 'Carol se asegura de que cada cliente reciba atención personalizada y apoyo durante todo el proceso.'
+    },
+    carolina: {
+      title: 'Conoce a Carolina',
+      role: 'Fundadora y experta inmobiliaria',
+      bio: 'Carolina tiene casi dos décadas de experiencia en bienes raíces, iniciando en tierra firme donde vendió bodegas, condominios, casas y terrenos. En 2020–2021 hizo la transición a Roatán y comenzó a especializarse en rentas vacacionales—un negocio que creció rápidamente. Hoy, Roatán Luxury Homes tiene más de 50 reseñas en Airbnb y es Superhost con casi cinco estrellas. Su compromiso con la transparencia, el servicio personalizado y su profundo conocimiento tanto de bienes raíces tradicionales como de alquileres vacacionales la convierten en la aliada de confianza que necesitas para comprar, alquilar o invertir en Roatán.'
     }
   },
   services: {

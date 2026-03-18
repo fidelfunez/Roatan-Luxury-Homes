@@ -411,11 +411,12 @@ const Properties = () => {
             {filteredProperties.map((property, index) => {
               const badge = getPropertyBadge(property, index);
               return (
-                <div 
+                <Link 
                   key={property.id} 
-                  className={`h-full group ${viewMode === 'list' ? 'lg:col-span-1' : ''}`}
+                  to={`/properties/${property.id}`}
+                  className={`block h-full group ${viewMode === 'list' ? 'lg:col-span-1' : ''}`}
                 >
-                  <Card className={`overflow-hidden shadow-md hover:shadow-xl h-full flex flex-col group border border-border/50 transition-all duration-300 ${
+                  <Card className={`overflow-hidden shadow-md hover:shadow-xl h-full flex flex-col group border border-border/50 transition-all duration-300 cursor-pointer ${
                     viewMode === 'list' ? 'lg:flex-row' : ''
                   }`}>
                     <CardHeader className={`p-0 relative ${viewMode === 'list' ? 'lg:w-1/3' : ''}`}>
@@ -449,7 +450,7 @@ const Properties = () => {
                         </div>
                       )}
                     </CardHeader>
-                    <Link to={`/properties/${property.id}`} className="block flex-grow">
+                    <div className="block flex-grow">
                       <CardContent className={`p-4 sm:p-6 flex-grow ${viewMode === 'list' ? 'lg:w-2/3' : ''}`}>
                         <CardTitle className={`font-semibold mb-2 text-primary line-clamp-2 ${
                           viewMode === 'list' ? 'text-xl lg:text-2xl' : 'text-lg sm:text-xl'
@@ -483,18 +484,18 @@ const Properties = () => {
                         }`}>
                           {formatPropertyPrice(property, i18n.language)}
                         </p>
-                        <Button variant="link" className="text-primary p-0 group-hover:underline font-semibold">
+                        <span className="inline-flex items-center text-primary group-hover:underline font-semibold">
                           <span className={viewMode === 'list' ? 'text-base lg:text-lg' : 'text-sm sm:text-base'}>
                             {t('properties.viewDetails')}
                           </span>
                           <ArrowRight className={`ml-1 ${
                             viewMode === 'list' ? 'h-4 w-4 lg:h-5 lg:w-5' : 'h-3 w-3 sm:h-4 sm:w-4'
                           }`} />
-                        </Button>
+                        </span>
                       </CardFooter>
-                    </Link>
+                    </div>
                   </Card>
-                </div>
+                </Link>
               );
             })}
           </div>

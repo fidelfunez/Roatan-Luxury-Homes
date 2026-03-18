@@ -42,7 +42,7 @@ const Home = () => {
         canonical="/"
       />
       {/* Enhanced Hero Section - Compact & Full Width */}
-      <section className="hero-full-bleed relative py-12 md:py-16 lg:py-20 flex items-center justify-center text-center overflow-hidden w-full lg:w-screen lg:left-1/2 lg:right-1/2 lg:-translate-x-1/2 lg:mx-0">
+      <section className="hero-full-bleed relative -mt-6 py-16 md:py-20 lg:py-24 flex items-center justify-center text-center overflow-hidden w-full lg:w-screen lg:left-1/2 lg:right-1/2 lg:-translate-x-1/2 lg:mx-0">
         {/* Desktop Background */}
         <div className="hidden lg:block absolute inset-0 w-full">
           <OptimizedImage 
@@ -215,8 +215,8 @@ const Home = () => {
             {/* Desktop: Larger Grid */}
             <div className="hidden lg:grid lg:grid-cols-3 gap-8">
               {featuredProperties.map((property, index) => (
-                <div key={property.id} className="group">
-                  <Card className="overflow-hidden shadow-lg hover:shadow-xl border border-border/50 h-full">
+                <Link key={property.id} to={`/properties/${property.id}`} className="group block h-full">
+                  <Card className="overflow-hidden shadow-lg hover:shadow-xl border border-border/50 h-full cursor-pointer">
                     <div className="relative h-64 overflow-hidden">
                       <img 
                         alt={getTitle(property)} 
@@ -269,24 +269,22 @@ const Home = () => {
                         <div className="flex items-center text-primary font-bold text-xl">
                           {property.price ? formatPropertyPrice(property, i18n.language) : t('home.contactForPrice')}
                         </div>
-                        <Button asChild size="lg" className="bg-primary hover:bg-primary/90">
-                          <Link to={`/properties/${property.id}`}>
-                            {t('common.viewDetails')} 
-                            <ArrowRight className="ml-2 h-5 w-5" />
-                          </Link>
-                        </Button>
+                        <span className="inline-flex items-center justify-center rounded-md bg-primary px-6 py-3 text-base font-medium text-primary-foreground hover:bg-primary/90">
+                          {t('common.viewDetails')} 
+                          <ArrowRight className="ml-2 h-5 w-5" />
+                        </span>
                       </div>
                     </CardContent>
                   </Card>
-                </div>
+                </Link>
               ))}
             </div>
             
             {/* Mobile: Compact Grid */}
             <div className="lg:hidden grid md:grid-cols-3 gap-8">
               {featuredProperties.map((property, index) => (
-                <div key={property.id} className="group">
-                  <Card className="overflow-hidden shadow-md hover:shadow-lg border border-border/50">
+                <Link key={property.id} to={`/properties/${property.id}`} className="group block">
+                  <Card className="overflow-hidden shadow-md hover:shadow-lg border border-border/50 cursor-pointer">
                     <div className="relative h-48 overflow-hidden">
                       <img 
                         alt={getTitle(property)} 
@@ -339,13 +337,13 @@ const Home = () => {
                         <div className="flex items-center text-primary font-bold">
                           {property.price ? formatPropertyPrice(property, i18n.language) : t('home.contactForPrice')}
                         </div>
-                        <Button asChild size="sm" className="bg-primary hover:bg-primary/90">
-                          <Link to={`/properties/${property.id}`}>{t('common.viewDetails')} <ArrowRight className="ml-1 h-4 w-4" /></Link>
-                        </Button>
+                        <span className="inline-flex items-center rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground">
+                          {t('common.viewDetails')} <ArrowRight className="ml-1 h-4 w-4" />
+                        </span>
                       </div>
                     </CardContent>
                   </Card>
-                </div>
+                </Link>
               ))}
             </div>
             

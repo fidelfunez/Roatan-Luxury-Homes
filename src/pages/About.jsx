@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Users, Target, Award, ShieldCheck, HeartHandshake as Handshake, ArrowRight, Star, CheckCircle, MessageSquare, Phone, Mail, MapPin } from 'lucide-react';
+import { Users, Target, Award, ShieldCheck, HeartHandshake as Handshake, ArrowRight, Star, CheckCircle, MessageSquare } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Link } from 'react-router-dom';
 import SEO from '@/components/SEO';
@@ -9,13 +9,6 @@ import { useContent } from '@/lib/useContent';
 const About = () => {
   const { t } = useTranslation();
   const { getContent } = useContent();
-
-  // Team members with static data - content will be loaded dynamically
-  const teamMembers = [
-    { name: 'Alice Johnson', role: 'Lead Agent & Founder', image: "team-member-1", bio: 'With over 15 years of experience in Roatán real estate, Alice is passionate about connecting clients with their dream properties and ensuring a seamless transaction process.' },
-    { name: 'Bob Williams', role: 'Sales Specialist', image: "team-member-2", bio: 'Bob\'s deep knowledge of the local market and dedication to client satisfaction make him an invaluable asset to buyers and sellers alike.' },
-    { name: 'Carol Davis', role: 'Client Relations Manager', image: "team-member-3", bio: 'Carol ensures every client receives personalized attention and support throughout their real estate journey, making complex processes feel simple.' },
-  ];
 
   return (
     <div className="space-y-16 md:space-y-24">
@@ -106,11 +99,9 @@ const About = () => {
           </div>
           <div className="relative group">
             <div className="absolute -inset-4 bg-gradient-to-r from-primary/20 to-turquoise-dark/20 rounded-2xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-            <img  
-              src="https://images.unsplash.com/photo-1518428988489-54770498c006" 
-              alt="Scenic view of Roatan with team members" 
-              className="relative rounded-2xl shadow-2xl w-full h-auto object-cover aspect-[4/3] group-hover:scale-[1.02] transition-transform duration-500"
-              loading="lazy" />
+            <div className="relative rounded-2xl shadow-2xl w-full aspect-[4/3] bg-muted flex items-center justify-center border-2 border-dashed border-muted-foreground/30">
+              <span className="text-muted-foreground text-sm font-medium">Photo placeholder</span>
+            </div>
           </div>
         </div>
       </section>
@@ -173,67 +164,38 @@ const About = () => {
         </div>
       </section>
 
-      {/* Enhanced Team Section */}
+      {/* Carolina Section */}
       <section className="container mx-auto px-4">
-        <div className="text-center mb-16">
-          <div className="inline-flex items-center gap-2 bg-primary/10 text-primary px-4 py-2 rounded-full text-sm font-medium mb-4">
-            <Users className="w-4 h-4" />
-            {t('about.meetOurTeam')}
-          </div>
-          <h2 className="text-3xl md:text-4xl font-bold text-primary mb-4">{getContent('about', 'team', 'title')}</h2>
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            {t('about.meetTeamDesc')}
-          </p>
-        </div>
-        
-        <div className="grid md:grid-cols-3 gap-8 lg:gap-12">
-          {teamMembers.map((member, index) => {
-            // Get dynamic content for this team member
-            const dynamicName = getContent('about', 'team', `member${index + 1}Name`) || member.name;
-            const dynamicRole = getContent('about', 'team', `member${index + 1}Role`) || member.role;
-            const dynamicBio = getContent('about', 'team', `member${index + 1}Bio`) || member.bio;
-            
-            return (
-              <div 
-                key={dynamicName} 
-                className="bg-card rounded-2xl shadow-lg p-8 text-center hover:shadow-xl border border-border/50 transition-all duration-300 hover:-translate-y-2 group"
-              >
-                <div className="relative w-32 h-32 rounded-full mx-auto mb-6 overflow-hidden border-4 border-primary shadow-lg group-hover:scale-105 transition-transform duration-300">
-                  <img  
-                    src="https://images.unsplash.com/photo-1544212408-c711b7c19b92" 
-                    alt={dynamicName} 
-                    className="object-cover w-full h-full"
-                    loading="lazy" />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                </div>
-                
-                <h3 className="text-xl md:text-2xl font-bold text-foreground mb-2">{dynamicName}</h3>
-                <p className="text-primary font-semibold mb-4 text-lg">{dynamicRole}</p>
-                <p className="text-muted-foreground leading-relaxed mb-6">{dynamicBio}</p>
-              
-              {/* Contact Options */}
-              <div className="flex flex-col gap-3">
-                <Button asChild variant="outline" size="sm" className="group">
-                  <Link to="/contact">
-                    <MessageSquare className="w-4 h-4 mr-2" />
-                    Contact {member.name.split(' ')[0]}
-                  </Link>
-                </Button>
-                <div className="flex justify-center gap-3 text-muted-foreground">
-                  <button className="p-2 hover:text-primary transition-colors" title="Email">
-                    <Mail className="w-4 h-4" />
-                  </button>
-                  <button className="p-2 hover:text-primary transition-colors" title="Phone">
-                    <Phone className="w-4 h-4" />
-                  </button>
-                  <button className="p-2 hover:text-primary transition-colors" title="Location">
-                    <MapPin className="w-4 h-4" />
-                  </button>
-                </div>
-              </div>
+        <div className="grid md:grid-cols-2 gap-12 lg:gap-16 items-center">
+          <div className="relative group order-2 md:order-1">
+            <div className="absolute -inset-4 bg-gradient-to-r from-primary/20 to-turquoise-dark/20 rounded-2xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+            <div className="relative rounded-2xl shadow-2xl w-full aspect-[4/3] bg-muted flex items-center justify-center border-2 border-dashed border-muted-foreground/30">
+              <span className="text-muted-foreground text-sm font-medium">Photo placeholder</span>
             </div>
-          );
-        })}
+          </div>
+          <div className="space-y-6 order-1 md:order-2">
+            <div className="inline-flex items-center gap-2 bg-primary/10 text-primary px-4 py-2 rounded-full text-sm font-medium">
+              <Users className="w-4 h-4" />
+              {t('about.meetOurTeam')}
+            </div>
+            <h2 className="text-3xl md:text-4xl font-bold text-primary">
+              {getContent('about', 'carolina', 'title')}
+            </h2>
+            <p className="text-primary font-semibold text-lg">
+              {getContent('about', 'carolina', 'role')}
+            </p>
+            <p className="text-lg text-foreground leading-relaxed">
+              {getContent('about', 'carolina', 'bio')}
+            </p>
+            <div className="pt-4">
+              <Button asChild size="lg" className="group">
+                <Link to="/contact">
+                  <MessageSquare className="w-4 h-4 mr-2" />
+                  {t('common.getInTouch')}
+                </Link>
+              </Button>
+            </div>
+          </div>
         </div>
       </section>
 
