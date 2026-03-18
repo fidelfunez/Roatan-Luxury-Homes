@@ -130,7 +130,7 @@ const Footer = () => {
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label={social.label}
-                  className={social.label === 'WhatsApp' ? 'text-green-600 hover:text-green-700 transition-colors' : 'text-muted-foreground hover:text-primary transition-colors'}
+                  className="text-muted-foreground hover:text-primary transition-colors"
                 >
                   {social.icon}
                 </a>

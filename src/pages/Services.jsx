@@ -187,14 +187,17 @@ const Services = () => {
         </div>
       </section>
 
-      {/* Why Choose Us Section */}
-      <section className="bg-gradient-to-br from-sandy-light via-turquoise-light/30 to-blue-50 py-16 md:py-20 rounded-2xl shadow-inner">
+      {/* Why Choose Us Section - Roatán Luxury Homes */}
+      <section className="relative rounded-2xl overflow-hidden">
+        <OptimizedImage src="/Photos/boat-ocean-optimized.jpg" webpSrc="/Photos/boat-ocean-optimized.webp" alt="Boat on Caribbean ocean" className="absolute inset-0 w-full h-full object-cover" loading="lazy" sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 904px" />
+        <div className="absolute inset-0 bg-gradient-to-r from-primary/60 via-turquoise-dark/60 to-primary/40" />
+        <div className="relative z-10 py-16 md:py-20">
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold text-primary mb-4">
+            <h2 className="text-3xl md:text-4xl font-bold text-white mb-4 drop-shadow-lg">
               {getContent('whyChooseUs', 'title', 'Why Choose Roatán Luxury Homes?')}
             </h2>
-            <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
+            <p className="text-lg text-white/95 max-w-3xl mx-auto drop-shadow-md">
               {getContent('whyChooseUs', 'subtitle', 'We combine local expertise with international standards to deliver exceptional results for our clients.')}
             </p>
           </div>
@@ -225,40 +228,45 @@ const Services = () => {
               let dynamicDescription = getContent('whyChooseUs', `feature${index + 1}Desc`, item.description);
               return (
                 <div 
-                  key={index}
-                  className="text-center p-6 bg-card rounded-xl shadow-md hover:shadow-lg border border-border/50 transition-all duration-300 hover:-translate-y-1"
-                >
-                  <div className="mb-4 flex justify-center">
-                    <div className="p-3 bg-primary/10 rounded-xl">
-                      {item.icon}
-                    </div>
+                key={index}
+                className="text-center p-6 bg-white/20 backdrop-blur-sm rounded-xl shadow-md hover:shadow-lg border border-white/30 transition-all duration-300 hover:-translate-y-1"
+              >
+                <div className="mb-4 flex justify-center">
+                  <div className="p-3 bg-white/30 rounded-xl">
+                    {item.icon}
                   </div>
-                  <h3 className="text-lg font-semibold text-foreground mb-2">{dynamicTitle}</h3>
-                  <p className="text-muted-foreground text-sm">{dynamicDescription}</p>
                 </div>
+                <h3 className="text-lg font-semibold text-white mb-2 drop-shadow-md">{dynamicTitle}</h3>
+                <p className="text-white/90 text-sm drop-shadow-sm">{dynamicDescription}</p>
+              </div>
               );
             })}
           </div>
         </div>
+        </div>
       </section>
 
       {/* Enhanced CTA Section */}
-      <section className="bg-sandy-light py-16 md:py-20 rounded-xl shadow-inner">
+      <section className="relative rounded-2xl overflow-hidden">
+        <OptimizedImage src="/Photos/boat-ocean-optimized.jpg" webpSrc="/Photos/boat-ocean-optimized.webp" alt="Boat on Caribbean ocean" className="absolute inset-0 w-full h-full object-cover" loading="lazy" sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 904px" />
+        <div className="absolute inset-0 bg-gradient-to-r from-primary/60 via-turquoise-dark/60 to-primary/40" />
+        <div className="relative z-10 py-16 md:py-20">
         <div className="container mx-auto px-4 text-center">
-          <h2 className="text-3xl font-bold text-primary mb-6">
+          <h2 className="text-3xl md:text-4xl font-bold text-white mb-6 drop-shadow-lg">
             {getContent('cta', 'title', 'Ready to Get Started?')}
           </h2>
-          <p className="text-lg text-muted-foreground mb-8 max-w-2xl mx-auto">
+          <p className="text-lg text-white/95 mb-8 max-w-2xl mx-auto drop-shadow-md">
             {getContent('cta', 'subtitle', 'Contact us today to discuss your real estate needs and discover how we can help you achieve your goals in Roatán.')}
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button size="lg" asChild variant="outline" className="border-primary text-primary hover:bg-primary hover:text-primary-foreground transform hover:scale-105 transition-transform duration-300 bg-white/80 backdrop-blur-sm font-semibold shadow-lg">
+            <Button size="lg" asChild variant="outline" className="border-white text-white hover:bg-white hover:text-primary transform hover:scale-105 transition-transform duration-300 bg-white/20 backdrop-blur-sm font-semibold shadow-lg">
               <Link to="/contact">{t('services.contactUsToday')}</Link>
             </Button>
-            <Button size="lg" asChild variant="outline" className="border-primary text-primary hover:bg-primary hover:text-primary-foreground transform hover:scale-105 transition-transform duration-300 bg-white/80 backdrop-blur-sm font-semibold shadow-lg">
+            <Button size="lg" asChild variant="outline" className="border-white text-white hover:bg-white hover:text-primary transform hover:scale-105 transition-transform duration-300 bg-white/20 backdrop-blur-sm font-semibold shadow-lg">
               <Link to="/properties">{t('services.viewProperties')}</Link>
             </Button>
           </div>
+        </div>
         </div>
       </section>
     </div>

@@ -379,8 +379,13 @@ const Home = () => {
       </section>
 
       {/* Testimonials Section */}
-      <section className="container mx-auto px-4">
-        <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-center mb-4 text-primary">{getContent('home', 'testimonials', 'title')}</h2>
+      <section className="container mx-auto px-4" id="testimonials">
+        <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-center mb-4 text-primary">
+          {getContent('home', 'testimonials', 'title')}{' '}
+          <Link to="/contact" className="inline-flex items-center gap-1 text-lg md:text-xl font-semibold text-primary hover:underline">
+            {t('home.testimonialsMessage')}
+          </Link>
+        </h2>
         <p className="text-lg lg:text-xl text-center text-muted-foreground mb-12 max-w-4xl mx-auto">
           {getContent('home', 'testimonials', 'subtitle')}
         </p>
