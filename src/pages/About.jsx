@@ -4,6 +4,7 @@ import { Users, Target, Award, ShieldCheck, HeartHandshake as Handshake, ArrowRi
 import { Button } from '@/components/ui/button';
 import { Link } from 'react-router-dom';
 import SEO from '@/components/SEO';
+import OptimizedImage from '@/components/OptimizedImage';
 import { useContent } from '@/lib/useContent';
 
 const About = () => {
@@ -67,7 +68,7 @@ const About = () => {
             <div className="space-y-6">
               <div className="inline-flex items-center gap-2 bg-primary/10 text-primary px-4 py-2 rounded-full text-sm font-medium">
                 <Target className="w-4 h-4" />
-                {t('about.ourMission')}
+                {t('about.missionBadge')}
               </div>
               <h2 className="text-3xl md:text-4xl font-bold text-primary leading-tight">
                 {getContent('about', 'company', 'missionTitle')}
@@ -126,19 +127,19 @@ const About = () => {
                 icon: <Award className="w-12 h-12 text-turquoise-dark" />, 
                 title: 'Local Expertise', 
                 description: 'Unmatched knowledge of Roatán\'s neighborhoods, market trends, and legalities.',
-                color: "from-yellow-400/20 to-orange-400/20"
+                color: "from-amber-200/50 to-amber-300/40"
               },
               { 
                 icon: <ShieldCheck className="w-12 h-12 text-turquoise-dark" />, 
                 title: 'Trusted & Transparent', 
                 description: 'We operate with the highest ethical standards, ensuring clarity and honesty in all dealings.',
-                color: "from-blue-400/20 to-indigo-400/20"
+                color: "from-amber-200/50 to-amber-300/40"
               },
               { 
                 icon: <Handshake className="w-12 h-12 text-turquoise-dark" />, 
                 title: 'Client-Centric Approach', 
                 description: 'Your needs are our priority. We offer personalized service tailored to your unique goals.',
-                color: "from-green-400/20 to-emerald-400/20"
+                color: "from-amber-200/50 to-amber-300/40"
               },
             ].map((item, index) => {
               // Get dynamic content for this feature
@@ -200,7 +201,10 @@ const About = () => {
       </section>
 
       {/* Call to Action Section */}
-      <section className="bg-gradient-to-r from-primary to-turquoise-dark rounded-2xl p-8 md:p-12 text-center text-white">
+      <section className="relative rounded-2xl overflow-hidden">
+        <OptimizedImage src="/Photos/boat-ocean-optimized.jpg" webpSrc="/Photos/boat-ocean-optimized.webp" alt="Boat on Caribbean ocean" className="absolute inset-0 w-full h-full object-cover" loading="lazy" sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 904px" />
+        <div className="absolute inset-0 bg-gradient-to-r from-primary/60 via-turquoise-dark/60 to-primary/40" />
+        <div className="relative z-10 p-8 md:p-12 text-center text-white">
         <div className="max-w-3xl mx-auto">
           <h2 className="text-3xl md:text-4xl font-bold mb-4">{t('about.readyToStart')}</h2>
           <p className="text-lg md:text-xl text-white/90 mb-8">
@@ -219,6 +223,7 @@ const About = () => {
               </Link>
             </Button>
           </div>
+        </div>
         </div>
       </section>
     </div>

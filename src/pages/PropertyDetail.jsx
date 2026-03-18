@@ -408,7 +408,7 @@ const PropertyDetail = () => {
                     {t('propertyDetail.contactAgent')}
                   </a>
                 </Button>
-                <Button asChild variant="outline" className="w-full text-base py-3">
+                <Button asChild variant="outline" className="w-full text-base py-3 border-green-600 text-green-600 hover:bg-green-600 hover:text-white hover:border-green-600">
                   <a href={`https://wa.me/50433419532?text=${encodeURIComponent(t('contact.whatsappMessage'))}`} target="_blank" rel="noopener noreferrer">
                     <MessageSquare className="w-5 h-5 mr-2" />
                     WhatsApp
